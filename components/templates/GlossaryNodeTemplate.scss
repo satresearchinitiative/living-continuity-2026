@@ -1,0 +1,192 @@
+@use "../_setup/vars.scss" as *;
+
+.glossaryNodeGroup {
+  cursor: pointer;
+}
+
+.glossaryContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px; // Reduced from 4px to move cross closer to pill
+}
+
+.glossaryPill {
+  display: inline-flex;
+  align-items: center;
+  gap: calc($padding-xxs * 0.5);
+  border: 1.5px solid #666666;
+  border-radius: 999px;
+
+  background-color: $color-black;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: lowercase;
+  pointer-events: auto;
+  cursor: pointer;
+  box-shadow: none;
+  transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, font-size 0.2s ease, transform 0.2s ease;
+
+  &.highlighted {
+    border: none;
+    color: $color-accent;
+    box-shadow: 0 0 12px rgba(233, 255, 0, 0.35);
+    transform: scale(1.35);
+    @include lg {
+      transform: scale(1.25);
+    }
+  }
+
+  // Secondary highlighted keywords (connected to selected keyword) - yellow border
+  &.secondaryHighlighted {
+    border: none;
+  }
+
+  // Dimmed keywords (opacity 0.3) - remove border and background
+  &.dimmed {
+    border: none;
+    background-color: transparent;
+  }
+
+  // Selected keyword - reverse colors
+  &.selected {
+    background-color: $color-accent;
+    color: $color-black;
+    border-color: $color-accent;
+    @include font-size-xs;
+    @include necto-mono;
+    box-shadow: 0 0 12px rgba(233, 255, 0, 0.35);
+
+    .glossaryPillTitle {
+      padding: calc($padding-xxs * 0.8) calc($padding-s * 0.8); 
+    }
+  }
+}
+
+.glossaryPillTitle {
+  white-space: nowrap;
+  padding: calc(#{$padding-xxs} * 0.9)  calc(#{$padding-xs} * 1.6) $padding-xxs calc(#{$padding-xs} * 1.6);
+  font-family: "NectoMono-Regular", monospace !important;
+  font-weight: 400;
+  font-style: normal;
+  @include font-size-sm;
+  line-height: 115%;
+  letter-spacing: 0%;
+  text-transform: lowercase !important;
+}
+
+.glossaryPillOpenButton {
+  background-color: $color-accent;
+  color: $color-black;
+  border-radius: 999px;
+  text-transform: uppercase;
+  padding: calc($padding-xxs * 1.9) $padding-xs;
+  font-size: 7px; 
+  font-weight: 800;
+  line-height: 1.1;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-left: calc($padding-xxs * 0.5);
+  transition: opacity $transi-slow ease, background-color 0.2s ease, color 0.2s ease;
+  border: 1.5 solid $color-accent;
+  
+  .glossaryPill.selected &,
+  .glossaryPill.highlighted & {
+    background-color: $color-black;
+    color: $color-accent;
+  }
+
+  &:hover,
+  .glossaryPill.selected &:hover,
+  .glossaryPill.highlighted &:hover {
+    background-color: $color-yellow;
+    color: $color-black;
+    border: 1.5px solid $color-black;
+  }
+}
+
+.glossaryCross {
+  width: $crossSize-glossary;
+  height: $crossSize-glossary;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: translateY(10%);
+}
+
+.glossaryCrossBackground {
+  position: absolute;
+  width: $crossSize-glossary;
+  height: $crossSize-glossary;
+  border-radius: 50%;
+  background-color: $color-black;
+  z-index: 1;
+  transition: background-color 0.2s ease;
+
+  .glossaryCross.selected & {
+    background-color: $color-black;
+  }
+}
+
+.glossaryCross {
+  &:hover {
+    .glossaryCrossBackground {
+      background-color: $color-accent;
+    }
+    
+    .glossaryCrossLine {
+      background-color: $color-black;
+    }
+
+    .glossaryCrossBorder {
+      border: 1.5px solid $color-black;
+    }
+  }
+}
+
+.glossaryCrossBorder {
+  position: absolute;
+  width: $crossSize-glossary;
+  height: $crossSize-glossary;
+  border-radius: 50%;
+  border: 1.5px solid $color-accent;
+  z-index: 2;
+}
+
+.glossaryCrossLines {
+  position: absolute;
+  width: calc($crossSize-glossary * 0.6);
+  height: calc($crossSize-glossary * 0.6);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glossaryCrossLine {
+  position: absolute;
+  width: calc($crossSize-glossary * 0.6);
+  height: 1.4px;
+  background-color: $color-accent;
+  transition: background-color 0.2s ease;
+
+  .glossaryCross.selected & {
+    background-color: $color-accent; 
+  }
+
+  .glossaryCross:hover & {
+    background-color: $color-black;
+  }
+
+  &.line1 {
+    transform: rotate(45deg);
+  }
+
+  &.line2 {
+    transform: rotate(-45deg);
+  }
+}
+

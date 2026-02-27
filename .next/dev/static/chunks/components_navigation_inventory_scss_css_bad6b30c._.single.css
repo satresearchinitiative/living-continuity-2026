@@ -1,0 +1,288 @@
+/* [project]/components/navigation/inventory.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.inventory-wrapper {
+  z-index: 99999;
+  box-sizing: border-box;
+  will-change: transform;
+  background-color: #d2d2d2;
+  border: 1px solid #0000;
+  flex-direction: column;
+  width: 40.5995vw;
+  height: 100vh;
+  transition: transform .3s;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.inventory-wrapper:hover {
+  border-color: #fff;
+}
+
+.inventory-wrapper.open {
+  pointer-events: auto;
+  z-index: 999999;
+  transform: translateX(0) !important;
+}
+
+.inventory-wrapper:not(.open), .inventory-wrapper:not(.open) * {
+  pointer-events: none;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .inventory-wrapper {
+    flex-direction: row;
+    width: 100vw;
+    height: 50dvh;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+  }
+
+  .inventory-wrapper.open {
+    transform: translateY(0) !important;
+  }
+}
+
+@media screen and (min-aspect-ratio: .95) and (max-aspect-ratio: 1.05) {
+  .inventory-wrapper {
+    flex-direction: row;
+    top: auto;
+    bottom: 0;
+    transform: translateY(100%);
+  }
+
+  .inventory-wrapper.open {
+    transform: translateY(0) !important;
+  }
+}
+
+.inventory-close {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.inventory-nav {
+  pointer-events: auto;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0;
+  height: 100%;
+  padding: 2.9976vw;
+  display: flex;
+  overflow-y: auto;
+}
+
+.inventory-nav ul {
+  pointer-events: auto;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.inventory-nav li {
+  pointer-events: auto;
+  width: 100%;
+  display: block;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .inventory-nav {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-direction: row;
+    align-items: center;
+    padding: 6.36132vw;
+    overflow: auto hidden;
+  }
+
+  .inventory-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .inventory-nav ul {
+    flex-direction: row;
+    width: auto;
+    height: 100%;
+  }
+
+  .inventory-nav li {
+    width: auto;
+    height: 100%;
+  }
+}
+
+@media screen and (min-aspect-ratio: .95) and (max-aspect-ratio: 1.05) {
+  .inventory-nav {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-direction: row;
+    align-items: center;
+    padding: 6.36132vw;
+    overflow: auto hidden;
+  }
+
+  .inventory-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .inventory-nav ul {
+    flex-direction: row;
+    width: auto;
+    height: 100%;
+  }
+
+  .inventory-nav li {
+    width: auto;
+    height: 100%;
+  }
+}
+
+.inventory-item {
+  cursor: pointer;
+  box-sizing: border-box;
+  pointer-events: auto;
+  border: 1px solid #0000;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(38vh - clamp(3rem, 7.5vw, 6rem) - clamp(1.5rem, 3vw, 3rem));
+  transition: opacity .3s;
+  display: flex;
+  position: relative;
+}
+
+.inventory-item.inventory-item-active {
+  filter: saturate(0);
+  border: none;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .inventory-item {
+    flex-shrink: 0;
+    width: 25vh;
+    min-width: 25vh;
+    height: 100%;
+  }
+}
+
+@media screen and (min-aspect-ratio: .95) and (max-aspect-ratio: 1.05) {
+  .inventory-item {
+    flex-shrink: 0;
+    width: 25vh;
+    min-width: 25vh;
+    height: 100%;
+  }
+}
+
+.inventory-item-image {
+  pointer-events: none;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.inventory-item-image img {
+  object-fit: contain;
+  pointer-events: none;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.inventory-item-remove {
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 10;
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  padding: 2.5px 40px 5px;
+  font-family: NectoMono-Regular, monospace;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*# sourceMappingURL=components_navigation_inventory_scss_css_bad6b30c._.single.css.map*/

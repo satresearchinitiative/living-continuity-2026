@@ -1,0 +1,119 @@
+@use "../_setup/vars.scss" as *;
+@use "../_setup/fonts.scss" as *;
+@use "../_setup/breakpoints.scss" as *;
+
+.capture-modal-wrapper {
+  position: fixed;
+  bottom: $margin-corner;
+  right: $margin-corner;
+  @include grid-width-with-margin(3);
+  margin-bottom: -1px;
+  height: auto;
+  background-color: $color-purple;
+  z-index: 2000000;
+  transform: translateY(120%);
+  transition: transform $transi ease;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: $border-width solid transparent;
+  overflow-y: auto;
+  pointer-events: none;
+  will-change: transform;
+
+  @include lg {
+    right: $margin-corner-desktop;
+    bottom: $margin-corner-desktop;
+  }
+
+  &:hover {
+    border-color: $color-black;
+  }
+
+  &.open {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  @include mobile {
+    right: $margin-corner-phone;
+    bottom: 0;
+    width: 100vw;
+    left: 0;
+  }
+
+  @include aspect-ratio-1-1 {
+    @include mobile;
+  }
+}
+
+.capture-modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: $z-index-top;
+
+  svg {
+    line {
+      stroke: $color-black;
+    }
+  }
+}
+
+.capture-modal-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 0;
+  padding-top: 0;
+  align-items: flex-start;
+  color: $color-white;
+  margin: $padding-s $margin-side;
+
+  @include mobile {
+    margin: calc(#{$margin} * 1) calc(#{$margin} * 3) $padding calc(#{$margin} * 3) !important;
+  }
+
+  @include lg {
+    margin: $padding-s $margin-side-desktop;
+  }
+
+  @include tablet {
+    margin: $padding-s $margin-side-tablet;
+  }
+
+  .capture-modal-text {
+    width: 100%;
+    padding: $padding 0;
+    p {
+      @include font-h3;
+      color: $color-black;
+      margin: auto;
+      text-align: center;
+      font-family: $font-family-inter;
+      transition: opacity $transi ease;
+      @include sm {
+        padding: $padding 0 calc(#{$margin} * 2) 0;
+      }
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:active, &:focus {
+        opacity: 0.6;
+      }
+
+    }
+  }
+
+  .capture-submit-button {
+    @include font-size-md;
+    font-family: $font-family-ortica;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all $transi ease;
+    text-transform: lowercase;
+    width: 100%;
+  }
+}

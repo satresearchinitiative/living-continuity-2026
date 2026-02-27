@@ -1,0 +1,31 @@
+@use "../../components/_setup/vars.scss" as *;
+@use "../../components/_setup/fonts.scss" as *;
+
+.backButton {
+  position: fixed;
+  top: calc(#{$padding} * 2.5);
+  left: calc(#{$padding} * 2.5);
+  z-index: $z-index-modal-1;
+  padding: $padding-xs $padding;
+  background: transparent;
+  border: 1px solid $color-white;
+  color: $color-white;
+  font-family: $font-family-inter;
+  font-size: $font-size-base;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all $transi-fast ease;
+
+  &:hover {
+    background: $color-white;
+    color: $color-black;
+  }
+
+  @media (max-width: 768px) {
+    top: calc(#{$padding} * 1.25);
+    left: calc(#{$padding} * 1.25);
+    padding: $padding-xxs $padding-xs;
+    font-size: $font-size-sm;
+  }
+}

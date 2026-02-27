@@ -1,0 +1,938 @@
+// ============================================
+// FORWARD AND USE STATEMENTS - Must be at top
+// ============================================
+// Forward breakpoints first so they're available to files that import vars.scss
+@forward "./breakpoints.scss";
+// Forward fonts so font variables are available to files that import vars.scss
+@forward "./fonts.scss";
+// Then import breakpoints for use in mixins within this file
+@use "./breakpoints.scss" as *;
+// Import fonts so font variables are available
+@use "./fonts.scss" as *;
+// Import math module for division
+@use "sass:math";
+
+// ============================================
+// BASE VARIABLES
+// ============================================
+$color-black: #000000; 
+$color-white: #ffffff;
+$color-bg-light: rgba(245, 245, 245, 0.95);
+$color-bg-blue: #92ecff;
+$color-border-gray: #b6b6b6;
+$color-shadow: rgba(0, 0, 0, 0.25);
+$color-accent: #e9ff00;
+$color-yellow: #e9ff00;
+
+$color-pink-light: #FFDEFE;
+$color-gray-dark-1: #1B1B1B;
+$color-gray-dark-2: #1C1C1C; 
+$color-gray-dark-3: #232323;
+$color-blue: #00B7FF;
+$color-orange-1: #FF9500;
+$color-orange-2: #FF5900;
+$color-blue-light: #DEE3FF;
+$color-purple: #7C44FF;
+$color-mint: #00FFA6;
+$color-gray-medium: #737373;
+$color-red: #FF0004;
+$color-magenta: #FF00F7;
+$color-gray-light: #D2D2D2;
+
+$gradient-pink-white: linear-gradient(to right, $color-pink-light 0%, $color-white 100%);
+$gradient-blue-white: linear-gradient(to bottom right, $color-blue-light 0%, $color-white 100%);
+$gradient-orange-dark: linear-gradient(to right, $color-orange-1 0%, $color-gray-dark-1 100%);
+$gradient-orange-dark-2: linear-gradient(to right, $color-orange-2 0%, $color-gray-dark-1 100%);
+$gradient-mint-dark: linear-gradient(to bottom, $color-mint 0%, $color-gray-dark-1 100%);
+$gradient-white-gray: linear-gradient(to bottom right, $color-white 0%, $color-gray-dark-1 100%);
+
+$transi: 300ms;
+$transi-slow: 700ms;
+$transi-fast: 150ms;
+
+$margin-base-width: 834;
+$margin-base-value: 25;
+$margin-phone-width: 393;
+$margin-phone-value: 25;
+
+$padding-base-width: 834;
+$padding-base-value: 18;
+$padding-phone-width: 393;
+$padding-phone-value: 8;
+
+@function vw-scale($value, $design-width) {
+  @return calc(100vw * #{math.div($value, $design-width)});
+}
+
+$margin: vw-scale($margin-base-value, $margin-base-width);
+$margin-phone: vw-scale($margin-phone-value, $margin-phone-width);
+
+// Corner margin - responsive margin for corner positioning
+$margin-corner: clamp(0.4rem, 1.7vw, $margin-phone);
+$margin-corner-phone: clamp(0.4rem, 2vw, $margin-phone);
+$margin-corner-desktop: clamp(0.4rem, 1.5vw, $margin);
+
+$margin-5x: calc(#{$margin} * 5);
+$margin-5x-phone: calc(#{$margin-phone} * 5);
+
+$padding: vw-scale($padding-base-value, $padding-base-width);
+$padding-phone: vw-scale($padding-phone-value, $padding-phone-width);
+$padding-s: calc(#{$padding} * 0.4);
+$padding-xs: calc(#{$padding} * 0.75);
+$padding-xxs: calc(#{$padding} * 0.25);
+
+
+$grid-columns: 10;
+$grid-column-width: calc((100vw - 2 * #{$margin}) / #{$grid-columns});
+$grid-column-width-phone: calc((100vw - 2 * #{$margin-phone}) / #{$grid-columns});
+$grid-gap: $margin;
+
+
+
+$scroll-bar: 0.5px;
+
+$font-family-code: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+$font-family-cousine: "Cousine", monospace;
+$font-family-inter: "Inter", sans-serif;
+$font-family-ledger: "Ledger", serif;
+
+// Typography
+$font-base: $font-family-inter;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+$letter-spacing-base: 0.01em;
+$letter-spacing-wide: 0.04em;
+$letter-spacing-tight: -0.01em;
+
+$font-size-xs: 10px;
+$font-size-sm: 12px;
+$font-size-base: 16px;
+$font-size-md: 24px;
+$font-size-lg: 32px;
+$font-size-xl: 48px;
+
+
+// Typography Base Settings
+$typography-base-width: 1920; // Design width for typography scaling
+$typography-min-width: 320; // Minimum viewport width for scaling
+
+// Typography Size Variables - Mobile (max-width: 780px)
+$font-size-flag-mobile: clamp(1.5rem, 4vw, 2rem);
+$font-size-xs-mobile: clamp(0.45rem, 1.3vw, 0.6rem);
+$font-size-sm-mobile: clamp(0.6rem, 1.5vw, 0.65rem);
+$font-size-s-mobile: clamp(0.75rem, 2vw, 0.95rem);
+$font-size-md-mobile: clamp(0.75rem, 2.5vw, 0.975rem);
+$font-size-mobile: clamp(0.9rem, 2.5vw, 1.1rem);
+$font-size-h2-mobile: clamp(2rem, 3vw, 3.5rem);
+$font-size-lg-mobile: clamp(2.45rem, 5vw, 3rem);
+$font-size-h3-mobile: clamp(0.9rem, 2.5vw, 1.1rem);
+$font-size-h4-mobile: clamp(0.9rem, 2vw, 1.1rem);
+$font-size-h5-mobile: clamp(0.7rem, 2vw, 0.95rem);
+
+// Typography Size Variables - Tablet/Medium (780px - 1040px)
+$font-size-flag-tablet: clamp(2rem, 3.5vw, 2.75rem);
+$font-size-xs-tablet: clamp(0.55rem, 0.85vw, 0.65rem);
+$font-size-sm-tablet: clamp(0.6rem, 0.95vw, 0.7rem);
+$font-size-s-tablet: clamp(0.7rem, 1.1vw, 0.8rem);
+$font-size-md-tablet: clamp(0.85rem, 1.2vw, 1rem);
+$font-size-tablet: clamp(1rem, 1.5vw, 1.2rem);
+$font-size-h2-tablet: clamp(1.4rem, 2vw, 1.5rem);
+$font-size-lg-tablet: clamp(2.2rem, 3vw, 2.5rem);
+$font-size-h3-tablet: clamp(1rem, 1.5vw, 1.2rem);
+$font-size-h4-tablet: clamp(1rem, 1.5vw, 1.2rem);
+$font-size-h5-tablet: clamp(0.9rem, 1.2vw, 1rem);
+
+// Typography Size Variables - Desktop (1040px - 1700px) - Default
+$font-size-flag: clamp(2.5rem, 3vw, 3.25rem);
+$font-size-xs: clamp(0.6rem, 0.75vw, 0.7rem);
+$font-size-sm: clamp(0.65rem, 0.8vw, 0.75rem);
+$font-size-s: clamp(0.75rem, 0.8vw, 0.85rem);
+$font-size-md: clamp(0.85rem, 0.9vw, 0.9rem);
+$font-size: clamp(1.1rem, 1.1vw, 1.25rem);
+$font-size-h2: clamp(1.7rem, 1.2vw, 2.2rem);
+$font-size-h3: clamp(1.1rem, 1.2vw, 1.25rem);
+$font-size-h4: clamp(1.1rem, 1.2vw, 1.25rem);
+$font-size-h5: clamp(0.95rem, 1.2vw, 1.05rem);
+
+// Typography Size Variables - Large Desktop (min-width: 1700px)
+$font-size-flag-lg: clamp(3rem, 3.2vw, 3.5rem);
+$font-size-xs-lg: clamp(0.75rem, 0.8vw, 0.75rem);
+$font-size-sm-lg: clamp(0.95rem, 0.85vw, 0.8rem);
+$font-size-s-lg: clamp(0.85rem, 0.95vw, 0.9rem);
+$font-size-md-lg: clamp(0.95rem, 1.3vw, 1.1rem);
+$font-size-h2-lg: clamp(2.6rem, 1.3vw, 3.5rem);
+$font-size-h2-glossary-lg: clamp(1.8rem, 1.3vw, 3.5rem);
+$font-size-lg: clamp(1.2rem, 1.3vw, 1.35rem);
+$font-size-lg-desktop: clamp(2.2rem, 3vw, 3.5rem);
+$font-size-h3-lg: clamp(1rem, 1.3vw, 1.35rem);
+$font-size-h4-lg: clamp(1.1rem, 1.1vw, 1.35rem);
+$font-size-h5-lg: clamp(1rem, 1.2vw, 1.15rem);
+
+
+
+@mixin font-size-xs {
+  font-weight: $font-weight-light;
+  font-size: $font-size-xs;
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: $font-size-xs-mobile;
+  }
+
+  @include mm {
+    font-size: $font-size-xs-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-xs-lg;
+  }
+}
+
+@mixin font-size-s {
+  font-weight: $font-weight-light;
+  font-size: $font-size-s;
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: $font-size-s-mobile;
+  }
+
+  @include mm {
+    font-size: $font-size-s-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-s-lg;
+  }
+}
+
+@mixin font-size-sm {
+  font-weight: $font-weight-light;
+  font-size: $font-size-sm;
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: $font-size-sm-mobile;
+  }
+
+  @include mm {
+    font-size: $font-size-sm-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-sm-lg;
+  }
+}
+
+@mixin font-size-md {
+  font-weight: $font-weight-light;
+  font-size: $font-size-md;
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: $font-size-md-mobile;
+  }
+
+  @include mm {
+    font-size: $font-size-md-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-md-lg;
+  }
+}
+
+@mixin font-article-title {
+  font-weight: $font-weight-light;
+  font-size: calc(#{$font-size-lg} * 2.3);
+  line-height: 125%;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: calc(#{$font-size-lg-mobile} * 1.2);
+  }
+
+  @include lg {
+    font-size: calc(#{$font-size-lg-desktop} * 0.9);
+  }
+}
+
+@mixin font-article-read {
+  font-weight: $font-weight-light;
+  font-size: calc(#{$font-size-lg} * 2.42);
+  line-height: 125%;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: calc(#{$font-size-lg-mobile} * 2);
+  }
+
+  @include lg {
+    font-size: $font-size-lg-desktop; 
+  }
+}
+
+@mixin font-size-lg {
+  font-weight: $font-weight-light;
+  font-size: $font-size-lg;
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: $font-size-lg-mobile;
+  }
+
+  @include mm {
+    font-size: $font-size-lg-tablet;
+  }
+
+   @include lg {
+    font-size: $font-size-lg-desktop;
+  }
+}
+
+@mixin font-size {
+  font-weight: $font-weight-regular;
+  font-size: $font-size;
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: $font-size-mobile;
+  }
+
+  @include mm {
+    font-size: $font-size-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-lg;
+  }
+}
+
+@mixin font-h1 {
+  font-family: $font-base;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-h2-glossary-lg;
+  line-height: 135%;
+
+
+  @include sm {
+    font-size: $font-size-h2;
+    line-height: 100%;
+    letter-spacing: -1px;
+  }
+
+  @include mm {
+    font-size: $font-size-h2-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-h2-tablet;
+  }
+}
+
+@mixin font-h2 {
+  font-family: $font-base;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-h2;
+  line-height: 135%;
+
+
+  @include sm {
+    font-size: $font-size-h2-mobile;
+    line-height: 100%;
+    letter-spacing: -1px;
+  }
+
+  @include mm {
+    font-size: $font-size-h2-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-h2-lg;
+  }
+}
+
+@mixin font-h2-article {
+  font-family: $font-base;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-h2-lg;
+  line-height: 135%;
+
+
+  @include sm {
+    font-size: $font-size-h2-mobile;
+    line-height: 100%;
+    letter-spacing: -1px;
+  }
+
+  @include mm {
+    font-size: $font-size-h2-lg;
+  }
+
+  @include lg {
+    font-size: $font-size-h2-lg;
+  }
+}
+
+@mixin font-h2-glossary {
+  font-family: $font-base;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-h2;
+  line-height: 135%;
+
+
+  @include sm {
+    font-size: $font-size-h4;
+    line-height: 100%;
+  }
+
+  @include mm {
+    font-size: $font-size-h2-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-h2-glossary-lg;
+  }
+}
+
+@mixin font-h3 {
+  font-family: $font-base;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-h3;
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: $font-size-h3-mobile;
+  }
+
+  @include mm {
+    font-size: $font-size-h3-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-h3-lg;
+  }
+}
+
+@mixin font-h4 {
+  font-family: $font-base;
+  font-weight: 700;
+  font-size: $font-size-h4;
+  line-height: 1;
+  letter-spacing: 0;
+
+
+  @include sm {
+    font-size: $font-size-h4-mobile;
+  }
+
+  @include mm {
+    font-size: $font-size-h4-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-h4-lg;
+  }
+}
+
+@mixin font-h5 {
+  font-family: $font-base;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-h5;
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-base;
+
+
+  @include sm {
+    font-size: $font-size-h5-mobile;
+  }
+
+  @include mm {
+    font-size: $font-size-h5-tablet;
+  }
+
+  @include lg {
+    font-size: $font-size-h5-lg;
+  }
+}
+
+// Utility Mixins
+@mixin padding-content {
+  padding: $padding-content;
+  
+  @include sm {
+    padding: $padding-content-mobile;
+  }
+}
+
+@mixin padding-content-left {
+  padding-left: $padding-md;
+  
+  @include sm {
+    padding-left: $padding-md;
+  }
+}
+
+@mixin opacity-hover {
+  opacity: $opacity-hover;
+  transition: opacity $transition-base;
+  
+  &:hover {
+    opacity: $opacity-full;
+  }
+}
+
+
+%inter-extraBold {
+  font-family: $font-family-inter;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: Extra Bold;
+  line-height: 135%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  leading-trim: NONE;
+}
+
+%inter-menuBold {
+  font-family: $font-family-inter;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: Bold;
+  line-height: 135%;
+  letter-spacing: -1.2px;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  leading-trim: NONE;
+  font-size: clamp(3rem, 1.5vw, 3.5rem);
+  @include sm {
+    font-size: calc($font-size-lg-mobile * 0.9);
+  }
+  @include lg {
+    font-size: $font-size-lg-desktop;
+  }
+}
+
+%inter-menuThin {
+  font-family: $font-family-inter;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: Bold;
+  line-height: 135%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  font-size: clamp(3rem, 1.5vw, 3.5rem);
+  @include sm {
+    font-size: calc($font-size-lg-mobile * 0.9);
+  }
+  @include lg {
+    font-size: $font-size-lg-desktop;
+  }
+}
+
+%ortica-headline {
+  font-family: $font-family-ortica;
+  font-size: $font-size-sm;
+  font-weight: 700;
+  font-style: normal;
+}
+
+%ortica-regular {
+  font-family: $font-family-ortica;
+  font-size: $font-size-sm;
+  font-weight: 700;
+  font-style: normal;
+}
+
+%inter-regular {
+  font-family: $font-family-inter;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: $font-size-sm;
+  line-height: 135%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  leading-trim: NONE;
+}
+
+%inter-italic {
+  font-family: $font-family-inter;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+  @include font-size-sm;
+  line-height: 135%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  leading-trim: NONE;
+}
+
+%ronzino {
+  font-family: $font-family-ronzino;
+  font-weight: 400;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  leading-trim: NONE;
+}
+
+
+%ronzino-italic {
+  font-family: $font-family-ronzino;
+  font-weight: 400;
+  font-style: italic;
+  @include font-size-sm;
+  line-height: 135%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  leading-trim: NONE;
+}
+
+@mixin necto-mono {
+  font-family: $font-family-necto-mono;
+  font-weight: 400;
+  font-style: normal;
+  @include font-size-sm;
+  line-height: 115%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  leading-trim: NONE;
+}
+
+
+$header-height: 0px;
+$footer-height: 0px;
+
+$border-radius-sm: 5px;
+$border-radius-md: 7px;
+$border-radius-lg: 100px;
+$radius: 6px;
+$radius-100: 100%;
+$border: 7px;
+
+$z-index-base: 1;
+$z-index-top: 10;
+$z-index-modal: 999;
+$z-index-modal-1: 9999;
+$z-index-modal-overlay: 99999;
+$z-index-modal-overlay-1: 999999;
+$z-index-navigation-controls: 2000000;
+
+@mixin grid-width($columns) {
+  width: calc(#{$grid-column-width} * #{$columns});
+}
+
+@mixin grid-width-with-margin($columns) {
+  width: calc((#{$grid-column-width} * #{$columns}) + #{$margin});
+}
+
+@mixin grid-width-mobile($columns) {
+  width: calc(#{$grid-column-width-phone} * #{$columns});
+}
+
+@mixin grid-width-mobile-with-margin($columns) {
+  width: calc((#{$grid-column-width-phone} * #{$columns}) + #{$margin-phone});
+}
+
+$width-navigation-phone: calc(25vw*1);
+$width-navigation-phone-2: calc(25vw*2);
+
+// ============================================
+// RESPONSIVE SYSTEM - Enhanced Variables
+// ============================================
+
+// Enhanced Color System (with CSS custom properties support)
+$color-dark: var(--color-dark, var(--color-dark-grey, #252424));  
+$color-mid-dark: var(--color-mid-dark, #333333); 
+$color-gray: var(--color-gray, #333333);
+$color-light-gray: var(--color-light-gray, #B1B3B4);
+$color-accent-gold: var(--color-accent-gold, #F9B200);
+$color-whitegray: var(--color-whitegray, #F0F0F0);
+
+// Additional color aliases for compatibility
+$color-light-grey: var(--color-light-grey, var(--color-light-gray, #B1B3B4));
+$color-grey: var(--color-grey, var(--color-gray, #333333));
+$color-dark-grey: var(--color-dark-grey, #252424);
+
+// Background Gradient
+$gradient-body: linear-gradient(180deg, $color-black 0%, $color-mid-dark 100%);
+
+// Enhanced Scale Functions
+@function vh-scale($value, $design-width) {
+  @return calc(100vw * #{($value / $design-width)});
+}
+
+// Enhanced Spacing System
+$spacing-xxs: 2.5px;
+$spacing-xs: 5px;
+$spacing-sm: 10px;
+$spacing-md: 20px;
+$spacing-lg: 40px;
+$spacing-xl: 50px;
+$spacing-xxl: 80px;
+
+// Enhanced Padding System
+$padding-xxs: $spacing-xxs;
+$padding-xs: $spacing-xs;
+$padding-sm: $spacing-sm;
+$padding-md: $spacing-md;
+$padding-lg: $spacing-lg;
+$padding-xl: $spacing-xl;
+
+// Content Padding (common pattern: large vertical, medium horizontal)
+$padding-content: $padding-lg $padding-lg $padding-lg $padding-md;
+$padding-content-mobile: $padding-md;
+
+// Enhanced Margin System
+$margin-tablet-width: 1024;
+$margin-tablet-value: 20;
+
+// Responsive side margins (automatically scales with viewport)
+// Uses clamp to scale smoothly: smaller on mobile/tablet, larger on desktop
+// Mobile: min 1.2rem, Tablet: ~1.8rem, Desktop: max 2.5rem (reduced for XL screens)
+$margin-side: clamp(1.2rem, 1.5vw, 2.5rem);
+$margin-menu: clamp(1.7rem, 2vw, 3.5rem);
+$margin-menu-desktop: clamp(2.1rem, 1.5vw, 3.5rem);
+
+
+// Individual breakpoint values (for specific use cases)
+$margin-side-mobile: vw-scale($margin-phone-value * 1.2, $margin-phone-width);
+$margin-side-tablet: vw-scale($margin-tablet-value * 1.5, $margin-tablet-width);
+$margin-side-desktop: vw-scale($margin-base-value *1.8, $margin-base-width);
+
+
+$crossSize: clamp(18px, 1.5vw, 20px);
+$cross-size: calc(#{$margin-side} * 1.5);
+$crossSize-glossary: clamp(21px, 1.5vw, 23px);
+
+// 5-Column Grid System
+$gap: vw-scale(10, $margin-base-width);
+$columns-count: 5;
+$column-gap: $gap;
+
+// Column mixins for positioning content
+@mixin column($start, $end: null) {
+  @if $end {
+    grid-column: #{$start} / #{$end + 1};
+  } @else {
+    grid-column: #{$start};
+  }
+}
+
+@mixin column-span($span) {
+  grid-column: span #{$span};
+}
+
+@mixin grid-5-columns {
+  display: grid;
+  grid-template-columns: repeat($columns-count, 1fr);
+  gap: $column-gap;
+  width: 100%;
+}
+
+// Section Padding
+$section-padding: clamp(2rem, 4vw, 5rem);
+$element-gap: 1.5rem;
+$grid-gap: 2rem;
+
+// Enhanced Border Radius
+$radius-default: 10px;
+$radius-sm: 4px;
+$radius-logo: 4.5px;
+$radius-lg: 20px;
+$radius-full: 9999px;
+
+// Opacity
+$opacity-disabled: 0.4;
+$opacity-hover: 0.7;
+$opacity-full: 1;
+$opacity-none: 0;
+
+// Enhanced Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.25s ease;
+$transition-slow: 0.45s cubic-bezier(.075,.82,.165,1);
+
+
+$headerHeight: clamp(3rem, 7.5vw, 6rem);
+
+$titleHeight: clamp(4.5rem, 12vw, 10rem);
+
+$gradient-height-mobile: clamp(7rem, 10vw, $margin-5x-phone);
+
+$headerAside: 340px;
+$navHeight: 50px;
+$content-max-width: 1600px;
+
+$wrapperHeight: calc(110vh - #{$headerHeight} - #{$titleHeight} - #{$footer-height});
+$glossaryHeight: calc(35vh - #{$headerHeight} - #{$titleHeight} - #{$footer-height} - clamp(1.5rem, 3vw, 3rem));
+$inventory-item-height: calc(38vh - #{$headerHeight} - clamp(1.5rem, 3vw, 3rem));;
+$imageStackHeight: clamp(5rem, min(12vw, 12vh), 15rem);
+
+// Borders
+$borderWidth: 1px;
+$border-width: $borderWidth;
+// Button Mixins
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-default;
+  font-family: $font-base;
+  font-weight: $font-weight-regular;
+  color: $color-white;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wide;
+  background: transparent;
+  border: $border-width solid $color-accent-gold;
+  cursor: pointer;
+  transition: all $transition-base;
+}
+  
+@mixin button-hover {
+  background: $color-accent-gold;
+  color: $color-black;
+}
+  
+@mixin button-disabled {
+  opacity: $opacity-disabled;
+  cursor: not-allowed;
+  border-color: $color-gray;
+  color: $color-gray;
+}
+
+// Menu Button Mixin (for horizontal menus and submenus)
+@mixin menu-button {
+  @include font-size-s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $padding-xxs $padding-xs;
+  text-decoration: none;
+  color: $color-white;
+  text-transform: uppercase;
+  transition: all $transition-base;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  
+  &:hover {
+    color: $color-white;
+    border-color: $color-accent-gold;
+    background: $color-accent-gold;
+  }
+}
+
+// Navigation Item Mixin
+@mixin nav-item {
+  color: $color-white;
+  font-weight: $font-weight-regular;
+  position: relative;
+  padding-bottom: 0.4rem;
+  cursor: pointer;
+  transition: color $transition-base;
+
+  &.active {
+    color: $color-accent-gold;
+  }
+
+  &:hover {
+    color: $color-accent-gold;
+  }
+}
+
+// Filter Pill Mixin
+@mixin filter-pill {
+  background: $color-mid-dark;
+  padding: $padding-s $padding;
+  border-radius: $radius-default;
+  color: $color-white;
+  transition: all $transition-base;
+  border: $border-width solid transparent;
+
+  &.active {
+    border-color: $color-accent-gold;
+  }
+
+  &:hover:not(.active) {
+    border-color: $color-gray;
+  }
+}
+
+@mixin ortica-headline {
+  font-family: $font-family-ortica;
+  font-weight: 700;
+  @include font-h2;
+  line-height: 135%;
+  letter-spacing: $letter-spacing-wide;
+}
+
+// Card Mixin
+@mixin card {
+  background: $color-mid-dark;
+  border-radius: $radius-default;
+  overflow: hidden;
+  transition: transform $transition-base, filter $transition-base;
+
+  &:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+  }
+}
+
+@mixin underline {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  
+  &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: $color-black;
+      opacity: 0;
+  }
+
+  &:hover   {
+      &::after { 
+      opacity: 1;
+      }
+  }
+}
+

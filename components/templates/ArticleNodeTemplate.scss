@@ -1,0 +1,207 @@
+@use "../_setup/vars.scss" as *;
+
+.articleNodeGroup {
+  cursor: pointer;
+}
+
+// Title and Read Wrapper Styling
+.titleAndReadWrapper {
+  pointer-events: auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: block;
+  
+  > div {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+}
+
+.titleAndReadContainer {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  flex-shrink: 0;
+  padding-top: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.titleContainer {
+  text-align: center;
+  @include font-article-title;
+  font-family: $font-family-ronzino !important;
+  font-weight: 700;
+  color: $color-black;
+  text-transform: capitalize;
+  white-space: normal;
+  background-color: $color-accent;
+  padding: $padding calc(#{$padding-md} * 2);
+  box-sizing: border-box;
+  letter-spacing: -1.5px;
+  margin: 0 auto;
+  max-width: 100%;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.readWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity $transi;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.readButton {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include font-article-read;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 11px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity $transi;
+  padding: 0;
+  width: 100%;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.readButtonText {
+  color: $color-black;
+  -webkit-text-stroke: 7px $color-accent;
+  -webkit-text-fill-color: $color-black;
+  text-stroke: 7px $color-accent;
+  paint-order: stroke fill;
+}
+
+// Article Cross Styling (shown when connections are visible)
+.crossHtml {
+  pointer-events: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.crossContainer {
+  width: calc($crossSize * 3.5);
+  height: calc($crossSize * 3.5);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: calc($crossSize * -2.5);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  transform: translateY(10%);
+
+  &:hover {
+    .crossBackground {
+      background-color: $color-accent;
+    }
+    
+    .crossLine {
+      background-color: $color-black;
+    }
+    .crossBorder {
+      border: 4.5px solid $color-black;
+    }
+  }
+}
+
+.crossBackground {
+  position: absolute;
+  width: calc($crossSize * 3.5);
+  height: calc($crossSize * 3.5);
+  border-radius: 50%;
+  background-color: $color-black;
+  z-index: 1;
+  transition: background-color 0.2s ease;
+}
+
+.crossBorder {
+  position: absolute;
+  width: calc($crossSize * 3.5);
+  height: calc($crossSize * 3.5);
+  border-radius: 50%;
+  border: 4.5px solid $color-accent;
+  z-index: 2;
+}
+
+.crossLines {
+  position: absolute;
+  width: calc($crossSize * 1);
+  height: calc($crossSize * 1);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crossLine {
+  position: absolute;
+  width: calc($crossSize * 2.5);;
+  height: 4.5px;
+  background-color: $color-accent;
+  transition: background-color 0.2s ease;
+
+  &.line1 {
+    transform: rotate(45deg);
+  }
+
+  &.line2 {
+    transform: rotate(-45deg);
+  }
+}
+
+// Article-specific constants:
+$article-border-selected: $color-accent; // Yellow border for selected/highlighted articles
+$article-border-secondary: $color-white; // White border for secondary highlighted articles
+$article-border-default: $color-white; // White border for default articles
+$article-opacity-secondary: 0.85; // Opacity for secondary highlighted articles
+$article-opacity-inactive: 0.2; // Opacity for inactive articles (set in ElementOpacityController)
+

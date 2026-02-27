@@ -1,0 +1,66 @@
+/* [project]/components/rotatingImage/RotatingImage.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*# sourceMappingURL=components_rotatingImage_RotatingImage_scss_css_bad6b30c._.single.css.map*/

@@ -1,0 +1,178 @@
+/* [project]/components/treeComponents/treeComponents.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.left-sidebar {
+  z-index: 9999;
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 2.69784vw;
+  transform: translateY(-50%);
+}
+
+.sidebar-item {
+  color: #fff;
+  font-size: clamp(.65rem, .8vw, .75rem);
+}
+
+.sidebar-item a {
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: background-color .2s;
+  display: block;
+}
+
+.sidebar-item a:hover {
+  background: #ffffff1a;
+}
+
+.sidebar-button {
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  text-decoration: none;
+  transition: background-color .2s;
+  display: block;
+}
+
+.sidebar-button:hover {
+  background: #ffffff1a;
+}
+
+.box_wrapper {
+  z-index: 999;
+  cursor: pointer;
+  color: #fff;
+  width: auto;
+  min-width: auto;
+  max-width: none;
+  height: auto;
+  min-height: auto;
+  max-height: none;
+  text-shadow: none;
+  background: none;
+  border: none;
+  border-radius: 0;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+  padding: 8px;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  text-decoration: none;
+  display: flex;
+  position: absolute;
+}
+
+.box_wrapper:hover {
+  background: #ffffff1a;
+}
+
+.box_wrapper.topright {
+  background-image: none;
+  top: 37px;
+  right: 2.69784vw;
+}
+
+.box_wrapper.topleft {
+  background-image: none;
+  top: 37px;
+  left: 2.69784vw;
+}
+
+.box_wrapper.bottomright {
+  background-image: none;
+  bottom: 37px;
+  right: 2.69784vw;
+}
+
+.box_wrapper.bottomleft {
+  background-image: none;
+  bottom: 37px;
+  left: 2.69784vw;
+}
+
+.open {
+  display: block;
+}
+
+.closed {
+  display: none;
+}
+
+.open .button {
+  max-width: 300px;
+  display: block !important;
+}
+
+/*# sourceMappingURL=components_treeComponents_treeComponents_scss_css_bad6b30c._.single.css.map*/

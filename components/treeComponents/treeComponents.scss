@@ -1,0 +1,122 @@
+/**
+ * Tree Components Styles
+ * 
+ * SCSS styles for all tree-related components
+ */
+
+@use "../_setup/vars.scss" as *;
+
+// Left Sidebar
+.left-sidebar {
+  position: fixed;
+  left: calc(#{$padding} * 1.25);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-item {
+  color: $color-white;
+  font-size: $font-size-sm;
+
+  a {
+    color: $color-white;
+    text-decoration: none;
+    display: block;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.sidebar-button {
+  background: transparent;
+  border: none;
+  color: $color-white;
+  text-decoration: none;
+  display: block;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  text-align: left;
+  width: 100%;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Fixed Box
+.box_wrapper {
+  z-index: 999;
+  position: absolute;
+  min-width: auto;
+  min-height: auto;
+  max-width: none;
+  max-height: none;
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-sm;
+  margin: 8px;
+  padding: 8px;
+  cursor: pointer;
+  color: $color-white;
+  background: transparent;
+  text-shadow: none;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &.topright {
+    top: 37px;
+    right: calc(#{$padding} * 1.25);
+    background-image: none;
+  }
+
+  &.topleft {
+    top: 37px;
+    left: calc(#{$padding} * 1.25);
+    background-image: none;
+  }
+
+  &.bottomright {
+    bottom: 37px;
+    right: calc(#{$padding} * 1.25);
+    background-image: none;
+  }
+
+  &.bottomleft {
+    bottom: 37px;
+    left: calc(#{$padding} * 1.25);
+    background-image: none;
+  }
+}
+
+// Topbar dynamic classes
+.open {
+  display: block;
+}
+
+.closed {
+  display: none;
+}
+
+.open .button {
+  display: block !important;
+  max-width: 300px;
+}

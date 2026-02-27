@@ -1,0 +1,16 @@
+@use "../_setup/vars.scss" as *;
+
+.object-title {
+  @include necto-mono;
+  @include font-size-xs;
+  font-family: $font-family-necto-mono;
+  text-transform: lowercase !important;
+  background-color: #{$color-gray-light};
+  color: $color-black;
+  padding: $padding-xs;
+  border: $border-width solid $color-black;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  // transform: translateY(-950%);
+}

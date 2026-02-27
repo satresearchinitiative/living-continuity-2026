@@ -1,0 +1,2475 @@
+@import "https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Ledger&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap";
+/* [project]/components/treeComponents/styles.module.scss.module.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.styles-module-scss-module__dJBWzG__wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.styles-module-scss-module__dJBWzG__topbar_wrapper_mobile {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.styles-module-scss-module__dJBWzG__topbar_wrapper {
+  display: none;
+}
+
+.styles-module-scss-module__dJBWzG__topbar_wrapper .styles-module-scss-module__dJBWzG__title {
+  text-align: center;
+  color: #fff;
+  letter-spacing: .01em;
+  border: none;
+  border-radius: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: clamp(.6rem, .75vw, .7rem);
+  font-weight: 300;
+  line-height: 1.2;
+  display: flex;
+}
+
+@media screen and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__topbar_wrapper .styles-module-scss-module__dJBWzG__title {
+    font-size: clamp(.45rem, 1.3vw, .6rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .styles-module-scss-module__dJBWzG__topbar_wrapper .styles-module-scss-module__dJBWzG__title {
+    font-size: clamp(.55rem, .85vw, .65rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .styles-module-scss-module__dJBWzG__topbar_wrapper .styles-module-scss-module__dJBWzG__title {
+    font-size: clamp(.65rem, .8vw, .75rem);
+  }
+}
+
+.styles-module-scss-module__dJBWzG__topbar_wrapper .styles-module-scss-module__dJBWzG__title {
+  background-color: #0000;
+}
+
+@media screen and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__topbar_wrapper .styles-module-scss-module__dJBWzG__title {
+    letter-spacing: .01em;
+    font-size: clamp(.6rem, .75vw, .7rem);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (max-width: 780px) and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__topbar_wrapper .styles-module-scss-module__dJBWzG__title {
+    font-size: clamp(.45rem, 1.3vw, .6rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 780px) and (max-width: 1040px) {
+  .styles-module-scss-module__dJBWzG__topbar_wrapper .styles-module-scss-module__dJBWzG__title {
+    font-size: clamp(.55rem, .85vw, .65rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 1700px) {
+  .styles-module-scss-module__dJBWzG__topbar_wrapper .styles-module-scss-module__dJBWzG__title {
+    font-size: clamp(.65rem, .8vw, .75rem);
+  }
+}
+
+.styles-module-scss-module__dJBWzG__title span {
+  word-spacing: 5px;
+  background-color: #0000;
+  border-radius: 0;
+  align-items: center;
+  height: min-content;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  display: flex;
+}
+
+.styles-module-scss-module__dJBWzG__highlightedTerm {
+  text-align: center;
+  color: #e9ff00;
+  letter-spacing: .01em;
+  border: none;
+  border-radius: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: clamp(.6rem, .75vw, .7rem);
+  font-weight: 300;
+  line-height: 1.2;
+  display: flex;
+}
+
+@media screen and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__highlightedTerm {
+    font-size: clamp(.45rem, 1.3vw, .6rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .styles-module-scss-module__dJBWzG__highlightedTerm {
+    font-size: clamp(.55rem, .85vw, .65rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .styles-module-scss-module__dJBWzG__highlightedTerm {
+    font-size: clamp(.65rem, .8vw, .75rem);
+  }
+}
+
+.styles-module-scss-module__dJBWzG__highlightedTerm {
+  text-transform: uppercase;
+  background-color: #0000;
+}
+
+@media screen and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__highlightedTerm {
+    letter-spacing: .01em;
+    font-size: clamp(.6rem, .75vw, .7rem);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (max-width: 780px) and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__highlightedTerm {
+    font-size: clamp(.45rem, 1.3vw, .6rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 780px) and (max-width: 1040px) {
+  .styles-module-scss-module__dJBWzG__highlightedTerm {
+    font-size: clamp(.55rem, .85vw, .65rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 1700px) {
+  .styles-module-scss-module__dJBWzG__highlightedTerm {
+    font-size: clamp(.65rem, .8vw, .75rem);
+  }
+}
+
+.styles-module-scss-module__dJBWzG__full {
+  cursor: pointer;
+  width: 40%;
+}
+
+.styles-module-scss-module__dJBWzG__half {
+  cursor: pointer;
+  width: 20%;
+}
+
+@media only screen and (max-width: 767px) {
+  .styles-module-scss-module__dJBWzG__button {
+    min-width: unset;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .styles-module-scss-module__dJBWzG__button {
+    min-width: unset;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    display: flex;
+  }
+}
+
+.styles-module-scss-module__dJBWzG__box_wrapper {
+  z-index: 999;
+  letter-spacing: .01em;
+  border: none;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  min-width: auto;
+  max-width: none;
+  height: auto;
+  min-height: auto;
+  max-height: none;
+  font-size: clamp(.75rem, .9vw, .85rem);
+  font-weight: 300;
+  line-height: 1.2;
+  display: flex;
+  position: absolute;
+}
+
+@media screen and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__box_wrapper {
+    font-size: clamp(.6rem, 1.8vw, .75rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .styles-module-scss-module__dJBWzG__box_wrapper {
+    font-size: clamp(.7rem, 1.1vw, .8rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .styles-module-scss-module__dJBWzG__box_wrapper {
+    font-size: clamp(.8rem, .95vw, .9rem);
+  }
+}
+
+.styles-module-scss-module__dJBWzG__box_wrapper {
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  margin: 20px;
+  padding: 5px;
+  transition: all .25s;
+}
+
+@media screen and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__box_wrapper {
+    margin: 10px;
+    padding: 2.5px;
+  }
+}
+
+.styles-module-scss-module__dJBWzG__box_wrapper:hover {
+  background: #ffffff1a;
+}
+
+.styles-module-scss-module__dJBWzG__bottom_bar_wrapper {
+  z-index: 9999;
+  justify-content: space-between;
+  width: calc(100% - 40px);
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+@media screen and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__bottom_bar_wrapper {
+    width: calc(100% - 20px);
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+.styles-module-scss-module__dJBWzG__bottom_bar_wrapper button {
+  width: min-content;
+}
+
+.styles-module-scss-module__dJBWzG__left_wrapper {
+  flex-direction: row;
+  width: 100%;
+  display: flex;
+}
+
+.styles-module-scss-module__dJBWzG__button_wrapper {
+  flex-direction: column;
+  max-width: 200px;
+  display: flex;
+  position: relative;
+}
+
+.styles-module-scss-module__dJBWzG__center_button {
+  text-align: center;
+  background-color: #0000;
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.styles-module-scss-module__dJBWzG__submenu {
+  display: none;
+}
+
+.styles-module-scss-module__dJBWzG__submenu.styles-module-scss-module__dJBWzG__visible {
+  display: block;
+}
+
+.styles-module-scss-module__dJBWzG__isDesktop, .styles-module-scss-module__dJBWzG__isMobile {
+  width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+  .styles-module-scss-module__dJBWzG__center_button {
+    width: 100%;
+  }
+
+  .styles-module-scss-module__dJBWzG__camera_modal {
+    width: fit-content;
+    min-width: 0;
+    padding: 0 25px;
+  }
+
+  .styles-module-scss-module__dJBWzG__left_wrapper {
+    min-width: 110px;
+    width: unset;
+  }
+
+  .styles-module-scss-module__dJBWzG__left_wrapper div {
+    width: fit-content;
+    min-width: 110px;
+  }
+
+  .styles-module-scss-module__dJBWzG__camera_modal_1 {
+    min-width: 100px !important;
+  }
+
+  .styles-module-scss-module__dJBWzG__modal {
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .styles-module-scss-module__dJBWzG__button {
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    display: flex;
+  }
+}
+
+.styles-module-scss-module__dJBWzG__button {
+  text-align: left;
+  color: #fff;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  min-width: auto;
+  min-height: auto;
+  padding: 5px 10px;
+  transition: all .25s;
+}
+
+@media screen and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__button {
+    padding: 2.5px 5px;
+  }
+}
+
+.styles-module-scss-module__dJBWzG__button:hover {
+  cursor: pointer;
+  background: #ffffff1a;
+}
+
+.styles-module-scss-module__dJBWzG__button.styles-module-scss-module__dJBWzG__right {
+  float: right;
+}
+
+@media only screen and (max-width: 487px) {
+  .styles-module-scss-module__dJBWzG__small_button {
+    min-width: 30px !important;
+  }
+}
+
+@media only screen and (max-width: 842px) {
+  .styles-module-scss-module__dJBWzG__bottombarbutton {
+    width: max-content;
+    padding: 0;
+    min-width: 150px !important;
+  }
+}
+
+@media only screen and (max-width: 515px) {
+  .styles-module-scss-module__dJBWzG__bottombarbutton {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    min-width: 112px !important;
+  }
+}
+
+@media only screen and (max-width: 842px) {
+  .styles-module-scss-module__dJBWzG__supplementbutton {
+    width: max-content;
+    padding: 0;
+    min-width: 80px !important;
+    max-width: 95px !important;
+  }
+}
+
+@media only screen and (max-width: 515px) {
+  .styles-module-scss-module__dJBWzG__supplementbutton {
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    padding: 0;
+    display: flex;
+    min-width: 75px !important;
+    max-width: 75px !important;
+  }
+}
+
+@media only screen and (max-width: 842px) {
+  .styles-module-scss-module__dJBWzG__stoprotationbutton {
+    min-width: 95px !important;
+    padding: 0 2.15827vw !important;
+  }
+}
+
+@media only screen and (max-width: 515px) {
+  .styles-module-scss-module__dJBWzG__stoprotationbutton {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    min-width: 70px !important;
+    padding: 0 2.15827vw !important;
+  }
+}
+
+@media only screen and (max-width: 842px) {
+  .styles-module-scss-module__dJBWzG__optionsbutton {
+    min-width: 115px !important;
+    padding: 0 2.15827vw !important;
+  }
+}
+
+@media only screen and (max-width: 515px) {
+  .styles-module-scss-module__dJBWzG__optionsbutton {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    min-width: 100px !important;
+    padding: 0 2.15827vw !important;
+  }
+}
+
+.styles-module-scss-module__dJBWzG__bottomButtons {
+  z-index: 10;
+  display: inline-flex;
+  position: fixed;
+  bottom: 10px;
+}
+
+.styles-module-scss-module__dJBWzG__bottomButtons.styles-module-scss-module__dJBWzG__left {
+  left: 10px;
+}
+
+.styles-module-scss-module__dJBWzG__bottomButtons.styles-module-scss-module__dJBWzG__right {
+  right: 10px;
+}
+
+@media screen and (max-width: 780px) {
+  .styles-module-scss-module__dJBWzG__bottomButtons {
+    bottom: 5px;
+  }
+
+  .styles-module-scss-module__dJBWzG__bottomButtons.styles-module-scss-module__dJBWzG__left {
+    left: 5px;
+  }
+
+  .styles-module-scss-module__dJBWzG__bottomButtons.styles-module-scss-module__dJBWzG__right {
+    right: 5px;
+  }
+
+  .styles-module-scss-module__dJBWzG__bottomButtons .styles-module-scss-module__dJBWzG__button {
+    width: fit-content;
+    min-width: unset;
+    padding: 2.5px 5px;
+  }
+}
+
+@media only screen and (max-width: 487px) {
+  .styles-module-scss-module__dJBWzG__bottomButtons .styles-module-scss-module__dJBWzG__button {
+    width: fit-content;
+    min-width: unset;
+    padding: 2.5px 5px;
+  }
+}
+
+/* [project]/components/roomModal/style.module.scss.module.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.style-module-scss-module__CB8I9q__modal_wrapper {
+  z-index: 999;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 90vw;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 2.9976vw;
+  bottom: 2.9976vw;
+  left: 50%;
+  overflow-y: auto;
+  transform: translateX(-50%);
+}
+
+.style-module-scss-module__CB8I9q__modal_wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.style-module-scss-module__CB8I9q__modal_wrapper h1 {
+  text-align: center;
+  color: #000;
+  margin: 0;
+  padding: 5.39568vw 5.39568vw 0;
+  font-family: Inter, sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.style-module-scss-module__CB8I9q__close_button {
+  cursor: pointer;
+  z-index: 1;
+  background: none;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 8px;
+  transition: opacity .2s;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.style-module-scss-module__CB8I9q__close_button:hover {
+  opacity: .7;
+}
+
+.style-module-scss-module__CB8I9q__close_button:active {
+  opacity: .5;
+}
+
+.style-module-scss-module__CB8I9q__close_button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.style-module-scss-module__CB8I9q__content {
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 5.39568vw;
+  display: flex;
+  position: relative;
+}
+
+.style-module-scss-module__CB8I9q__content img {
+  width: 50vw;
+  max-width: 100%;
+  height: auto;
+  margin: 5.39568vw 0;
+  padding: 0;
+  display: block;
+}
+
+.style-module-scss-module__CB8I9q__content p {
+  word-break: break-word;
+  color: #000;
+  text-align: left;
+  width: 50vw;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  position: relative;
+}
+
+@media only screen and (max-width: 620px) {
+  .style-module-scss-module__CB8I9q__modal_wrapper {
+    width: calc(100% - 5.9952vw);
+    min-width: unset;
+    margin: 0;
+  }
+}
+
+/* [project]/components/sceneModal/style.module.scss.module.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.style-module-scss-module__ALzo2W__camera_wrapper {
+  position: relative;
+}
+
+.style-module-scss-module__ALzo2W__camera_modal {
+  z-index: 999;
+  top: unset;
+  color: #fff;
+  text-align: left;
+  background-color: #000;
+  border-radius: 7px;
+  min-width: 168px;
+  max-width: 170px;
+  padding: 5px 25px 5px 5px;
+  line-height: 1.6;
+  position: absolute;
+  left: 2.69784vw;
+  top: 37px !important;
+}
+
+.style-module-scss-module__ALzo2W__item {
+  font-size: 13px;
+}
+
+.style-module-scss-module__ALzo2W__link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.style-module-scss-module__ALzo2W__link:hover {
+  opacity: .8;
+}
+
+@media only screen and (max-width: 767px) {
+  .style-module-scss-module__ALzo2W__camera_modal {
+    width: calc(100vw - 12px);
+    max-width: unset;
+    padding: 5px;
+    left: 0;
+    top: 27px !important;
+  }
+}
+
+/* [project]/components/treeComponents/treeComponents.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.left-sidebar {
+  z-index: 9999;
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 2.69784vw;
+  transform: translateY(-50%);
+}
+
+.sidebar-item {
+  color: #fff;
+  font-size: clamp(.65rem, .8vw, .75rem);
+}
+
+.sidebar-item a {
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: background-color .2s;
+  display: block;
+}
+
+.sidebar-item a:hover {
+  background: #ffffff1a;
+}
+
+.sidebar-button {
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  text-decoration: none;
+  transition: background-color .2s;
+  display: block;
+}
+
+.sidebar-button:hover {
+  background: #ffffff1a;
+}
+
+.box_wrapper {
+  z-index: 999;
+  cursor: pointer;
+  color: #fff;
+  width: auto;
+  min-width: auto;
+  max-width: none;
+  height: auto;
+  min-height: auto;
+  max-height: none;
+  text-shadow: none;
+  background: none;
+  border: none;
+  border-radius: 0;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+  padding: 8px;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  text-decoration: none;
+  display: flex;
+  position: absolute;
+}
+
+.box_wrapper:hover {
+  background: #ffffff1a;
+}
+
+.box_wrapper.topright {
+  background-image: none;
+  top: 37px;
+  right: 2.69784vw;
+}
+
+.box_wrapper.topleft {
+  background-image: none;
+  top: 37px;
+  left: 2.69784vw;
+}
+
+.box_wrapper.bottomright {
+  background-image: none;
+  bottom: 37px;
+  right: 2.69784vw;
+}
+
+.box_wrapper.bottomleft {
+  background-image: none;
+  bottom: 37px;
+  left: 2.69784vw;
+}
+
+.open {
+  display: block;
+}
+
+.closed {
+  display: none;
+}
+
+.open .button {
+  max-width: 300px;
+  display: block !important;
+}
+
+/* [project]/app/living-continuity/welcomeModal.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.welcomeModalOverlay {
+  z-index: 99999;
+  will-change: opacity;
+  contain: layout style paint;
+  pointer-events: auto;
+  background-color: #0000001a;
+  position: fixed;
+  inset: 0;
+}
+
+.welcomeModalContent {
+  will-change: transform, opacity;
+  contain: layout style paint;
+  pointer-events: auto;
+  z-index: 100000;
+  background: none;
+  border: none;
+  outline: none;
+  width: auto;
+  height: auto;
+  padding: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.living_continuity_button {
+  cursor: pointer;
+  user-select: none;
+  z-index: 100001;
+  will-change: transform, opacity;
+  contain: layout style paint;
+  pointer-events: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.living_continuity_button .black_box {
+  background-color: #000;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 2.15827vw;
+  display: flex;
+}
+
+.living_continuity_button .black_box .main_text {
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  color: #fff;
+  white-space: nowrap;
+  letter-spacing: .04em;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.45rem, 1.5vw, 1.5rem);
+  font-weight: 400;
+  line-height: 135%;
+}
+
+@media screen and (max-width: 780px) {
+  .living_continuity_button .black_box .main_text {
+    font-size: clamp(1.3rem, 3vw, 1.5rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .living_continuity_button .black_box .main_text {
+    font-size: clamp(1.4rem, 2vw, 1.5rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .living_continuity_button .black_box .main_text {
+    font-size: clamp(1.5rem, 1.5vw, 1.6rem);
+  }
+}
+
+.living_continuity_button .black_box .main_text {
+  font-weight: 700;
+}
+
+.living_continuity_button .enter_text {
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: lowercase;
+  color: #fff;
+  font-family: Ortica Angular, serif;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.welcomeLoading {
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+}
+
+.welcomeTopbarWrapper {
+  z-index: 9999;
+}
+
+.welcomeCanvasWrapper {
+  --canvas-bg-color: #1c1c1c;
+  --canvas-height: 100vh;
+  --canvas-z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.welcomeCanvasWrapper canvas {
+  background-color: var(--canvas-bg-color);
+  height: var(--canvas-height);
+  width: 100%;
+  z-index: var(--canvas-z-index);
+}
+
+/* [project]/components/treeModals/archive.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body.archive-modal-open, html.archive-modal-open, body.archive-modal-open.glossary-page, html.archive-modal-open.glossary-page {
+  width: 100% !important;
+  height: 100% !important;
+  position: fixed !important;
+  overflow: hidden !important;
+}
+
+.archive-modal-overlay {
+  z-index: 99999;
+  will-change: opacity;
+  contain: layout style paint;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.archive-modal-content {
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: calc(var(--vh, 1vh) * 100);
+  will-change: transform, opacity;
+  contain: layout style paint;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+  padding: max(.4rem, 2vw) 0;
+  display: flex;
+  position: relative;
+  inset: auto;
+  overflow-y: auto;
+  transform: translateZ(0);
+}
+
+.archive-modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.archive-modal-content a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+
+.archive-modal-content a:after {
+  content: "";
+  opacity: 0;
+  background: #000;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.archive-modal-content a:hover:after {
+  opacity: 1;
+}
+
+.archive-modal-content .modal_wrapper {
+  z-index: 999;
+  width: 80vw;
+  max-width: 1200px;
+  max-height: calc(var(--vh, 1vh) * 100 - clamp(.4rem, 2vw, 100vw * .0636132) * 2);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: #fff;
+  border: 1px solid #e9ff00;
+  border-radius: 0;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  position: sticky;
+  top: clamp(1.2rem, 1.5vw, 2.5rem);
+  bottom: clamp(1.2rem, 1.5vw, 2.5rem);
+  overflow-y: auto;
+}
+
+.archive-modal-content .modal_wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.archive-modal-content .close_button {
+  cursor: pointer;
+  z-index: 1;
+  background: none;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  width: calc(1.5 * clamp(1.2rem, 1.5vw, 2.5rem));
+  height: calc(1.5 * clamp(1.2rem, 1.5vw, 2.5rem));
+  margin: 0;
+  padding: 2.5px;
+  transition: opacity .15s;
+  display: flex;
+  position: fixed;
+  top: max(.4rem, 2vw);
+  right: 0;
+}
+
+.archive-modal-content .close_button:hover {
+  opacity: .7;
+}
+
+.archive-modal-content .close_button:active {
+  opacity: .5;
+}
+
+.archive-modal-content .close_button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.archive-modal-content .content {
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: clamp(1.2rem, 1.5vw, 2.5rem) clamp(1.2rem, 1.5vw, 2.5rem) calc(4 * clamp(1.2rem, 1.5vw, 2.5rem));
+  display: flex;
+  position: relative;
+}
+
+.archive-modal-content .content h2 {
+  text-align: center;
+  color: #000;
+  letter-spacing: .01em;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0;
+  padding: max(.4rem, 2vw);
+  font-size: clamp(2.4rem, 2.5vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  font-family: Ortica Angular, serif !important;
+}
+
+@media screen and (max-width: 780px) {
+  .archive-modal-content .content h2 {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .archive-modal-content .content h2 {
+    font-size: clamp(2.2rem, 3vw, 2.5rem);
+  }
+}
+
+.archive-modal-content .content .author {
+  text-align: center;
+  color: #000;
+  width: 100%;
+  margin: 0;
+  padding-bottom: max(.4rem, 2vw);
+  font-family: Inter, sans-serif;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  font-weight: bold;
+}
+
+.archive-modal-content .content .author span {
+  font-weight: 400;
+}
+
+.archive-modal-content .content .image_wrapper {
+  width: 50vw;
+  max-width: 100%;
+  min-height: 200px;
+  display: inline-block;
+  position: relative;
+}
+
+.archive-modal-content .content .image_wrapper:not(:first-child) {
+  margin-top: 5.39568vw;
+}
+
+.archive-modal-content .content .image_wrapper img {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.archive-modal-content .content .image_wrapper .image_placeholder {
+  object-fit: cover;
+  filter: blur(20px);
+  opacity: .6;
+  z-index: 1;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  transition: opacity .3s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(1.1);
+}
+
+.archive-modal-content .content .image_wrapper .image_loading {
+  opacity: 0;
+  z-index: 2;
+  position: relative;
+}
+
+.archive-modal-content .content .image_wrapper .image_loaded {
+  opacity: 1;
+  z-index: 2;
+  transition: opacity .3s;
+  position: relative;
+}
+
+.archive-modal-content .content .image_wrapper.image_loaded .image_placeholder {
+  opacity: 0;
+}
+
+.archive-modal-content .content .isPortrait {
+  width: fit-content;
+  max-width: 50vw;
+}
+
+.archive-modal-content .content .isPortrait img {
+  object-fit: contain;
+  width: auto;
+  height: auto;
+  max-height: calc(90vh - clamp(3rem, 7.5vw, 6rem) / 1.11111 - clamp(4.5rem, 12vw, 10rem) / 1.11111 - clamp(1.5rem, 3vw, 3rem) / 1.11111);
+  display: block;
+}
+
+.archive-modal-content .content .isPortrait .image_placeholder {
+  object-fit: contain;
+  width: auto;
+  height: auto;
+  max-height: calc(90vh - clamp(3rem, 7.5vw, 6rem) / 1.11111 - clamp(4.5rem, 12vw, 10rem) / 1.11111 - clamp(1.5rem, 3vw, 3rem) / 1.11111);
+}
+
+.archive-modal-content .content .isPortrait .photo_credit {
+  width: 100%;
+  margin-top: 2.5px;
+}
+
+.archive-modal-content .content > img:first-child, .archive-modal-content .content > img:not(:first-child) {
+  width: 50vw;
+  max-width: 100%;
+  height: auto;
+  padding: 0;
+  display: block;
+}
+
+.archive-modal-content .content .photo_credit {
+  letter-spacing: .01em;
+  width: 100%;
+  font-size: clamp(.6rem, .75vw, .7rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .archive-modal-content .content .photo_credit {
+    font-size: clamp(.45rem, 1.3vw, .6rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .archive-modal-content .content .photo_credit {
+    font-size: clamp(.55rem, .85vw, .65rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .archive-modal-content .content .photo_credit {
+    font-size: clamp(.65rem, .8vw, .75rem);
+  }
+}
+
+.archive-modal-content .content .photo_credit {
+  color: #000;
+  text-align: left;
+  margin: 2.5px 0 0;
+  padding: 0;
+}
+
+.archive-modal-content .content p {
+  word-break: break-word;
+  color: #000;
+  text-align: left;
+  width: 50vw;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  position: relative;
+}
+
+.archive-modal-content .content a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.archive-modal-content .text {
+  letter-spacing: .01em;
+  width: 50vw;
+  max-width: 100%;
+  font-size: clamp(1.1rem, 1.3vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .archive-modal-content .text {
+    font-size: clamp(.9rem, 2.5vw, 1.1rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .archive-modal-content .text {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .archive-modal-content .text {
+    font-size: clamp(2.4rem, 2.5vw, 2.5rem);
+  }
+}
+
+.archive-modal-content .text {
+  color: #000;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.archive-modal-content .text p {
+  margin: 0;
+  padding: 0;
+}
+
+.archive-modal-content .text img {
+  width: 50vw;
+  max-width: 100%;
+  height: auto;
+  margin: 5.39568vw 0;
+  padding: 0;
+  display: block;
+}
+
+.archive-modal-content .text-1 {
+  letter-spacing: .01em;
+  width: 50vw;
+  max-width: 100%;
+  font-size: clamp(.75rem, .9vw, .85rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .archive-modal-content .text-1 {
+    font-size: clamp(.6rem, 1.8vw, .75rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .archive-modal-content .text-1 {
+    font-size: clamp(.7rem, 1.1vw, .8rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .archive-modal-content .text-1 {
+    font-size: clamp(.8rem, .95vw, .9rem);
+  }
+}
+
+.archive-modal-content .text-1 {
+  color: #000;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.archive-modal-content .text-1 p {
+  margin: 0;
+  padding: 0;
+}
+
+.archive-modal-content .text-1 img {
+  width: 50vw;
+  max-width: 100%;
+  height: auto;
+  margin: 5.39568vw 0;
+  padding: 0;
+  display: block;
+}
+
+.archive-modal-content .section {
+  width: 50vw;
+  max-width: 100%;
+}
+
+.archive-modal-content .section_label {
+  color: #000;
+  text-align: left;
+  margin-top: calc(2 * max(.4rem, 2vw));
+  padding: 0;
+  font-weight: bold;
+}
+
+.archive-modal-content .connections {
+  color: #000;
+  border-top: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.archive-modal-content .item {
+  letter-spacing: .01em;
+  font-size: clamp(.75rem, .9vw, .85rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .archive-modal-content .item {
+    font-size: clamp(.6rem, 1.8vw, .75rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .archive-modal-content .item {
+    font-size: clamp(.7rem, 1.1vw, .8rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .archive-modal-content .item {
+    font-size: clamp(.8rem, .95vw, .9rem);
+  }
+}
+
+.archive-modal-content .item {
+  color: #000;
+  cursor: default;
+  background: none;
+  border: none;
+  margin: 0;
+  display: inline;
+}
+
+.archive-modal-content .item_link {
+  letter-spacing: .01em;
+  font-size: clamp(.75rem, .9vw, .85rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .archive-modal-content .item_link {
+    font-size: clamp(.6rem, 1.8vw, .75rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .archive-modal-content .item_link {
+    font-size: clamp(.7rem, 1.1vw, .8rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .archive-modal-content .item_link {
+    font-size: clamp(.8rem, .95vw, .9rem);
+  }
+}
+
+.archive-modal-content .item_link {
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin: 0;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity .15s;
+  display: inline-block;
+  position: relative;
+}
+
+.archive-modal-content .item_link:after {
+  content: "";
+  opacity: 0;
+  background: #000;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.archive-modal-content .item_link:hover:after {
+  opacity: 1;
+}
+
+.archive-modal-content .comma {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.archive-modal-content .empty {
+  color: #000;
+  opacity: .6;
+  font-style: italic;
+}
+
+/* [project]/components/utils/RotatingImage.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* [project]/components/templates/ArticleNodeTemplate.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.articleNodeGroup {
+  cursor: pointer;
+}
+
+.titleAndReadWrapper {
+  pointer-events: auto;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.titleAndReadWrapper > div {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.titleAndReadContainer {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.titleWrapper {
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 0;
+  display: flex;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.titleContainer {
+  text-align: center;
+  letter-spacing: .01em;
+  font-size: calc(1.3 * clamp(2.4rem, 2.5vw, 2.5rem));
+  font-weight: 300;
+  line-height: 125%;
+}
+
+@media screen and (max-width: 780px) {
+  .titleContainer {
+    font-size: calc(1.2 * clamp(2rem, 5vw, 2.5rem));
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .titleContainer {
+    font-size: calc(1.2 * clamp(2.2rem, 3vw, 2.5rem));
+  }
+}
+
+.titleContainer {
+  color: #000;
+  text-transform: capitalize;
+  white-space: normal;
+  box-sizing: border-box;
+  letter-spacing: -1.5px;
+  background-color: #e9ff00;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2.15827vw 40px;
+  font-weight: 700;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  font-family: Ronzino, serif !important;
+}
+
+.readWrapper {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.readWrapper:before {
+  content: "";
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  background-color: #0003;
+  transition: opacity .3s;
+  position: absolute;
+  inset: 0;
+}
+
+.readWrapper:hover:before {
+  opacity: 1;
+}
+
+.readButton {
+  letter-spacing: .01em;
+  background-color: #0000;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(1.42 * clamp(2.4rem, 2.5vw, 2.5rem));
+  font-weight: 300;
+  line-height: 125%;
+  display: flex;
+}
+
+@media screen and (max-width: 780px) {
+  .readButton {
+    font-size: calc(2 * clamp(2rem, 5vw, 2.5rem));
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .readButton {
+    font-size: calc(2 * clamp(2.2rem, 3vw, 2.5rem));
+  }
+}
+
+.readButton {
+  text-align: center;
+  letter-spacing: 11px;
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 1;
+  width: 100%;
+  padding: 0;
+  font-weight: 700;
+  transition: opacity .3s;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.readButton:hover {
+  opacity: .9;
+}
+
+.readButtonText {
+  color: #000;
+  -webkit-text-stroke: 7px #e9ff00;
+  -webkit-text-fill-color: #000;
+  text-stroke: 7px #e9ff00;
+  paint-order: stroke fill;
+}
+
+.crossHtml {
+  pointer-events: auto;
+  justify-content: center;
+  align-items: flex-end;
+  display: flex;
+}
+
+.crossContainer {
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  height: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  margin-bottom: calc(-2.5 * clamp(18px, 1.5vw, 20px));
+  transition: background-color .2s;
+  display: flex;
+  position: relative;
+  transform: translateY(10%);
+}
+
+.crossContainer:hover .crossBackground {
+  background-color: #e9ff00;
+}
+
+.crossContainer:hover .crossLine {
+  background-color: #000;
+}
+
+.crossContainer:hover .crossBorder {
+  border: 4.5px solid #000;
+}
+
+.crossBackground {
+  z-index: 1;
+  background-color: #000;
+  border-radius: 50%;
+  width: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  height: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  transition: background-color .2s;
+  position: absolute;
+}
+
+.crossBorder {
+  z-index: 2;
+  border: 4.5px solid #e9ff00;
+  border-radius: 50%;
+  width: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  height: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  position: absolute;
+}
+
+.crossLines {
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  width: calc(clamp(18px, 1.5vw, 20px));
+  height: calc(clamp(18px, 1.5vw, 20px));
+  display: flex;
+  position: absolute;
+}
+
+.crossLine {
+  background-color: #e9ff00;
+  width: calc(2.5 * clamp(18px, 1.5vw, 20px));
+  height: 4.5px;
+  transition: background-color .2s;
+  position: absolute;
+}
+
+.crossLine.line1 {
+  transform: rotate(45deg);
+}
+
+.crossLine.line2 {
+  transform: rotate(-45deg);
+}
+
+/* [project]/components/templates/GlossaryNodeTemplate.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.glossaryNodeGroup {
+  cursor: pointer;
+}
+
+.glossaryContainer {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  display: flex;
+}
+
+.glossaryPill {
+  color: #fff;
+  text-transform: lowercase;
+  pointer-events: auto;
+  cursor: pointer;
+  box-shadow: none;
+  background-color: #000;
+  border: 1.5px solid #666;
+  border-radius: 999px;
+  align-items: center;
+  gap: 1.25px;
+  font-size: 10px;
+  font-weight: 600;
+  transition: border-color .2s, color .2s, box-shadow .2s, background-color .2s, font-size .2s, transform .2s;
+  display: inline-flex;
+}
+
+.glossaryPill.highlighted {
+  color: #e9ff00;
+  border: none;
+  transform: scale(1.35);
+  box-shadow: 0 0 12px #e9ff0059;
+}
+
+.glossaryPill.secondaryHighlighted {
+  border: none;
+}
+
+.glossaryPill.dimmed {
+  background-color: #0000;
+  border: none;
+}
+
+.glossaryPill.selected {
+  color: #000;
+  letter-spacing: .01em;
+  background-color: #e9ff00;
+  border-color: #e9ff00;
+  font-size: clamp(.6rem, .75vw, .7rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .glossaryPill.selected {
+    font-size: clamp(.45rem, 1.3vw, .6rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .glossaryPill.selected {
+    font-size: clamp(.55rem, .85vw, .65rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .glossaryPill.selected {
+    font-size: clamp(.65rem, .8vw, .75rem);
+  }
+}
+
+.glossaryPill.selected {
+  letter-spacing: .01em;
+  font-family: NectoMono-Regular, monospace;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .glossaryPill.selected {
+    font-size: clamp(.5rem, 1.5vw, .65rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .glossaryPill.selected {
+    font-size: clamp(.6rem, .95vw, .7rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .glossaryPill.selected {
+    font-size: clamp(.7rem, .85vw, .8rem);
+  }
+}
+
+.glossaryPill.selected {
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  leading-trim: NONE;
+  line-height: 115%;
+  box-shadow: 0 0 12px #e9ff0059;
+}
+
+.glossaryPill.selected .glossaryPillTitle {
+  padding: 2px .863309vw;
+}
+
+.glossaryPillTitle {
+  white-space: nowrap;
+  letter-spacing: .01em;
+  padding: 2.5px 8px;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.2;
+  font-family: NectoMono-Regular, monospace !important;
+}
+
+@media screen and (max-width: 780px) {
+  .glossaryPillTitle {
+    font-size: clamp(.5rem, 1.5vw, .65rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .glossaryPillTitle {
+    font-size: clamp(.6rem, .95vw, .7rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .glossaryPillTitle {
+    font-size: clamp(.7rem, .85vw, .8rem);
+  }
+}
+
+.glossaryPillTitle {
+  letter-spacing: 0%;
+  line-height: 115%;
+  text-transform: lowercase !important;
+}
+
+.glossaryPillOpenButton {
+  color: #000;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  background-color: #e9ff00;
+  border: 1.5px solid #e9ff00;
+  border-radius: 999px;
+  margin-left: 1.25px;
+  padding: 4.75px 5px;
+  font-size: 7px;
+  font-weight: 800;
+  line-height: 1.1;
+  transition: opacity .7s, background-color .2s, color .2s;
+}
+
+.glossaryPill.selected .glossaryPillOpenButton, .glossaryPill.highlighted .glossaryPillOpenButton {
+  color: #e9ff00;
+  background-color: #000;
+}
+
+.glossaryPillOpenButton:hover, .glossaryPill.selected .glossaryPillOpenButton:hover, .glossaryPill.highlighted .glossaryPillOpenButton:hover {
+  color: #000;
+  background-color: #e9ff00;
+  border: 1.5px solid #000;
+}
+
+.glossaryCross {
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: clamp(21px, 1.5vw, 23px);
+  height: clamp(21px, 1.5vw, 23px);
+  display: flex;
+  position: relative;
+  transform: translateY(10%);
+}
+
+.glossaryCrossBackground {
+  z-index: 1;
+  background-color: #000;
+  border-radius: 50%;
+  width: clamp(21px, 1.5vw, 23px);
+  height: clamp(21px, 1.5vw, 23px);
+  transition: background-color .2s;
+  position: absolute;
+}
+
+.glossaryCross.selected .glossaryCrossBackground {
+  background-color: #000;
+}
+
+.glossaryCross:hover .glossaryCrossBackground {
+  background-color: #e9ff00;
+}
+
+.glossaryCross:hover .glossaryCrossBorder {
+  border: 1.5px solid #000;
+}
+
+.glossaryCrossBorder {
+  z-index: 2;
+  border: 1.5px solid #e9ff00;
+  border-radius: 50%;
+  width: clamp(21px, 1.5vw, 23px);
+  height: clamp(21px, 1.5vw, 23px);
+  position: absolute;
+}
+
+.glossaryCrossLines {
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  width: calc(clamp(21px, 1.5vw, 23px) / 1.66667);
+  height: calc(clamp(21px, 1.5vw, 23px) / 1.66667);
+  display: flex;
+  position: absolute;
+}
+
+.glossaryCrossLine {
+  background-color: #e9ff00;
+  width: calc(clamp(21px, 1.5vw, 23px) / 1.66667);
+  height: 1.4px;
+  transition: background-color .2s;
+  position: absolute;
+}
+
+.glossaryCross.selected .glossaryCrossLine {
+  background-color: #e9ff00;
+}
+
+.glossaryCross:hover .glossaryCrossLine {
+  background-color: #000;
+}
+
+.glossaryCrossLine.line1 {
+  transform: rotate(45deg);
+}
+
+.glossaryCrossLine.line2 {
+  transform: rotate(-45deg);
+}
+
+/* [project]/components/utils/WalkThroughButton.scss.css [app-client] (css) */
+/* unparsable [project]/components/utils/WalkThroughButton.scss.css [app-client] (css) */
+/*# sourceMappingURL=_2e64ab8d._.css.map*/

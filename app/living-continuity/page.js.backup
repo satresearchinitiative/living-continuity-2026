@@ -1,0 +1,400 @@
+/**
+ * Living Continuity page route (/living-continuity) - Next.js App Router
+ * 
+ * Refactored to use d3.js + three.js with JSON data and template components
+ */
+'use client';
+
+// Force dynamic rendering to prevent SSR issues with Three.js and client-side features
+export const dynamic = 'force-dynamic';
+
+import { OrbitControls } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { Environment, useProgress } from "@react-three/drei";
+import * as THREE from "three";
+import React, { useEffect, Suspense, useMemo, useCallback, useState } from "react";
+import OptimizedCanvas from "../../components/utils/OptimizedCanvas";
+import ConnectionController from "../../components/connectionControler";
+import ElementOpacityController from "../../components/utils/ElementOpacityController";
+import Modal from "react-modal";
+import TreeModal from "../../components/treeModals/treeModal";
+import { createStore, useStore } from "usestore-react";
+import TopBar from "../../components/treeComponents/topbar";
+import LivingContinuityButton from "../../components/livingContinuityButton";
+import HomeButton from "../../components/homeButton";
+import { NavigationControls } from "../../components/navigation";
+import { suppressTextureErrors } from "../../components/utils/suppressTextureErrors";
+import { processNodeData } from "../../components/utils/d3DataManager";
+import ArticleNodeTemplate from "../../components/templates/ArticleNodeTemplate";
+import { GlossaryNodeTemplate } from "../../components/templates/GlossaryNodeTemplate";
+import { initializeLoadingState, completeLoading } from "../../components/utils/LoadingStateManager";
+import { CameraInteractionTracker } from "../../components/utils/CameraInteractionTracker";
+import { ConnectionTransitionController } from "../../components/utils/ConnectionTransitionController";
+import nextDynamic from "next/dynamic";
+
+// Dynamic imports for selected components (lazy loaded)
+const selectedComponents = {};
+const glossaryShellComponents = {};
+
+// Helper to dynamically import selected components
+const getSelectedComponent = async (id) => {
+  if (!selectedComponents[id]) {
+    try {
+      // Convert A1 -> a1
+      const lowerId = id.toLowerCase();
+      const module = await import(`../../models/entries_selected/${lowerId}`);
+      // Components export as A1Selected2, A2Selected2, etc.
+      const exportName = `${id}Selected2`;
+      selectedComponents[id] = module[exportName] || module.default || module[`${id}Selected`];
+    } catch (e) {
+      console.warn(`Could not load selected component for ${id}:`, e);
+      return null;
+    }
+  }
+  return selectedComponents[id];
+};
+
+// Helper to dynamically import glossary shell components
+const getGlossaryShellComponent = async (path) => {
+  if (!path) return null;
+  let key = path.replace('../glossaryShell/', '');
+  if (!glossaryShellComponents[key]) {
+    try {
+      let module;
+      // Handle different naming conventions (e.g., self-determination.jsx)
+      try {
+        module = await import(`../../models/glossaryShell/${key}`);
+      } catch (e1) {
+        // Try with hyphen removed (e.g., self-determination -> selfdetermination)
+        const normalizedKey = key.replace(/-/g, '');
+        try {
+          module = await import(`../../models/glossaryShell/${normalizedKey}`);
+          key = normalizedKey;
+        } catch (e2) {
+          // Try racialbias (special case)
+          if (key === 'racialbias') {
+            module = await import(`../../models/glossaryShell/racialbias`);
+          } else {
+            throw e2;
+          }
+        }
+      }
+      // Components export with capitalized names (Accessibility, Selfdetermination, etc.)
+      // Convert key to PascalCase: accessibility -> Accessibility, self-determination -> Selfdetermination
+      const pascalCase = key
+        .split(/[-_]/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('');
+      glossaryShellComponents[key] = module.default || module[pascalCase] || Object.values(module).find(v => typeof v === 'function');
+    } catch (e) {
+      console.warn(`Could not load glossary shell for ${key}:`, e);
+      return null;
+    }
+  }
+  return glossaryShellComponents[key];
+};
+
+const densityStore = createStore("density", false);
+const cameraOptionsStore = createStore("cameraOptions", 'inside');
+const cameraInteractionStore = createStore("cameraInteractionStore", false);
+
+const HomePage = () => {
+  const [cameraOptions] = useStore('cameraOptions');
+  const showAllLines = false;
+  const [camera, setCamera] = useState(true);
+  const [modalIsOpen, setOpen] = useState(true);
+  const [title, setTitle] = useState("");
+  const [nodeData, setNodeData] = useState(null);
+  const [processedData, setProcessedData] = useState(null);
+  const [selectedComponentsMap, setSelectedComponentsMap] = useState({});
+  const [glossaryShellComponentsMap, setGlossaryShellComponentsMap] = useState({});
+  const [selectedNode] = useStore('selectedNodeStore', null);
+  const [cameraInteraction] = useStore('cameraInteractionStore', false);
+
+  // Load JSON data
+  useEffect(() => {
+    fetch('/data/nodes.json')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        setNodeData(data);
+        const processed = processNodeData(data);
+        setProcessedData(processed);
+        
+        // Initialize loading state
+        const totalNodes = (data.articles?.length || 0) + (data.glossary?.length || 0);
+        initializeLoadingState(totalNodes);
+        
+        // Preload selected components (with error handling)
+        const selectedPromises = data.articles.map(async (article) => {
+          if (article.selectedModelPath) {
+            try {
+              const component = await getSelectedComponent(article.id);
+              return { id: article.id, component };
+            } catch (e) {
+              console.warn(`Failed to load selected component for ${article.id}:`, e);
+              return { id: article.id, component: null };
+            }
+          }
+          return { id: article.id, component: null };
+        });
+        
+        Promise.all(selectedPromises)
+          .then(components => {
+            const map = {};
+            components.forEach(({ id, component }) => {
+              if (component) map[id] = component;
+            });
+            setSelectedComponentsMap(map);
+          })
+          .catch(err => {
+            console.error('Error loading selected components:', err);
+          });
+
+        // Preload glossary shell components (with error handling)
+        const glossaryPromises = data.glossary.map(async (glossary) => {
+          if (glossary.glossaryShellPath) {
+            try {
+              const component = await getGlossaryShellComponent(glossary.glossaryShellPath);
+              return { id: glossary.id, component };
+            } catch (e) {
+              console.warn(`Failed to load glossary shell for ${glossary.id}:`, e);
+              return { id: glossary.id, component: null };
+            }
+          }
+          return { id: glossary.id, component: null };
+        });
+        
+        Promise.all(glossaryPromises)
+          .then(components => {
+            const map = {};
+            components.forEach(({ id, component }) => {
+              if (component) map[id] = component;
+            });
+            setGlossaryShellComponentsMap(map);
+            
+            // Mark loading as complete after all components are loaded
+            completeLoading();
+          })
+          .catch(err => {
+            console.error('Error loading glossary shell components:', err);
+            completeLoading(); // Complete even on error to prevent infinite loading
+          });
+      })
+      .catch(err => {
+        console.error('Failed to load node data:', err);
+        // Set empty data to prevent infinite loading
+        setNodeData({ articles: [], glossary: [] });
+        setProcessedData({ nodes: [], links: [], nodeMap: new Map() });
+      });
+  }, []);
+
+  // Suppress texture loading errors on mount
+  useEffect(() => {
+    const cleanup = suppressTextureErrors();
+    return cleanup;
+  }, []);
+
+  const handleOpen = useCallback(() => {
+    setOpen(prev => !prev);
+  }, []);
+
+  // Create title setters from node data
+  const titleSetters = useMemo(() => {
+    if (!nodeData) return {};
+    const setters = {};
+    
+    nodeData.articles.forEach(article => {
+      setters[article.id] = () => setTitle(article.title);
+    });
+    
+    nodeData.glossary.forEach(glossary => {
+      setters[glossary.id] = () => setTitle(glossary.title || '');
+    });
+    
+    return setters;
+  }, [nodeData]);
+
+  const setTitleDefault = useCallback(() => setTitle(""), []);
+
+  function Loader() {
+    const { active, progress, errors, item, loaded, total } = useProgress();
+    return { progress } % loaded;
+  }
+
+  // Memoized CameraDolly component
+  const SceneBackground = React.memo(() => {
+    const { scene } = useThree();
+    useEffect(() => {
+      scene.background = new THREE.Color(0x1C1C1C);
+    }, [scene]);
+    return null;
+  });
+  SceneBackground.displayName = 'SceneBackground';
+
+  const CameraDolly = React.memo(({ cameraOptions }) => {
+    const state = useThree();
+    const [selectedNode] = useStore('selectedNodeStore', null);
+    
+    useEffect(() => {
+      if (selectedNode) {
+        return;
+      }
+      
+      const presets = {
+        top: [0.267, 14.68, 0.6],
+        reset: [5.29, -1.59, 6],
+        overview: [0, 6, 18],
+      };
+
+      const nextPosition = presets[cameraOptions];
+      if (!nextPosition) {
+        return;
+      }
+
+      state.camera.position.set(...nextPosition);
+      state.camera.lookAt(0, 0, 0);
+      state.camera.updateProjectionMatrix();
+    }, [cameraOptions, state.camera, selectedNode]);
+    return null;
+  });
+  
+  CameraDolly.displayName = 'CameraDolly';
+
+  if (!processedData || !nodeData) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        color: '#ffffff'
+      }}>
+        Loading...
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <Modal 
+        isOpen={modalIsOpen} 
+        contentLabel="Welcome Modal"
+        shouldCloseOnOverlayClick={false}
+        shouldCloseOnEsc={false}
+        style={{
+          overlay: {
+            backgroundColor: 'transparent',
+            zIndex: 9999
+          },
+          content: {
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: 'transparent',
+            border: 'none',
+            padding: 0,
+            width: 'auto',
+            height: 'auto'
+          }
+        }}
+      >
+        <LivingContinuityButton onClick={() => handleOpen()} />
+      </Modal>
+      <HomeButton />
+      <div style={{zIndex: "9999"}}>
+        <TopBar title={title} />
+      </div>
+      
+      {/* Menu is now in root layout */}
+
+      <NavigationControls
+        camera={camera}
+        setCamera={setCamera}
+      />
+
+      <OptimizedCanvas
+        style={{
+          backgroundColor: "#1C1C1C",
+          height: "100vh",
+          zIndex: "1",
+        }}
+        camera={{ position: [5.29, -1.59, 6] }}
+        frameloop={camera ? 'always' : 'demand'}
+      >
+        <SceneBackground />
+        <ambientLight intensity={1} />
+        <Suspense fallback={null}>
+          <Environment preset="city" />
+        </Suspense>
+        <CameraDolly cameraOptions={cameraOptions} />
+        <ElementOpacityController />
+        <CameraInteractionTracker />
+        <ConnectionTransitionController />
+
+        {/* Render Article nodes */}
+        {nodeData.articles.map((article) => {
+          const node = processedData.nodeMap.get(article.id);
+          if (!node) return null;
+          
+          const SelectedComponent = selectedComponentsMap[article.id];
+          const setTitleFn = titleSetters[article.id] || setTitleDefault;
+          
+          return (
+            <Suspense key={article.id} fallback={null}>
+              <ArticleNodeTemplate
+                nodeData={node}
+                showAllLines={showAllLines}
+                setTitle={setTitleFn}
+                setDefault={setTitleDefault}
+                selectedComponent={SelectedComponent}
+              />
+            </Suspense>
+          );
+        })}
+
+        {/* Render Glossary nodes */}
+        {nodeData.glossary.map((glossary) => {
+          const node = processedData.nodeMap.get(glossary.id);
+          if (!node) return null;
+          
+          const GlossaryShellComponent = glossaryShellComponentsMap[glossary.id];
+          const setTitleFn = titleSetters[glossary.id] || setTitleDefault;
+          
+          return (
+            <Suspense key={glossary.id} fallback={null}>
+              <GlossaryNodeTemplate
+                nodeData={node}
+                showAllLines={showAllLines}
+                title={glossary.title}
+                setTitle={setTitleFn}
+                setDefault={setTitleDefault}
+                glossaryShellComponent={GlossaryShellComponent}
+              />
+            </Suspense>
+          );
+        })}
+
+        <ConnectionController processedData={processedData} />
+
+        <OrbitControls
+          autoRotate={camera && !selectedNode}
+          autoRotateSpeed={0.5}
+          minDistance={1}
+          maxDistance={60}
+          enableDamping={true}
+          dampingFactor={0.05}
+          enablePan={true}
+          makeDefault={false}
+        />
+      </OptimizedCanvas>
+    </>
+  );
+};
+
+export default HomePage;

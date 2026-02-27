@@ -1,0 +1,372 @@
+/**
+ * Tree Components Styles
+ */
+
+@use "../_setup/vars.scss" as *;
+@use "../_setup/breakpoints.scss" as *;
+
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.topbar_wrapper_mobile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.topbar_wrapper {
+  display: none; // Hidden - replaced by new menu
+}
+
+.topbar_wrapper .title {
+  width: 100%;
+  text-align: center;
+  color: $color-white;
+  border-radius: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include font-size-xs;
+  background-color: transparent;
+  
+  @include sm {
+    @include font-size-xs;
+  }
+}
+
+.title span {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  margin: 0;
+  height: min-content;
+  word-spacing: 5px;
+  padding: 0;
+  border-radius: 0;
+}
+
+.highlightedTerm {
+  width: 100%;
+  text-align: center;
+  color: $color-accent;
+  border-radius: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include font-size-xs;
+  background-color: transparent;
+  text-transform: uppercase;
+  
+  @include sm {
+    @include font-size-xs;
+  }
+}
+
+.full {
+  width: 40%;
+  cursor: pointer;
+}
+
+.half {
+  width: 20%;
+  cursor: pointer;
+}
+
+@include tablet {
+  .button {
+    min-width: unset;
+  }
+
+  .button {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .button {
+    min-width: unset;
+  }
+
+  .button {
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.box_wrapper {
+  z-index: 999;
+  position: absolute;
+  min-width: auto;
+  min-height: auto;
+  max-width: none;
+  max-height: none;
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include font-size-s;
+  margin: $spacing-md;
+  padding: $padding-xs;
+  color: $color-white;
+  background: transparent;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  // Responsive spacing
+  @include sm {
+    margin: $spacing-sm;
+    padding: $padding-xxs;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.bottom_bar_wrapper {
+  position: absolute;
+  bottom: $spacing-md;
+  left: $spacing-md;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - #{$spacing-md * 2});
+
+  // Responsive spacing
+  @include sm {
+    bottom: $spacing-sm;
+    left: $spacing-sm;
+    width: calc(100% - #{$spacing-sm * 2});
+  }
+
+  button {
+    width: min-content;
+  }
+}
+
+.left_wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.button_wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+}
+
+.center_button {
+  min-width: 200px;
+  max-width: 200px;
+  text-align: center;
+  background-color: transparent;
+}
+
+.submenu {
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+}
+
+.isDesktop {
+  width: 100%;
+}
+
+.isMobile {
+  width: 100%;
+}
+
+@include tablet {
+  .center_button {
+    width: 100%;
+  }
+
+  .camera_modal {
+    min-width: 0;
+    width: fit-content;
+    padding: 0 25px;
+  }
+
+  .left_wrapper {
+    min-width: 110px;
+    width: unset;
+  }
+
+  .left_wrapper div {
+    min-width: 110px;
+    width: fit-content;
+  }
+
+  .camera_modal_1 {
+    min-width: 100px !important;
+  }
+
+  .modal {
+    position: absolute;
+    bottom: 0;
+    right: calc(0vw - 10px);
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .button {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.button {
+  background: transparent;
+  border: none;
+  border-radius: $radius-default;
+  min-width: auto;
+  text-align: left;
+  min-height: auto;
+  color: white;
+  padding: $padding-xs $padding-sm;
+  transition: all $transition-base;
+
+  @include sm {
+    padding: $padding-xxs $padding-xs;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &.right {
+    float: right;
+  }
+}
+
+.small_button {
+  @include xs {
+    min-width: 30px !important;
+  }
+}
+
+.bottombarbutton {
+  @include tablet-xl {
+    width: max-content;
+    padding: 0;
+    min-width: 150px !important;
+  }
+
+  @include sm-mobile {
+    min-width: 112px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.supplementbutton {
+  @include tablet-xl {
+    width: max-content;
+    padding: 0;
+    min-width: 80px !important;
+    max-width: 95px !important;
+  }
+
+  @include sm-mobile {
+    width: max-content;
+    padding: 0;
+    min-width: 75px !important;
+    max-width: 75px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.stoprotationbutton {
+  @include tablet-xl {
+    min-width: 95px !important;
+    padding: 0 $padding !important;
+  }
+
+  @include sm-mobile {
+    min-width: 70px !important;
+    padding: 0 $padding !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.optionsbutton {
+  @include tablet-xl {
+    min-width: 115px !important;
+    padding: 0 $padding !important;
+  }
+
+  @include sm-mobile {
+    min-width: 100px !important;
+    padding: 0 $padding !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.bottomButtons {
+  position: fixed;
+  bottom: $spacing-sm;
+  z-index: $z-index-top;
+  display: inline-flex;
+
+  &.left {
+    left: $spacing-sm;
+  }
+
+  &.right {
+    right: $spacing-sm;
+  }
+
+  @include sm {
+    bottom: $spacing-xs;
+    
+    &.left {
+      left: $spacing-xs;
+    }
+
+    &.right {
+      right: $spacing-xs;
+    }
+
+    .button {
+      width: fit-content;
+      min-width: unset;
+      padding: $padding-xxs $padding-xs;
+    }
+  }
+
+  @include xs {
+    .button {
+      width: fit-content;
+      min-width: unset;
+      padding: $padding-xxs $padding-xs;
+    }
+  }
+}

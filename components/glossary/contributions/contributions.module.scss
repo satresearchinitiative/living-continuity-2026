@@ -1,0 +1,242 @@
+@use "../../_setup/vars.scss" as *;
+@use "../../_setup/fonts.scss" as *;
+@use "../../_setup/breakpoints.scss" as *;
+
+.contributionsContainer {
+  width: 50vw;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: $color-black;
+  color: $color-white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: calc(#{$margin-side} * 5.5) calc(#{$margin-side} * 6.25);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  scrollbar-width: $scroll-bar;
+  scrollbar-color: $color-blue-light transparent;
+  scrollbar-width: $scroll-bar !important;
+
+  &::-webkit-scrollbar {
+    width: $scroll-bar;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-blue-light;
+    border-radius: 0;
+    border: none;
+  }
+
+  @include mobile {
+    width: 100vw;
+    height: 50dvh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    padding: $margin-menu;
+  }
+
+}
+
+.emptyState,
+.interpretationsContent,
+.submitForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 600px;
+}
+
+.title {
+  color: $color-white;
+  margin: 0;
+  margin-bottom: calc(#{$margin} * 1.5);
+  text-align: left;
+
+  @include mobile {
+    @include font-h2-glossary;
+  }
+}
+
+.subtitle {
+  @include font-h2-glossary;
+  letter-spacing: 0;
+  line-height: 125%;
+  font-weight: 200;
+  font-style: italic;
+  color: #BBBBBB;
+  margin: 0;
+  margin-bottom: $margin-side;
+  text-align: left;
+  cursor: pointer;
+  transition: opacity $transi ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+  @include mobile {
+    padding-right: 10vw;
+  }
+}
+
+.submit-entry-form {
+  textarea {
+    @include font-h2-glossary;
+    letter-spacing: normal;
+    line-height: 120%;
+    font-weight: 200;
+    font-style: italic;
+    &::placeholder {
+      @include font-h2-glossary;
+      letter-spacing: normal;
+      line-height: 120%;
+      font-weight: 200;
+      font-style: italic;
+    }
+  }
+}
+
+.keywordName {
+  color: $color-white;
+  letter-spacing: 0;
+  line-height: 125%;
+  font-weight: 200;
+}
+
+.interpretationsList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $padding;
+  margin-bottom: calc($margin-side * 2);
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  padding-right: $margin-side;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  p{
+  letter-spacing: 0 !important;
+  }
+
+  span {
+    @include font-size-s;
+    letter-spacing: 0 !important;
+    font-style: italic;
+  }
+
+  @include sm {
+    max-height: calc(50dvh - 150px);
+    padding-right: calc($margin-side * 2);
+  }
+}
+
+
+.interpretationItem {
+  display: flex;
+  flex-direction: column;
+  gap: calc(#{$padding} * 0.625);
+}
+
+.interpretationText {
+  @include font-size-md;
+  font-weight: 400;
+  color: rgba($color-white, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.interpretationDivider {
+  width: 100%;
+  height: $border-width;
+  min-height: $border-width;
+  background-color: rgba($color-white, 0.3);
+  flex-shrink: 0;
+}
+
+.submitButton {
+  background-color: transparent;
+  border: 1px solid $color-white;
+  color: $color-white;
+  font-family: $font-family-inter;
+  font-weight: 400;
+  padding: calc(#{$padding} * 1.25) calc(#{$padding} * 2.5);
+  cursor: pointer;
+  transition: all $transi ease;
+  text-align: left;
+  width: auto;
+  margin-top: calc(#{$padding} * 2.5);
+
+  &:hover {
+    background-color: rgba($color-white, 0.1);
+    border-color: rgba($color-white, 0.8);
+  }
+
+  &:active {
+    background-color: rgba($color-white, 0.2);
+  }
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  width: 100%;
+  background-color: transparent;
+  color: $color-white;
+  resize: vertical;
+  min-height: $margin-5x;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $color-white;
+  }
+
+  &::placeholder {
+    color: rgba($color-white, 0.4);
+  }
+}
+
+.formActions {
+  display: flex;
+  gap: calc(#{$padding} * 1.25);
+  justify-content: flex-end;
+}
+
+.cancelButton {
+  background-color: transparent;
+  border: 1px solid rgba($color-white, 0.3);
+  color: rgba($color-white, 0.7);
+  font-family: $font-family-inter;
+  font-weight: 400;
+  padding: calc(#{$padding} * 1.25) calc(#{$padding} * 2.5);
+  cursor: pointer;
+  transition: all $transi ease;
+
+  &:hover {
+    border-color: rgba($color-white, 0.6);
+    color: $color-white;
+  }
+}

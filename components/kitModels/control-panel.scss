@@ -1,0 +1,97 @@
+@use "../_setup/vars.scss" as *;
+@use "../_setup/breakpoints.scss" as *;
+
+.controlPanel {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
+
+.rotate {
+  background: $color-white;
+  border-radius: $border-radius-lg;
+  cursor: pointer;
+
+  &:hover,
+  .panel .up:hover,
+  .panel .down:hover,
+  .panel .left:hover,
+  .panel .right:hover {
+    opacity: 0.8;
+  }
+}
+
+.white_bg {
+  background-color: $color-bg-blue;
+  color: $color-black;
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: $padding;
+  row-gap: $padding;
+  position: relative;
+  pointer-events: auto;
+  z-index: 1000;
+
+  .rotate {
+    width: 45px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $color-black;
+    pointer-events: auto;
+    position: relative;
+    z-index: 1001;
+    user-select: none;
+    
+    &:active {
+      transform: scale(0.95);
+    }
+    
+    svg {
+      pointer-events: none;
+    }
+  }
+
+  .up,
+  .down,
+  .left,
+  .right {
+    width: 48px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: transparent;
+    border-radius: $border-radius-lg;
+    pointer-events: auto;
+    position: relative;
+    z-index: 1001;
+    user-select: none;
+    
+    &:active {
+      transform: scale(0.95);
+    }
+    
+    svg {
+      pointer-events: none;
+    }
+  }
+
+  .place {
+    grid-column: 1 / 4;
+    width: 155px;
+    pointer-events: auto;
+    position: relative;
+    z-index: 1001;
+    user-select: none;
+    
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}

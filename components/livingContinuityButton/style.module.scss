@@ -1,0 +1,58 @@
+/**
+ * Living Continuity Button Styles
+ */
+
+@use "../_setup/vars.scss" as *;
+@use "../_setup/fonts.scss" as *;
+@use "../_setup/breakpoints.scss" as *;
+
+.living_continuity_button {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10001;
+  
+  .black_box {
+    background-color: $color-black;
+    padding: $padding-s $padding;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: calc(#{$margin} * 0.2);
+    
+    .main_text {
+      @include font-inter-bold;
+      line-height: 100%;
+      letter-spacing: 0%;
+      text-align: center;
+      vertical-align: middle;
+      text-transform: capitalize;
+      color: $color-white;
+    }
+
+    // Responsive for mobile
+    @include mobile {
+      padding: $padding-s $margin-phone;
+
+    }
+  }
+  
+  .enter_text {
+    @include font-ledger;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: lowercase;
+    color: $color-white;
+    @include font-size-s;
+  }
+}
+

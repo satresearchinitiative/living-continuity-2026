@@ -1,0 +1,981 @@
+@import "https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Ledger&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap";
+/* [project]/components/objectControls/object-controls.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.object-controls__title {
+  letter-spacing: .01em;
+  font-family: NectoMono-Regular, monospace;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .object-controls__title {
+    font-size: clamp(.6rem, 1.5vw, .65rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .object-controls__title {
+    font-size: clamp(.6rem, .95vw, .7rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .object-controls__title {
+    font-size: clamp(.95rem, .85vw, .8rem);
+  }
+}
+
+.object-controls__title {
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  leading-trim: NONE;
+  letter-spacing: .01em;
+  font-size: clamp(.6rem, .75vw, .7rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .object-controls__title {
+    font-size: clamp(.45rem, 1.3vw, .6rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .object-controls__title {
+    font-size: clamp(.55rem, .85vw, .65rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .object-controls__title {
+    font-size: clamp(.75rem, .8vw, .75rem);
+  }
+}
+
+.object-controls__title {
+  color: #000;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  background-color: #fff;
+  border: 1px solid #000;
+  width: max-content;
+  margin: auto;
+  padding: 5px;
+  font-family: NectoMono-Regular, monospace;
+  transform: translateY(-345%);
+  text-transform: capitalize !important;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .object-controls__title {
+    letter-spacing: .01em;
+    font-size: clamp(.65rem, .8vw, .75rem);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) and (max-width: 780px), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) and (max-width: 780px), only screen and (max-aspect-ratio: 4 / 5) and (max-width: 780px) {
+  .object-controls__title {
+    font-size: clamp(.6rem, 1.5vw, .65rem);
+  }
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) and (min-width: 780px) and (max-width: 1040px), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) and (min-width: 780px) and (max-width: 1040px), only screen and (max-aspect-ratio: 4 / 5) and (min-width: 780px) and (max-width: 1040px) {
+  .object-controls__title {
+    font-size: clamp(.6rem, .95vw, .7rem);
+  }
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) and (min-width: 1700px), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) and (min-width: 1700px), only screen and (max-aspect-ratio: 4 / 5) and (min-width: 1700px) {
+  .object-controls__title {
+    font-size: clamp(.95rem, .85vw, .8rem);
+  }
+}
+
+.object-controls {
+  pointer-events: auto;
+  z-index: 1000;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0;
+  display: flex;
+  position: relative;
+  transform: translateY(-50%);
+}
+
+.object-controls__row {
+  justify-content: center;
+  align-items: center;
+  column-gap: 4.94604vw;
+  margin-bottom: -1.19904vw;
+  display: flex;
+}
+
+.object-controls__row > * + * {
+  margin-left: -20px;
+}
+
+.object-controls__row:first-child {
+  column-gap: 8.09353vw;
+  margin-bottom: -10px;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .object-controls__row:first-child {
+    column-gap: 14.988vw;
+  }
+}
+
+@media (min-width: 1700px) {
+  .object-controls__row:first-child {
+    column-gap: 5.39568vw;
+  }
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .object-controls__row {
+    column-gap: 12.7226vw;
+    margin-bottom: -3.18066vw;
+  }
+}
+
+@media (min-width: 1700px) {
+  .object-controls__row {
+    column-gap: 3.29736vw;
+    margin-bottom: -1.19904vw;
+  }
+}
+
+.object-controls__action {
+  color: #e9ff00;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 1001;
+  user-select: none;
+  background: radial-gradient(circle, #737373 0%, #d9d9d9 85%);
+  border: 1px solid #898989;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 2.39808vw;
+  height: 2.39808vw;
+  padding: 0;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .object-controls__action {
+    width: 6.59472vw;
+    height: 6.59472vw;
+  }
+}
+
+@media (min-width: 1700px) {
+  .object-controls__action {
+    width: 1.79856vw;
+    height: 1.79856vw;
+  }
+}
+
+.object-controls__action svg {
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+}
+
+.object-controls__action img {
+  pointer-events: none;
+}
+
+.object-controls__action:hover {
+  background: radial-gradient(circle, #737373 0%, #7cf2ff 90%);
+}
+
+.object-controls__action:active {
+  transform: scale(.95);
+}
+
+.object-controls__action--save {
+  background: radial-gradient(circle, #737373 0%, #7cf2ff 90%);
+  padding: 3px;
+}
+
+.object-controls__action--save:hover {
+  background: radial-gradient(circle, #737373 0%, #d9d9d9 85%);
+}
+
+.object-controls__action--save svg {
+  transform: scale(.7);
+}
+
+.object-controls__action--rotate {
+  padding: 3px;
+}
+
+.object-controls__action--rotate svg {
+  transform: scale(.9)translate(1px);
+}
+
+.object-controls__dpad-button {
+  color: #e9ff00;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 1001;
+  user-select: none;
+  background: radial-gradient(circle, #737373 0%, #d9d9d9 85%);
+  border: 1px solid #898989;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 4.79616vw;
+  height: 4.79616vw;
+  padding: 0;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .object-controls__dpad-button {
+    width: 11.3909vw;
+    height: 11.3909vw;
+  }
+}
+
+@media (min-width: 1700px) {
+  .object-controls__dpad-button {
+    width: 3.29736vw;
+    height: 3.29736vw;
+  }
+}
+
+.object-controls__dpad-button:hover {
+  background: radial-gradient(circle, #737373 0%, #7cf2ff 90%);
+}
+
+.object-controls__dpad-button:active {
+  transform: scale(.95);
+}
+
+.object-controls__dpad-button svg {
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+}
+
+/* [project]/components/kitModels/object-title.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.object-title {
+  letter-spacing: .01em;
+  font-family: NectoMono-Regular, monospace;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .object-title {
+    font-size: clamp(.6rem, 1.5vw, .65rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .object-title {
+    font-size: clamp(.6rem, .95vw, .7rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .object-title {
+    font-size: clamp(.95rem, .85vw, .8rem);
+  }
+}
+
+.object-title {
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  leading-trim: NONE;
+  letter-spacing: .01em;
+  font-size: clamp(.6rem, .75vw, .7rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .object-title {
+    font-size: clamp(.45rem, 1.3vw, .6rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .object-title {
+    font-size: clamp(.55rem, .85vw, .65rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .object-title {
+    font-size: clamp(.75rem, .8vw, .75rem);
+  }
+}
+
+.object-title {
+  color: #000;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  background-color: #d2d2d2;
+  border: 1px solid #000;
+  padding: 5px;
+  font-family: NectoMono-Regular, monospace;
+  text-transform: lowercase !important;
+}
+
+/* [project]/components/kitOfParts/screenshot-form.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.screenshot-form-overlay {
+  z-index: 99999;
+  background-color: #00000080;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.screenshot-form-overlay.open {
+  display: block;
+}
+
+.screenshot-form-wrapper {
+  z-index: 999;
+  box-sizing: border-box;
+  background-color: #000;
+  border: 1px solid #0000;
+  flex-direction: column;
+  width: 40.5995vw;
+  height: 100vh;
+  transition: transform .3s;
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  overflow-y: auto;
+  transform: translateX(100%);
+}
+
+.screenshot-form-wrapper:hover {
+  border-color: #ffdefe;
+}
+
+.screenshot-form-wrapper.open {
+  z-index: 9999;
+  transform: translateX(0);
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .screenshot-form-wrapper {
+    width: 100vw;
+    height: 50vh;
+    margin-top: 0;
+    top: auto;
+    bottom: 0;
+  }
+}
+
+.screenshot-form-close {
+  z-index: 9999999;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.screenshot-form-close svg line {
+  stroke: #ffdefe;
+}
+
+.screenshot-form-content {
+  color: #fff;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+  gap: clamp(1.2rem, 1.5vw, 2.5rem);
+  margin: clamp(1.2rem, 1.5vw, 2.5rem) clamp(1.2rem, 1.5vw, 2.5rem) 5px;
+  padding-top: 0;
+  padding-right: 2.9976vw;
+  display: flex;
+}
+
+.screenshot-form-content .screenshot-preview {
+  width: 100%;
+  margin-top: calc(4.4 * clamp(1.2rem, 1.5vw, 2.5rem));
+  margin-bottom: clamp(1.2rem, 1.5vw, 2.5rem);
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .screenshot-form-content .screenshot-preview {
+    margin-top: calc(100vw * .0763359) clamp(1.2rem, 1.5vw, 2.5rem) clamp(1.2rem, 1.5vw, 2.5rem);
+  }
+}
+
+.screenshot-form-content .screenshot-preview img {
+  border-radius: 4px;
+  width: 100%;
+  height: auto;
+}
+
+.screenshot-form-content .screenshot-form {
+  flex-direction: column;
+  gap: clamp(1.2rem, 1.5vw, 2.5rem);
+  width: 100%;
+  margin-top: 0;
+  display: flex;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .screenshot-form-content .screenshot-form {
+    margin-top: 0;
+  }
+}
+
+.screenshot-input, .screenshot-textarea {
+  box-sizing: border-box;
+  background-color: #0000;
+  border: none;
+  width: 100%;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.7rem, 1.2vw, 2.2rem);
+  font-weight: 400;
+  line-height: 135%;
+}
+
+@media screen and (max-width: 780px) {
+  .screenshot-input, .screenshot-textarea {
+    letter-spacing: -1px;
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    line-height: 100%;
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .screenshot-input, .screenshot-textarea {
+    font-size: clamp(1.4rem, 2vw, 1.5rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .screenshot-input, .screenshot-textarea {
+    font-size: clamp(2.6rem, 1.3vw, 3.5rem);
+  }
+}
+
+.screenshot-input, .screenshot-textarea {
+  letter-spacing: 0;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  resize: vertical;
+  margin: 0;
+  padding-right: clamp(1.2rem, 1.5vw, 2.5rem);
+  font-style: italic;
+  font-weight: 200;
+  line-height: 125%;
+}
+
+.screenshot-input:focus, .screenshot-textarea:focus {
+  outline: none;
+}
+
+.screenshot-input::placeholder, .screenshot-textarea::placeholder {
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.7rem, 1.2vw, 2.2rem);
+  font-weight: 400;
+  line-height: 135%;
+}
+
+@media screen and (max-width: 780px) {
+  .screenshot-input::placeholder, .screenshot-textarea::placeholder {
+    font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+    line-height: 100%;
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .screenshot-input::placeholder, .screenshot-textarea::placeholder {
+    font-size: clamp(1.4rem, 2vw, 1.5rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .screenshot-input::placeholder, .screenshot-textarea::placeholder {
+    font-size: clamp(1.8rem, 1.3vw, 3.5rem);
+  }
+}
+
+.screenshot-input::placeholder, .screenshot-textarea::placeholder {
+  color: #bbb;
+  text-align: left;
+  cursor: pointer;
+  resize: vertical;
+  margin: 0;
+  font-style: italic;
+  font-weight: 200;
+  line-height: 125%;
+  letter-spacing: 0 !important;
+}
+
+.screenshot-textarea {
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.7rem, 1.2vw, 2.2rem);
+  font-weight: 400;
+  line-height: 135%;
+}
+
+@media screen and (max-width: 780px) {
+  .screenshot-textarea {
+    font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+    line-height: 100%;
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .screenshot-textarea {
+    font-size: clamp(1.4rem, 2vw, 1.5rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .screenshot-textarea {
+    font-size: clamp(1.8rem, 1.3vw, 3.5rem);
+  }
+}
+
+.screenshot-textarea {
+  letter-spacing: 0;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  resize: vertical;
+  min-height: 100px;
+  margin: 0;
+  font-style: italic;
+  font-weight: 200;
+  line-height: 125%;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .screenshot-textarea {
+    padding-right: 10vw;
+  }
+}
+
+.screenshot-name {
+  letter-spacing: .01em;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .screenshot-name {
+    font-size: clamp(.9rem, 2.5vw, 1.1rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .screenshot-name {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .screenshot-name {
+    font-size: clamp(1rem, 1.3vw, 1.35rem);
+  }
+}
+
+.screenshot-name {
+  letter-spacing: 0;
+  color: #bbb;
+  text-align: left;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+  font-weight: 200;
+  line-height: 125%;
+}
+
+.screenshot-name::placeholder {
+  letter-spacing: .01em;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .screenshot-name::placeholder {
+    font-size: clamp(.9rem, 2.5vw, 1.1rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .screenshot-name::placeholder {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .screenshot-name::placeholder {
+    font-size: clamp(1rem, 1.3vw, 1.35rem);
+  }
+}
+
+.screenshot-name::placeholder {
+  letter-spacing: 0;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  margin: 0;
+  font-style: italic;
+  font-weight: 200;
+  line-height: 125%;
+}
+
+.screenshot-submit-button {
+  letter-spacing: .01em;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .screenshot-submit-button {
+    font-size: clamp(.9rem, 2.5vw, 1.1rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .screenshot-submit-button {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .screenshot-submit-button {
+    font-size: clamp(1rem, 1.3vw, 1.35rem);
+  }
+}
+
+.screenshot-submit-button {
+  color: #000;
+  cursor: pointer;
+  text-transform: lowercase;
+  background-color: #00ffa6;
+  border: none;
+  margin-top: clamp(1.2rem, 1.5vw, 2.5rem);
+  padding: .863309vw 2.15827vw;
+  transition: all .3s;
+}
+
+.screenshot-submit-button:hover:not(:disabled) {
+  background-color: var(--color-accent-gold, #f9b200);
+}
+
+.screenshot-submit-button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+/* [project]/app/kit-of-parts/kit-parts.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+canvas {
+  overscroll-behavior: none;
+  touch-action: none;
+  display: block;
+  overflow: visible;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+div[ref] {
+  overscroll-behavior: none;
+  touch-action: none;
+  width: 100%;
+  height: 100vh;
+  overflow: visible;
+}
+
+/*# sourceMappingURL=_c0201ade._.css.map*/

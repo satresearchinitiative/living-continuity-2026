@@ -1,0 +1,134 @@
+@use "../_setup/vars.scss" as *;
+@use "../_setup/breakpoints.scss" as *;
+
+.gradient-overlay-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(3rem, 8vw, $margin-5x);
+  width: 100vw;
+  background: linear-gradient(to bottom, $color-blue-light 0%, rgba($color-white, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+  will-change: background;
+
+  @include mobile {
+    height: $gradient-height-mobile;
+  }
+}
+
+.gradient-overlay-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: clamp(3rem, 8vw, $margin-5x);
+  width: 100vw;
+  background: linear-gradient(to top, $color-blue-light 0%, rgba($color-white, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+  will-change: background;
+
+  @include mobile {
+    height: $gradient-height-mobile;
+  }
+}
+
+body.page-landing,
+html.page-landing {
+  .gradient-overlay-top {
+    background: linear-gradient(to bottom, $color-pink-light 0%, rgba($color-white, 0) 100%);
+  }
+  
+  .gradient-overlay-bottom {
+    background: linear-gradient(to top, $color-pink-light 0%, rgba($color-white, 0) 100%);
+  }
+}
+
+body.page-glossary,
+html.page-glossary {
+  .gradient-overlay-top {
+    background: linear-gradient(to bottom, $color-blue-light 0%, rgba($color-white, 0) 100%);
+  }
+  
+  .gradient-overlay-bottom {
+    background: linear-gradient(to top, $color-blue-light 0%, rgba($color-white, 0) 100%);
+  }
+}
+
+// Glossary page - Split gradients: top left/right and bottom left/right (50vw each)
+.gradient-overlay-glossary-top-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: clamp(3rem, 8vw, $margin-5x);
+  background: linear-gradient(to bottom, $color-blue-light 0%, rgba($color-white, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+  will-change: background;
+
+  @include mobile {
+    height: $gradient-height-mobile;
+  }
+}
+
+.gradient-overlay-glossary-top-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: clamp(3rem, 8.6vw, $margin-5x);
+  background: linear-gradient(to bottom, $color-blue-light 0%, rgba($color-white, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+  will-change: background;
+
+  @include mobile {
+    height: calc($gradient-height-mobile * 1);
+  }
+}
+
+.gradient-overlay-glossary-bottom-left {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50vw;
+  height: clamp(3rem, 8vw, $margin-5x);
+  background: linear-gradient(to top, $color-blue-light 0%, rgba($color-white, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+  will-change: background;
+
+  @include mobile {
+    height: $gradient-height-mobile;
+  }
+}
+
+.gradient-overlay-glossary-bottom-right {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 50vw;
+  height: clamp(3rem, 8.6vw, $margin-5x);
+  background: linear-gradient(to top, $color-blue-light 0%, rgba($color-white, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+  will-change: background;
+
+  @include mobile {
+    height: calc($gradient-height-mobile * 1);
+  }
+}
+
+body.page-kit,
+html.page-kit {
+  .gradient-overlay-top {
+    background: linear-gradient(to bottom, $color-orange-1 0%, rgba($color-white, 0) 100%);
+  }
+  
+  .gradient-overlay-bottom {
+    background: linear-gradient(to top, $color-orange-1 0%, rgba($color-white, 0) 100%);
+  }
+}

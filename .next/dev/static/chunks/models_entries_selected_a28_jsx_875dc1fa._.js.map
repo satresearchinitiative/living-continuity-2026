@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Applications/MAMP/htdocs/35-SAT/SAT/models/entries_selected/a28.jsx"],"sourcesContent":["import React from 'react';\n\nexport function A28Selected2(props) {\n  // Placeholder component - no 3D model available\n  return <group {...props} dispose={null} />;\n}\n\nexport default A28Selected2;\n"],"names":[],"mappings":";;;;;;;;;;AAAA;;;;;;AAEO,SAAS,aAAa,KAAK;IAChC,gDAAgD;IAChD,qBAAO,6LAAC,iWAAU;QAAO,SAAS;;;;;;AACpC;KAHgB;uCAKD"}}]
+}

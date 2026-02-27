@@ -1,0 +1,258 @@
+/* [project]/components/homeTitle/homeTitle.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.home_title_wrapper {
+  position: fixed;
+  bottom: max(.4rem, 1.7vw);
+}
+
+@media (min-width: 1700px) {
+  .home_title_wrapper {
+    bottom: max(.4rem, 1.5vw);
+  }
+}
+
+.home_title_wrapper {
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .home_title_wrapper {
+    bottom: clamp(1.7rem, 2vw, 3.5rem);
+  }
+}
+
+.highlighted_term {
+  white-space: nowrap;
+  color: #e9ff00;
+  letter-spacing: .01em;
+  justify-content: center;
+  align-items: center;
+  max-width: 60vw;
+  min-height: calc(clamp(1.7rem, 2vw, 3.5rem) / 1.25);
+  max-height: 100%;
+  padding: 5px;
+  font-size: clamp(.85rem, .9vw, .9rem);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.2;
+  display: flex;
+  font-family: NectoMono-Regular, monospace !important;
+}
+
+@media screen and (max-width: 780px) {
+  .highlighted_term {
+    font-size: clamp(.75rem, 2.5vw, .975rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .highlighted_term {
+    font-size: clamp(.85rem, 1.2vw, 1rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .highlighted_term {
+    font-size: clamp(.95rem, 1.3vw, 1.1rem);
+  }
+}
+
+.highlighted_term {
+  letter-spacing: 0%;
+  background: #1b1b1b;
+  line-height: 115%;
+  transform: scale(1.2);
+  text-transform: lowercase !important;
+}
+
+@media screen and (max-width: 780px) {
+  .highlighted_term {
+    letter-spacing: .01em;
+    letter-spacing: 0;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 5px clamp(1.7rem, 2vw, 3.5rem);
+    font-size: clamp(.65rem, .8vw, .75rem);
+    font-weight: 300;
+    line-height: 1.2;
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 1700px) {
+  .highlighted_term {
+    padding: 5px clamp(2.1rem, 1.5vw, 3.5rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (max-width: 780px) {
+  .highlighted_term {
+    font-size: clamp(.6rem, 1.5vw, .65rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 780px) and (max-width: 1040px) {
+  .highlighted_term {
+    font-size: clamp(.6rem, .95vw, .7rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 1700px) {
+  .highlighted_term {
+    font-size: clamp(.95rem, .85vw, .8rem);
+  }
+}
+
+.highlighted_article {
+  white-space: nowrap;
+  color: #e9ff00;
+  text-align: center;
+  letter-spacing: .01em;
+  justify-content: center;
+  align-items: center;
+  max-width: 60vw;
+  min-height: calc(clamp(1.7rem, 2vw, 3.5rem) / 1.25);
+  max-height: 100%;
+  padding: 5px;
+  font-size: clamp(.75rem, .8vw, .85rem);
+  font-weight: 300;
+  line-height: 1.2;
+  display: flex;
+}
+
+@media screen and (max-width: 780px) {
+  .highlighted_article {
+    font-size: clamp(.75rem, 2vw, .95rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .highlighted_article {
+    font-size: clamp(.7rem, 1.1vw, .8rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .highlighted_article {
+    font-size: clamp(.85rem, .95vw, .9rem);
+  }
+}
+
+.highlighted_article {
+  text-transform: capitalize;
+  white-space: normal;
+  background: #1b1b1b;
+  font-weight: 500;
+  line-height: 115%;
+  transform: scale(1.2);
+  font-family: Ronzino, serif !important;
+}
+
+@media screen and (max-width: 780px) {
+  .highlighted_article {
+    letter-spacing: .01em;
+    letter-spacing: 0;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 5px clamp(1.7rem, 2vw, 3.5rem);
+    font-size: clamp(.65rem, .8vw, .75rem);
+    font-weight: 300;
+    line-height: 1.2;
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 1700px) {
+  .highlighted_article {
+    padding: 5px clamp(2.1rem, 1.5vw, 3.5rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (max-width: 780px) {
+  .highlighted_article {
+    font-size: clamp(.6rem, 1.5vw, .65rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 780px) and (max-width: 1040px) {
+  .highlighted_article {
+    font-size: clamp(.6rem, .95vw, .7rem);
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 1700px) {
+  .highlighted_article {
+    font-size: clamp(.95rem, .85vw, .8rem);
+  }
+}
+
+/*# sourceMappingURL=components_homeTitle_homeTitle_scss_css_bad6b30c._.single.css.map*/

@@ -1,0 +1,51 @@
+@use "./vars.scss" as *;
+@use "./setup.scss" as *;
+@use "./elements-wrapper.scss" as *;
+@use "./utilities.scss" as *;
+@use "./rte.scss" as *;
+@use "../gradient/gradients.scss" as *;
+@use "../kitModels/control-panel.scss" as *;
+@use "../treeComponents/styles.module.scss" as *;
+
+canvas {
+  will-change: transform;
+  contain: layout style paint;
+  background-color: $color-gray-dark-2;
+}
+
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+::selection,
+::-webkit-selection,
+::-moz-selection {
+  background-color: $color-black;
+  color: $color-white !important;
+}
+
+#root {
+  transition: opacity $transi-slow ease-in-out;
+  will-change: opacity;
+  
+  &.page-visible {
+    opacity: 1;
+  }
+  
+  &.page-hidden {
+    opacity: 0;
+  }
+}

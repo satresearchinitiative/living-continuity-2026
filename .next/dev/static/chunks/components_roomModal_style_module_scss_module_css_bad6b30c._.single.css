@@ -1,0 +1,170 @@
+/* [project]/components/roomModal/style.module.scss.module.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.style-module-scss-module__CB8I9q__modal_wrapper {
+  z-index: 999;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 90vw;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 2.9976vw;
+  bottom: 2.9976vw;
+  left: 50%;
+  overflow-y: auto;
+  transform: translateX(-50%);
+}
+
+.style-module-scss-module__CB8I9q__modal_wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.style-module-scss-module__CB8I9q__modal_wrapper h1 {
+  text-align: center;
+  color: #000;
+  margin: 0;
+  padding: 5.39568vw 5.39568vw 0;
+  font-family: Inter, sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.style-module-scss-module__CB8I9q__close_button {
+  cursor: pointer;
+  z-index: 1;
+  background: none;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 8px;
+  transition: opacity .2s;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.style-module-scss-module__CB8I9q__close_button:hover {
+  opacity: .7;
+}
+
+.style-module-scss-module__CB8I9q__close_button:active {
+  opacity: .5;
+}
+
+.style-module-scss-module__CB8I9q__close_button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.style-module-scss-module__CB8I9q__content {
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 5.39568vw;
+  display: flex;
+  position: relative;
+}
+
+.style-module-scss-module__CB8I9q__content img {
+  width: 50vw;
+  max-width: 100%;
+  height: auto;
+  margin: 5.39568vw 0;
+  padding: 0;
+  display: block;
+}
+
+.style-module-scss-module__CB8I9q__content p {
+  word-break: break-word;
+  color: #000;
+  text-align: left;
+  width: 50vw;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  position: relative;
+}
+
+@media only screen and (max-width: 620px) {
+  .style-module-scss-module__CB8I9q__modal_wrapper {
+    width: calc(100% - 5.9952vw);
+    min-width: unset;
+    margin: 0;
+  }
+}
+
+/*# sourceMappingURL=components_roomModal_style_module_scss_module_css_bad6b30c._.single.css.map*/

@@ -1,0 +1,294 @@
+/* [project]/components/templates/ArticleNodeTemplate.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.articleNodeGroup {
+  cursor: pointer;
+}
+
+.titleAndReadWrapper {
+  pointer-events: auto;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.titleAndReadWrapper > div {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.titleAndReadContainer {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.titleWrapper {
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 0;
+  display: flex;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.titleContainer {
+  text-align: center;
+  letter-spacing: .01em;
+  font-size: calc(2.3 * clamp(1.2rem, 1.3vw, 1.35rem));
+  font-weight: 300;
+  line-height: 125%;
+}
+
+@media screen and (max-width: 780px) {
+  .titleContainer {
+    font-size: calc(1.2 * clamp(2.45rem, 5vw, 3rem));
+  }
+}
+
+@media (min-width: 1700px) {
+  .titleContainer {
+    font-size: calc(clamp(2.2rem, 3vw, 3.5rem) / 1.11111);
+  }
+}
+
+.titleContainer {
+  color: #000;
+  text-transform: capitalize;
+  white-space: normal;
+  box-sizing: border-box;
+  letter-spacing: -1.5px;
+  background-color: #e9ff00;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2.15827vw 40px;
+  font-weight: 700;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  font-family: Ronzino, serif !important;
+}
+
+.readWrapper {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.readWrapper:before {
+  content: "";
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  background-color: #0003;
+  transition: opacity .3s;
+  position: absolute;
+  inset: 0;
+}
+
+.readWrapper:hover:before {
+  opacity: 1;
+}
+
+.readButton {
+  letter-spacing: .01em;
+  background-color: #0000;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(2.42 * clamp(1.2rem, 1.3vw, 1.35rem));
+  font-weight: 300;
+  line-height: 125%;
+  display: flex;
+}
+
+@media screen and (max-width: 780px) {
+  .readButton {
+    font-size: calc(2 * clamp(2.45rem, 5vw, 3rem));
+  }
+}
+
+@media (min-width: 1700px) {
+  .readButton {
+    font-size: clamp(2.2rem, 3vw, 3.5rem);
+  }
+}
+
+.readButton {
+  text-align: center;
+  letter-spacing: 11px;
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 1;
+  width: 100%;
+  padding: 0;
+  font-weight: 700;
+  transition: opacity .3s;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.readButton:hover {
+  opacity: .9;
+}
+
+.readButtonText {
+  color: #000;
+  -webkit-text-stroke: 7px #e9ff00;
+  -webkit-text-fill-color: #000;
+  text-stroke: 7px #e9ff00;
+  paint-order: stroke fill;
+}
+
+.crossHtml {
+  pointer-events: auto;
+  justify-content: center;
+  align-items: flex-end;
+  display: flex;
+}
+
+.crossContainer {
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  height: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  margin-bottom: calc(-2.5 * clamp(18px, 1.5vw, 20px));
+  transition: background-color .2s;
+  display: flex;
+  position: relative;
+  transform: translateY(10%);
+}
+
+.crossContainer:hover .crossBackground {
+  background-color: #e9ff00;
+}
+
+.crossContainer:hover .crossLine {
+  background-color: #000;
+}
+
+.crossContainer:hover .crossBorder {
+  border: 4.5px solid #000;
+}
+
+.crossBackground {
+  z-index: 1;
+  background-color: #000;
+  border-radius: 50%;
+  width: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  height: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  transition: background-color .2s;
+  position: absolute;
+}
+
+.crossBorder {
+  z-index: 2;
+  border: 4.5px solid #e9ff00;
+  border-radius: 50%;
+  width: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  height: calc(3.5 * clamp(18px, 1.5vw, 20px));
+  position: absolute;
+}
+
+.crossLines {
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  width: calc(clamp(18px, 1.5vw, 20px));
+  height: calc(clamp(18px, 1.5vw, 20px));
+  display: flex;
+  position: absolute;
+}
+
+.crossLine {
+  background-color: #e9ff00;
+  width: calc(2.5 * clamp(18px, 1.5vw, 20px));
+  height: 4.5px;
+  transition: background-color .2s;
+  position: absolute;
+}
+
+.crossLine.line1 {
+  transform: rotate(45deg);
+}
+
+.crossLine.line2 {
+  transform: rotate(-45deg);
+}
+
+/*# sourceMappingURL=components_templates_ArticleNodeTemplate_scss_css_bad6b30c._.single.css.map*/

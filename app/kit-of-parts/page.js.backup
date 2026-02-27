@@ -1,0 +1,542 @@
+/**
+ * Kit of Parts page route (/kit-of-parts) - Next.js App Router
+ * 
+ * This page contains the Kit of Parts functionality - a 3D room builder.
+ * It's a client component since it uses React hooks, Three.js, and browser APIs.
+ */
+'use client';
+
+import React, { useCallback, useRef, useState, Suspense } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls, Grid } from "@react-three/drei";
+import Floor from "../../components/new/ground.jsx";
+import B1 from "../../components/new/b1";
+import Bb from "../../components/new/bb";
+import FP from "../../components/new/FP";
+import K1 from "../../components/new/K1";
+import K2 from "../../components/new/K2";
+import S1 from "../../components/new/S1";
+import ST1 from "../../components/new/ST1";
+import { useStore, createStore } from "usestore-react";
+import RoomTopBar from "../../components/roomComponents/roomTopbar";
+import RoomInfo from "../../components/roomModal/roomInfo";
+import { toPng } from "html-to-image";
+import { Environment } from "@react-three/drei";
+import * as THREE from "three";
+import { useEffect } from "react";
+import Modal from "react-modal";
+import TreeModal from "../../components/treeModals/treeModal";
+
+const bathroomStore = createStore("kitOfParts_clickbathroom2", false);
+const boxbedStore = createStore("kitOfParts_boxbedState", false);
+const frontStore = createStore("kitOfParts_frontState", false);
+const kitchenStore = createStore("kitOfParts_kitchenState", false);
+const k2Store = createStore("kitOfParts_k2State", false);
+const s1Store = createStore("kitOfParts_s1State", false);
+const st1Store = createStore("kitOfParts_st1State", false);
+const cameraStore = createStore("kitOfParts_cameraState", false);
+
+export default function KitOfPartsPage() {
+  useEffect(() => {
+    console.log('KitOfPartsPage mounted');
+  }, []);
+
+  const [objects, setObjects] = useState(false);
+  const [bathroom, setbathroom] = useStore("kitOfParts_clickbathroom2");
+  const [boxbed, setboxbed] = useStore("kitOfParts_boxbedState");
+  const [front, setfront] = useStore("kitOfParts_frontState");
+  const [kitchen, setkitchen] = useStore("kitOfParts_kitchenState");
+  const [k2, setK2] = useStore("kitOfParts_k2State");
+  const [s1, setS1] = useStore("kitOfParts_s1State");
+  const [st1, setSt1] = useStore("kitOfParts_st1State");
+  const objectsList = [
+    "bathroom",
+    "boxbed",
+    "front porch",
+    "kitchen",
+    "k2",
+    "s1",
+    "st1",
+  ];
+  const [InfoIsOpen, setOpen] = useState(false);
+  const [modalIsOpen, setOpen2] = useState(true);
+
+  function handleOpen() {
+    setOpen2(!modalIsOpen);
+  }
+  function handleInfo() {
+    setOpen(!InfoIsOpen);
+  }
+  function handleObjectsOnCanvas(objectType) {
+    if (objectType === "bathroom") {
+      setbathroom(!bathroom);
+    }
+    if (objectType === "boxbed") {
+      setboxbed(!boxbed);
+      console.log("boxbed", boxbed);
+    }
+    if (objectType === "front") {
+      setfront(!front);
+    }
+    if (objectType === "kitchen") {
+      setkitchen(!kitchen);
+    }
+    if (objectType === "k2") {
+      setK2(!k2);
+    }
+    if (objectType === "s1") {
+      setS1(!s1);
+    }
+    if (objectType === "st1") {
+      setSt1(!st1);
+    }
+  }
+  const [cameraState, setCameraState] = useState("cameraState");
+  const ref = useRef(null);
+
+  const onButtonClick = useCallback(() => {
+    if (ref.current === null) {
+      return;
+    }
+
+    toPng(ref.current, { cacheBust: true })
+        .then((dataUrl) => {
+          const link = document.createElement("a");
+          link.download = "download.png";
+          link.href = dataUrl;
+          link.click();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }, [ref]);
+
+  const [sceneRotation, setSceneRotation] = useState(true);
+  const [isZoom, setZoom] = useState("");
+  const [disableRotation, setDisableRotation] = useState(false);
+  const [buttonTriggered, setbuttonTriggered] = useState(false);
+  const [draggingMode, setDraggingMode] = useState(false);
+  const [guiMode, setGuiMode] = useState(false);
+
+  const CameraDolly = ({ isZoom, draggingMode, guiMode, disableRotation, sceneRotation }) => {
+    const state = useThree();
+
+    useEffect(() => {
+      if (draggingMode === true) {
+          state.camera.position.set(0, 27, 0);
+          state.camera.zoom=17
+      }
+        if (guiMode === true) {
+            state.camera.position.set(-5.16, 19.9, 8.7);
+            state.camera.zoom=17
+
+        }
+        if (disableRotation === true || sceneRotation === true) {
+
+            state.camera.zoom=17
+        }
+    }, [draggingMode, guiMode, disableRotation, sceneRotation, state.camera]);
+
+    return null;
+  };
+  const handleButton = () => {
+    setbuttonTriggered(!buttonTriggered);
+  };
+  useEffect(() => {
+    if (buttonTriggered) {
+      setDisableRotation(false);
+    } else {
+      setDisableRotation(true);
+    }
+  }, [buttonTriggered]);
+
+const axoModeToggle = () => {
+    if(draggingMode){
+        setDraggingMode(!draggingMode);
+
+
+    }
+    setGuiMode(!guiMode);
+
+         setDisableRotation(false);
+         setSceneRotation(false);
+        }
+    const dragModeToggle = () => {
+    if(guiMode){
+        setGuiMode(!guiMode);
+    }
+        setDraggingMode(!draggingMode);
+
+        setDisableRotation(false);
+        setSceneRotation(false);
+    }
+    const planModeToggle = () => {
+      setDraggingMode(false);
+        setGuiMode(false);
+      setDisableRotation(!disableRotation);
+      setSceneRotation(!sceneRotation);
+
+    }
+  return (
+      <div ref={ref} style={{ width: '100vw', height: '100vh', position: 'relative' }}>
+        <Modal isOpen={modalIsOpen} contentLabel="Example Modal">
+          <div className="modal_wrapper">
+            <TreeModal
+                close={() => {
+                  handleOpen();
+                }}
+                content="welcome to kit of parts"
+                title="kit of parts"
+                img="/kit_web_1.svg"
+            />
+          </div>
+        </Modal>
+
+        {objects && (
+            <div className="object-list ">
+              <div
+                  className="bathroom single-object"
+                  style={bathroom ? { filter: "saturate(0)" } : {}}
+                  onClick={() => {
+                    handleObjectsOnCanvas("bathroom");
+                  }}
+              >
+                <div className="wrapBox">
+                  {bathroom === true && (
+                      <div className="remove">remove from the scene</div>
+                  )}
+                  <img src="/images/B1.png" alt="bathroom model" />
+                  <div className="boxName">Bathroom</div>
+                </div>
+              </div>
+
+              <div
+                  className="boxbed single-object"
+                  style={boxbed ? { filter: "saturate(0)" } : {}}
+                  onClick={() => {
+                    handleObjectsOnCanvas("boxbed");
+                  }}
+              >
+                <div className="wrapBox">
+                  {boxbed === true && (
+                      <div className="remove">remove from the scene</div>
+                  )}
+                  <img src="/images/BB.png" alt="boxbed model" />
+                  <div className="boxName">Boxbed</div>
+                </div>
+              </div>
+
+              <div
+                  className="front single-object"
+                  style={front ? { filter: "saturate(0)" } : {}}
+                  onClick={() => {
+                    handleObjectsOnCanvas("front");
+                  }}
+              >
+                <div className="wrapBox">
+                  {front === true && (
+                      <div className="remove">remove from the scene</div>
+                  )}
+                  <img src="/images/FP.png" alt="Front Porch model" />
+                  <div className="boxName">Front Porch</div>
+                </div>
+              </div>
+
+              <div
+                  className="kitchen single-object"
+                  style={kitchen ? { filter: "saturate(0)" } : {}}
+                  onClick={() => {
+                    handleObjectsOnCanvas("kitchen");
+                  }}
+              >
+                <div className="wrapBox">
+                  {kitchen === true && (
+                      <div className="remove">remove from the scene</div>
+                  )}
+                  <img src="/images/K1.png" alt="Kitchen model" />
+                  <div className="boxName">Kitchen</div>
+                </div>
+              </div>
+
+              <div
+                  className="storage single-object"
+                  style={k2 ? { filter: "saturate(0)" } : {}}
+                  onClick={() => {
+                    handleObjectsOnCanvas("k2");
+                  }}
+              >
+                <div className="wrapBox">
+                  {k2 === true && (
+                      <div className="remove">remove from the scene</div>
+                  )}
+                  <img src="/images/K2.png" alt="Kitchen model" />
+                  <div className="boxName">Kitchen (storage)</div>
+                </div>
+              </div>
+
+              <div
+                  className="storage single-object"
+                  style={s1 ? { filter: "saturate(0)" } : {}}
+                  onClick={() => {
+                    handleObjectsOnCanvas("s1");
+                  }}
+              >
+                <div className="wrapBox">
+                  {s1 === true && (
+                      <div className="remove">remove from the scene</div>
+                  )}
+                  <img src="/images/S1.png" alt="Storage model" />
+                  <div className="boxName">Storage</div>
+                </div>
+              </div>
+
+              <div
+                  className="storage single-object"
+                  style={st1 ? { filter: "saturate(0)" } : {}}
+                  onClick={() => {
+                    handleObjectsOnCanvas("st1");
+                  }}
+              >
+                <div className="wrapBox">
+                  {st1 === true && (
+                      <div className="remove">remove from the scene</div>
+                  )}
+                  <img src="/images/ST1.png" alt="Storage model" />
+                  <div className="boxName">Stair</div>
+                </div>
+              </div>
+            </div>
+        )}
+        <RoomTopBar />
+        <div className="bottomButtons left">
+          <div className="isDesktop">
+            <div className="info_wrapper">
+              <RoomInfo />
+            </div>
+          </div>
+          <div
+              className="button toogleColor"
+              style={{
+                backgroundColor: objects ? "black" : "white",
+                color: objects ? "white" : "black",
+              }}
+              onClick={() => {
+                setObjects(!objects);
+              }}
+          >
+            {objects ? "close" : "choose elements"}
+          </div>
+          <div className="isDesktop">
+            <div
+                className="button"
+                style={{
+                  backgroundColor: InfoIsOpen ? "black" : "white",
+                  color: InfoIsOpen ? "white" : "black",
+                }}
+                onClick={() => {
+                  handleInfo();
+                }}
+            >
+              info
+            </div>
+          </div>
+        </div>
+        <div className="bottomButtons right">
+
+          {/*<div className="button" onClick={onButtonClick}>*/}
+          {/*  save layout*/}
+          {/*</div>*/}
+
+
+
+        </div>
+          <div className="controlPanel" >
+              <div className={`controlPanel__item ${guiMode ? "active" : "inactive"}`} onClick={axoModeToggle}>
+                    <div className="controlPanel__item__title">axonometric mode</div>
+                  <div className={`controlPanel__item__content ${guiMode ? "active" : "inactive"}`}>
+                      <svg className={"styledIcon"} width="48" height="58" viewBox="0 0 48 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M23.7356 57L1 46.1698V13.0189L23.7356 1L47 13.0189V46.1698L23.7356 57Z" fill="black" stroke="black"/>
+                          <path d="M30.9763 22.7994L34.6361 14.591M34.6361 14.591L26.4277 10.9312M34.6361 14.591L5.92274 25.5957M16.0264 34.2006L12.3666 42.409M12.3666 42.409L20.575 46.0688M12.3666 42.409L41.08 31.4043" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+
+
+
+                  </div>
+              </div>
+              <div className={`controlPanel__item ${draggingMode ? "active" : "inactive"}`} onClick={dragModeToggle}>
+                  <div className="controlPanel__item__title">plan mode</div>
+                  <div className={`controlPanel__item__content ${draggingMode ? "active" : "inactive"}`}>
+                      <svg className={"styledIcon"} width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="44" height="44" fill="black"/>
+                          <path d="M31.68 19.1583L38.5 12.3383M38.5 12.3383L31.68 5.51831M38.5 12.3383H5.5M12.32 24.8416L5.5 31.6616M5.5 31.6616L12.32 38.4816M5.5 31.6616H38.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+
+
+
+
+                  </div>
+              </div>
+
+              <div className={`controlPanel__item ${sceneRotation ? "active" : "inactive"}`} onClick={planModeToggle}>
+                  <div className="controlPanel__item__title">Unlock the camera</div>
+                  <div className={`controlPanel__item__content ${sceneRotation ? "active" : "inactive"}`}>
+                      <svg className="styledIcon" width="41" height="41" viewBox="0 0 41 41" fill="current" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M37.3654 19.6459C36.2721 17.7496 30.2588 8.23421 20.0429 8.54171C10.5959 8.78088 5.12919 17.0834 3.64294 19.6459C3.493 19.9056 3.41406 20.2002 3.41406 20.5C3.41406 20.7999 3.493 21.0945 3.64294 21.3542C4.71919 23.2163 10.4763 32.4584 20.5384 32.4584H20.9654C30.4125 32.2192 35.8963 23.9167 37.3654 21.3542C37.5154 21.0945 37.5943 20.7999 37.5943 20.5C37.5943 20.2002 37.5154 19.9056 37.3654 19.6459ZM20.88 29.0417C13.5171 29.2125 8.71669 22.9088 7.21335 20.5C8.92169 17.7496 13.3804 12.1292 20.2138 11.9584C27.5425 11.7705 32.36 18.0913 33.8804 20.5C32.1209 23.2505 27.7134 28.8709 20.88 29.0417Z" fill="current"/>
+                          <path d="M20.5104 14.5208C19.3279 14.5208 18.1718 14.8714 17.1886 15.5284C16.2053 16.1854 15.4389 17.1192 14.9864 18.2118C14.5338 19.3043 14.4154 20.5066 14.6461 21.6664C14.8768 22.8262 15.4463 23.8916 16.2825 24.7278C17.1187 25.564 18.1841 26.1335 19.3439 26.3642C20.5038 26.5949 21.706 26.4765 22.7985 26.0239C23.8911 25.5714 24.8249 24.805 25.4819 23.8218C26.1389 22.8385 26.4896 21.6825 26.4896 20.4999C26.4896 18.9141 25.8596 17.3933 24.7383 16.272C23.617 15.1507 22.0962 14.5208 20.5104 14.5208ZM20.5104 23.0624C20.0036 23.0624 19.5082 22.9121 19.0868 22.6306C18.6654 22.349 18.3369 21.9488 18.143 21.4805C17.949 21.0123 17.8983 20.4971 17.9972 20C18.096 19.5029 18.3401 19.0463 18.6985 18.688C19.0568 18.3296 19.5134 18.0855 20.0105 17.9867C20.5076 17.8878 21.0228 17.9385 21.491 18.1325C21.9593 18.3264 22.3595 18.6549 22.6411 19.0763C22.9226 19.4977 23.0729 19.9931 23.0729 20.4999C23.0729 21.1795 22.8029 21.8313 22.3224 22.3119C21.8418 22.7924 21.19 23.0624 20.5104 23.0624Z" fill="current"/>
+                      </svg>
+
+
+
+
+                  </div>
+              </div>
+
+              <div className="controlPanel__item" onClick={onButtonClick}>
+                  <div className="controlPanel__item__title">Save the scene</div>
+                  <div className="controlPanel__item__content">
+                      <svg className="styledIcon" width="38" height="38" viewBox="0 0 38 38" fill="current" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M29.7403 28.179H7.82331C6.95871 28.179 6.25781 28.8799 6.25781 29.7445C6.25781 30.6091 6.95871 31.31 7.82331 31.31H29.7403C30.6049 31.31 31.3058 30.6091 31.3058 29.7445C31.3058 28.8799 30.6049 28.179 29.7403 28.179Z" fill="current"/>
+                          <path d="M6.25781 26.6136V29.7446C6.25781 30.6092 6.95871 31.3101 7.82331 31.3101C8.68791 31.3101 9.38881 30.6092 9.38881 29.7446V26.6136C9.38881 25.749 8.68791 25.0481 7.82331 25.0481C6.95871 25.0481 6.25781 25.749 6.25781 26.6136Z" fill="current"/>
+                          <path d="M28.1719 26.6136V29.7446C28.1719 30.6092 28.8728 31.3101 29.7374 31.3101C30.602 31.3101 31.3029 30.6092 31.3029 29.7446V26.6136C31.3029 25.749 30.602 25.0481 29.7374 25.0481C28.8728 25.0481 28.1719 25.749 28.1719 26.6136Z" fill="current"/>
+                          <path d="M18.7828 23.4825C18.4583 23.485 18.141 23.3865 17.8749 23.2007L11.6129 18.786C11.2753 18.5466 11.0464 18.1833 10.976 17.7755C10.9056 17.3678 10.9995 16.9487 11.2371 16.61C11.3558 16.4407 11.5068 16.2965 11.6814 16.1859C11.8561 16.0753 12.0509 16.0003 12.2547 15.9654C12.4585 15.9305 12.6671 15.9362 12.8687 15.9824C13.0702 16.0285 13.2606 16.1141 13.4288 16.2343L18.7828 19.9758L24.1055 15.9681C24.4377 15.719 24.8552 15.6121 25.2662 15.6708C25.6773 15.7295 26.0481 15.9491 26.2972 16.2812C26.5464 16.6134 26.6533 17.0309 26.5946 17.4419C26.5359 17.853 26.3163 18.2238 25.9841 18.4729L19.7221 23.1694C19.4512 23.3727 19.1216 23.4825 18.7828 23.4825Z" fill="current"/>
+                          <path d="M18.7842 20.3515C18.3691 20.3515 17.9709 20.1866 17.6773 19.893C17.3837 19.5994 17.2188 19.2012 17.2188 18.786V6.26203C17.2188 5.84684 17.3837 5.44865 17.6773 5.15506C17.9709 4.86147 18.3691 4.69653 18.7842 4.69653C19.1994 4.69653 19.5976 4.86147 19.8912 5.15506C20.1848 5.44865 20.3497 5.84684 20.3497 6.26203V18.786C20.3497 19.2012 20.1848 19.5994 19.8912 19.893C19.5976 20.1866 19.1994 20.3515 18.7842 20.3515Z" fill="current"/>
+                      </svg>
+
+
+
+
+                  </div>
+              </div>
+
+          </div>
+
+        <Suspense fallback={<div style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>Loading 3D scene...</div>}>
+          <Canvas
+              dpr={[1, 2]} orthographic camera={{ position: [-14, 11, 15], zoom: 13 }}
+              style={{
+                background:
+                    "linear-gradient(180deg, rgba(232,229,226) 0%, rgba(255,96,68,1) 100%)",
+                height: "100vh",
+                width: "100vw",
+              }}
+          >
+
+            <ambientLight intensity={0.5} />
+
+            <Environment preset="city" />
+            <group rotation={[0, 0, 0]}>
+
+              <Grid
+                  position={[0, 1.01, 0]}
+                  followCamera={false}
+                  args={[32, 26]}
+                  cellColor={"#6f6f6f"}
+                  cellSize={5}
+                  cellThickness={0.2}
+                  sectionColor={"#9d4b4b"}
+                  sectionSize={1}
+              />
+              <B1 show={bathroom} isZoomState={isZoom}  isMouseDragging={guiMode} isAxio={draggingMode} freeView={sceneRotation}/>
+              <Bb show={boxbed} isZoomState={isZoom}  isMouseDragging={guiMode} isAxio={draggingMode} freeView={sceneRotation}/>
+
+              <FP show={front} isZoomState={isZoom}  isMouseDragging={guiMode} isAxio={draggingMode} freeView={sceneRotation}/>
+              <K1 show={kitchen} isZoomState={isZoom}  isMouseDragging={guiMode} isAxio={draggingMode} freeView={sceneRotation}/>
+              <K2 show={k2} isZoomState={isZoom}  isMouseDragging={guiMode} isAxio={draggingMode} freeView={sceneRotation}/>
+              <S1 show={s1} isZoomState={isZoom}  isMouseDragging={guiMode} isAxio={draggingMode} freeView={sceneRotation}/>
+              <ST1 show={st1} isZoomState={isZoom}  isMouseDragging={guiMode} isAxio={draggingMode} freeView={sceneRotation}/>
+
+              <Floor />
+
+            </group>
+            <OrbitControls autoRotate={sceneRotation} enableRotate={disableRotation}    autoRotateSpeed={0.5}/>
+            <CameraDolly isZoom={isZoom} draggingMode={draggingMode} guiMode={guiMode} disableRotation={disableRotation} sceneRotation={sceneRotation}/>
+
+          </Canvas>
+        </Suspense>
+        <style jsx>
+          {`
+.controlPanel {
+  position: fixed;
+  right:10px;
+  bottom:0;
+  z-index: 999999;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.controlPanel__item {
+        display: flex;
+   
+    align-items: center;
+    
+    text-transform: uppercase;
+    margin-bottom: 10px;
+        width: 270px;
+    justify-content: flex-end;
+    
+   
+}
+.controlPanel__item__title {
+    margin-right: 10px;
+    animation: hideAnimation 0s ease-in 10s;
+  animation-fill-mode: forwards;
+}
+.controlPanel__item__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    fill: black;
+  stroke: black;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid #000000;
+    
+}
+.controlPanel__item__content:hover, .controlPanel__item__content.active {
+    background: #000;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+   
+    
+}
+.controlPanel__item__content:hover .styledIcon, .active .styledIcon {
+    fill: #fff;
+  //stroke: #fff;
+    
+}
+@keyframes hideAnimation {
+  to {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+}
+                        .submenu {
+                            display: ${cameraState ? "block" : "none"};
+                        }
+                        .opened div{
+                            margin: 0 5px;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .info_wrapper {
+                            display: ${InfoIsOpen ? "block" : "none"};
+                            position: absolute; 
+                            bottom: 27px;
+                            right: 0;
+                        }
+                        `}
+
+        </style>
+      </div>
+  );
+}

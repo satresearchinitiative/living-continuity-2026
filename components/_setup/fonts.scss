@@ -1,0 +1,191 @@
+// Font imports from Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ledger&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+// Custom font face for Ortica Angular
+@font-face {
+  font-family: "Ortica Angular";
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"),
+       url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"),
+       url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Custom font face for Ronzino Regular
+@font-face {
+  font-family: "Ronzino";
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"),
+       url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Custom font face for Ronzino Medium
+@font-face {
+  font-family: "Ronzino";
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"),
+       url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Custom font face for Ronzino Bold
+@font-face {
+  font-family: "Ronzino";
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"),
+       url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Custom font face for Ronzino Oblique
+@font-face {
+  font-family: "Ronzino";
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"),
+       url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+// Custom font face for Ronzino Medium Oblique
+@font-face {
+  font-family: "Ronzino";
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"),
+       url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+// Custom font face for Ronzino Bold Oblique
+@font-face {
+  font-family: "Ronzino";
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"),
+       url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+// Custom font face for Necto Mono
+@font-face {
+  font-family: "NectoMono-Regular";
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"),
+       url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Font family variables
+$font-family-inter: "Inter", sans-serif;
+$font-family-ledger: "Ledger", serif;
+$font-family-ortica: "Ortica Angular", serif;
+$font-family-ronzino: "Ronzino", serif;
+$font-family-necto: "NectoMono-Regular", monospace;
+$font-family-necto-mono: "NectoMono-Regular", monospace;
+$font-family-roboto-flex: "Roboto Flex", sans-serif;
+$font-family-noto-sans: "Noto Sans", sans-serif;
+
+// Font weight variables (cuts) for Inter
+$font-weight-thin: 100;
+$font-weight-extralight: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+$font-weight-black: 900;
+
+
+// Font mixins for Inter (default font)
+@mixin font-inter {
+  font-family: $font-family-inter;
+}
+
+@mixin font-inter-thin {
+  font-family: $font-family-inter;
+  font-weight: $font-weight-thin;
+}
+
+@mixin font-inter-extralight {
+  font-family: $font-family-inter;
+  font-weight: $font-weight-extralight;
+}
+
+@mixin font-inter-light {
+  font-family: $font-family-inter;
+  font-weight: $font-weight-light;
+}
+
+@mixin font-inter-regular {
+  font-family: $font-family-inter;
+  font-weight: $font-weight-regular;
+}
+
+@mixin font-inter-medium {
+  font-family: $font-family-inter;
+  font-weight: $font-weight-medium;
+}
+
+@mixin font-inter-semibold {
+  font-family: $font-family-inter;
+  font-weight: $font-weight-semibold;
+}
+
+@mixin font-inter-bold {
+  font-family: $font-family-inter;
+  font-weight: $font-weight-bold;
+}
+
+@mixin font-inter-extrabold {
+  font-family: $font-family-inter;
+  font-weight: $font-weight-extrabold;
+}
+
+@mixin font-inter-black {
+  font-family: $font-family-inter;
+  font-weight: $font-weight-black;
+}
+
+// Font mixins for Ledger
+@mixin font-ledger {
+  font-family: $font-family-ledger;
+  font-weight: 400;
+}
+
+// Legacy font mixins (for backward compatibility)
+@mixin font-regular {
+  font-family: $font-family-inter;
+  font-weight: 400;
+}
+
+@mixin font-bold {
+  font-family: $font-family-inter;
+  font-weight: 700;
+}
+
+@mixin font-cousine {
+  font-family: $font-family-cousine;
+}
+
+@mixin font-code {
+  font-family: $font-family-code;
+}
+
+@mixin modal-text {
+  font-weight: bold;
+  font-family: $font-family-inter;
+  line-height: 1.2;
+}
+

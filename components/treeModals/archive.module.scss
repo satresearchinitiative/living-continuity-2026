@@ -1,0 +1,239 @@
+@use "../_setup/vars.scss" as *;
+@use "../_setup/fonts.scss" as *;
+@use "../_setup/breakpoints.scss" as *;
+
+
+.modal_wrapper {
+  position: fixed;
+  z-index: $z-index-modal;
+  top: $margin;
+  bottom: $margin;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  padding: 0;
+  margin: 0;
+  background-color: $color-white;
+  overflow-y: auto;
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include mobile {
+    width: 100vw;
+    top: $margin-menu;
+    bottom: 0;
+  }
+  @include lg {
+    top: $margin-menu-desktop;
+  }
+
+
+  .content h1 {
+    @include modal-text;
+    text-align: center;
+    margin: 0;
+    padding: calc(#{$padding} * 2.5) calc(#{$padding} * 2.5) 0 calc(#{$padding} * 2.5);
+    color: $color-black;
+  }
+}
+
+.close_button {
+  position: fixed;
+  right: 0;
+  top: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.author {
+  font-weight: bold;
+  font-size: $font-size-sm;
+  font-family: $font-family-inter;
+  text-align: center !important;
+  margin: 0 !important;
+  padding: 0 calc(#{$padding} * 2.5);
+  color: $color-black;
+}
+
+.content {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: calc(#{$padding} * 2.5);
+
+  > img:first-child {
+    width: 50vw;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 0 calc(#{$padding} * 2.5) 0;
+    padding: 0;
+  }
+
+  > img:not(:first-child) {
+    width: 50vw;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: calc(#{$padding} * 2.5) 0;
+    padding: 0;
+  }
+
+  > h1:first-child {
+    padding-top: 0;
+  }
+
+  > h1:not(:first-child) {
+    padding-top: calc(#{$padding} * 2.5);
+  }
+
+  p {
+    width: 50vw;
+    max-width: 100%;
+    word-break: break-word;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    @include modal-text;
+    color: $color-black;
+    text-align: left;
+  }
+
+  a {
+    text-decoration: underline;
+    color: $color-black;
+  }
+}
+
+.text {
+  width: 50vw;
+  max-width: 100%;
+  @include modal-text;
+  color: $color-black;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @include modal-text;
+    text-align: left !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  img {
+    width: 50vw;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: calc(#{$padding} * 2.5) 0;
+    padding: 0;
+  }
+}
+
+.section {
+  width: 50vw;
+  max-width: 100%;
+  margin: calc(#{$padding} * 2.5) 0 0 0;
+  padding: calc(#{$padding} * 2.5) 0 0 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.section_label {
+  @include modal-text;
+  font-weight: bold;
+  color: $color-black;
+  text-align: left;
+  margin: 0 0 calc(#{$padding} * 1.25) 0;
+  padding: 0;
+}
+
+.connections {
+  margin: 0;
+  padding: 0;
+  border-top: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(#{$padding} * 1.25);
+  list-style: none;
+}
+
+.item {
+  font-size: $font-size-base;
+  color: $color-black;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  cursor: default;
+}
+
+.item_link {
+  font-size: $font-size-base;
+  color: $color-black;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.7;
+    text-decoration: none;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.empty {
+  font-style: italic;
+  color: $color-black;
+  opacity: 0.6;
+}
+
+@include mobile-sm {
+  .modal_wrapper {
+    width: calc(100% - #{$margin} * 2);
+    margin: 0;
+    min-width: unset;
+  }
+}

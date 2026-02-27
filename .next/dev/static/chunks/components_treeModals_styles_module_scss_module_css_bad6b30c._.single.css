@@ -1,0 +1,217 @@
+/* [project]/components/treeModals/styles.module.scss.module.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.styles-module-scss-module__Mrr9nG__modal_wrapper {
+  z-index: 999;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 90vw;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 2.9976vw;
+  bottom: 2.9976vw;
+  left: 50%;
+  overflow-y: auto;
+  transform: translateX(-50%);
+}
+
+.styles-module-scss-module__Mrr9nG__modal_wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.styles-module-scss-module__Mrr9nG__modal_wrapper h1 {
+  text-align: center;
+  color: #000;
+  margin: 0;
+  padding: 5.39568vw 5.39568vw 0;
+  font-family: Inter, sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.styles-module-scss-module__Mrr9nG__modal_wrapper h2 {
+  color: #000;
+  text-align: center;
+  margin: 0;
+  padding: 0 5.39568vw;
+  font-family: Inter, sans-serif;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  font-weight: bold;
+}
+
+.styles-module-scss-module__Mrr9nG__content {
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 5.39568vw;
+  display: flex;
+  position: relative;
+}
+
+.styles-module-scss-module__Mrr9nG__content img {
+  width: 50vw;
+  max-width: 100%;
+  height: auto;
+  margin: 5.39568vw 0;
+  padding: 0;
+  display: block;
+}
+
+.styles-module-scss-module__Mrr9nG__content p {
+  word-break: break-word;
+  color: #000;
+  text-align: left;
+  width: 50vw;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  position: relative;
+}
+
+.styles-module-scss-module__Mrr9nG__close_button {
+  cursor: pointer;
+  z-index: 1;
+  background: none;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 8px;
+  transition: opacity .2s;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.styles-module-scss-module__Mrr9nG__close_button:hover {
+  opacity: .7;
+}
+
+.styles-module-scss-module__Mrr9nG__close_button:active {
+  opacity: .5;
+}
+
+.styles-module-scss-module__Mrr9nG__close_button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.styles-module-scss-module__Mrr9nG__enter_button {
+  color: #000;
+  text-align: left;
+  cursor: pointer;
+  margin-top: 30px;
+  padding: 12px 24px;
+  font-size: 16px;
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.styles-module-scss-module__Mrr9nG__enter_button:hover {
+  opacity: .7;
+}
+
+.styles-module-scss-module__Mrr9nG__camera_modal {
+  z-index: 999;
+  bottom: 27px;
+  top: unset;
+  color: #fff;
+  text-align: left;
+  background-color: #000;
+  border-radius: 7px;
+  min-width: 190px;
+  max-width: 190px;
+  padding: 5px;
+  position: absolute;
+}
+
+@media only screen and (max-width: 767px) {
+  .styles-module-scss-module__Mrr9nG__camera_modal {
+    width: calc(100vw - 12px);
+    max-width: unset;
+    right: 0;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .styles-module-scss-module__Mrr9nG__modal_wrapper {
+    width: calc(100% - 5.9952vw);
+    min-width: unset;
+    margin: 0;
+  }
+}
+
+/*# sourceMappingURL=components_treeModals_styles_module_scss_module_css_bad6b30c._.single.css.map*/

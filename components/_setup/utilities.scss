@@ -1,0 +1,90 @@
+@use "./vars.scss" as *;
+@use "./breakpoints.scss" as *;
+
+.isMobile {
+  display: none;
+
+  @include tablet {
+    display: block;
+  }
+}
+
+.isDesktop {
+  display: block;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.radius {
+  img {
+    @extend %image_ratio;
+    border-radius: $radius-100;
+  }
+}
+
+.sphere {
+  img {
+    @extend %image_ratio_1;
+    border-radius: $radius-100;
+  }
+}
+
+%regular {
+  font-family: $font-family-inter;
+  font-style: normal;
+  letter-spacing: 0.025em !important;
+}
+
+%underline {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline solid;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+}
+
+%em {
+  font-style: italic;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+%image_ratio {
+  aspect-ratio: 1.91 / 1;
+  object-fit: cover;
+}
+
+%image_ratio_1 {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+%strong {
+  font-weight: 700;
+}
+
+em {
+  @extend %em;
+}
+
+strong {
+  @extend %strong;
+}

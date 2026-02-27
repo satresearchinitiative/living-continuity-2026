@@ -1,0 +1,133 @@
+/* [project]/components/roomComponents/roomTopbar.module.scss.module.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.roomTopbar-module-scss-module__ek-94q__wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.roomTopbar-module-scss-module__ek-94q__topbar_wrapper_mobile {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.roomTopbar-module-scss-module__ek-94q__topbar_wrapper {
+  z-index: 999999;
+  align-items: center;
+  width: calc(100% - 20px);
+  display: flex;
+  position: absolute;
+  top: 2.69784vw;
+  left: 2.69784vw;
+}
+
+.roomTopbar-module-scss-module__ek-94q__topbar_wrapper .roomTopbar-module-scss-module__ek-94q__title {
+  text-align: center;
+  color: #fff;
+  background-color: #0000;
+  border: none;
+  border-radius: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 10px;
+  display: flex;
+}
+
+.roomTopbar-module-scss-module__ek-94q__title span {
+  word-spacing: 5px;
+  background-color: #0000;
+  border-radius: 0;
+  align-items: center;
+  height: min-content;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  display: flex;
+}
+
+.roomTopbar-module-scss-module__ek-94q__full {
+  cursor: pointer;
+  width: 40%;
+}
+
+.roomTopbar-module-scss-module__ek-94q__half {
+  cursor: pointer;
+  width: 20%;
+}
+
+@media only screen and (max-width: 767px) {
+  .roomTopbar-module-scss-module__ek-94q__button {
+    min-width: unset;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    display: flex;
+  }
+}
+
+/*# sourceMappingURL=components_roomComponents_roomTopbar_module_scss_module_css_bad6b30c._.single.css.map*/

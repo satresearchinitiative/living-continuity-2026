@@ -1,0 +1,65 @@
+[00:00:03.112] Server  LOG      ✓ Ready in 2.6s
+[00:00:11.621] Server  LOG      ○ Compiling / ...
+[00:00:12.090] Server  DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
+[00:00:12.506] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:12.507] Browser LOG     [appStores] Initializing stores...
+[00:00:12.507] Browser LOG     [appStores] All stores initialized successfully
+[00:00:12.637] Browser DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
+[00:00:15.758] Browser WARN    React-Modal: Cannot register modal instance that's already open
+[00:00:20.994] Browser WARN    Could not load glossary shell for residential: {"code":"MODULE_NOT_FOUND"}
+[00:00:20.994] Browser WARN    Could not load glossary shell for residential: {"code":"MODULE_NOT_FOUND"}
+[00:00:21.295] Browser WARN    Could not load glossary shell for zoning: {"code":"MODULE_NOT_FOUND"}
+[00:00:21.295] Browser WARN    Could not load glossary shell for zoning: {"code":"MODULE_NOT_FOUND"}
+[00:12:41.617] Server  LOG      ✓ Compiled in 311ms
+[00:12:47.761] Server  LOG      ✓ Compiled in 143ms
+[00:12:55.143] Server  LOG      ✓ Compiled in 165ms
+[00:13:03.946] Server  LOG      ✓ Compiled in 164ms
+[00:13:23.119] Server  LOG      ✓ Compiled in 129ms
+[00:14:56.381] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./app/living-continuity/page.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:14:56.403] Server  LOG      ✓ Compiled in 151ms
+[00:14:57.058] Server  DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
+[00:14:58.047] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:58.047] Browser LOG     [appStores] Initializing stores...
+[00:14:58.047] Browser LOG     [appStores] All stores initialized successfully
+[00:14:59.422] Browser DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
+[00:15:01.392] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./app/living-continuity/page.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:15:01.404] Server  LOG      ✓ Compiled in 71ms
+[00:15:02.089] Server  DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
+[00:15:02.737] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:03.316] Browser LOG     [appStores] Initializing stores...
+[00:15:03.316] Browser LOG     [appStores] All stores initialized successfully
+[00:15:04.311] Browser DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
+[00:26:23.121] Server  LOG      ✓ Compiled in 626ms
+[00:26:23.543] Server  DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
+[00:26:24.303] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:24.303] Browser LOG     [appStores] Initializing stores...
+[00:26:24.303] Browser LOG     [appStores] All stores initialized successfully
+[00:26:25.085] Server  LOG      ✓ Compiled in 105ms
+[00:26:25.263] Server  LOG      ✓ Compiled in 83ms
+[00:26:25.304] Browser DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
+[00:26:26.897] Server  LOG      ✓ Compiled in 80ms
+[00:29:41.748] Server  LOG      ✓ Compiled in 31ms
+[00:29:42.119] Server  LOG      ✓ Compiled in 21ms
+[00:29:42.989] Server  LOG      ✓ Compiled in 20ms
+[00:29:43.343] Server  LOG      ✓ Compiled in 27ms
+[00:29:43.894] Server  LOG      ✓ Compiled in 39ms
+[00:29:44.647] Server  LOG      ✓ Compiled in 34ms
+[00:43:09.767] Browser WARN    React-Modal: Cannot register modal instance that's already open
+[00:43:17.036] Browser WARN    Could not load glossary shell for residential: {"code":"MODULE_NOT_FOUND"}
+[00:43:17.358] Browser WARN    Could not load glossary shell for zoning: {"code":"MODULE_NOT_FOUND"}
+[00:43:28.421] Browser LOG     THREE.WebGLRenderer: Context Lost.
+[00:49:10.344] Server  LOG      ✓ Compiled in 83ms
+[00:50:31.117] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:50:31.117] Browser WARN    React-Modal: Cannot register modal instance that's already open
+[00:50:38.295] Browser WARN    Could not load glossary shell for residential: {"code":"MODULE_NOT_FOUND"}
+[00:50:39.295] Browser WARN    Could not load glossary shell for residential: {"code":"MODULE_NOT_FOUND"}
+[00:50:39.295] Browser WARN    Could not load glossary shell for zoning: {"code":"MODULE_NOT_FOUND"}
+[00:50:40.292] Browser WARN    Could not load glossary shell for zoning: {"code":"MODULE_NOT_FOUND"}
+[00:59:23.853] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./app/living-continuity/page.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:59:23.857] Server  LOG      ✓ Compiled in 908ms
+[00:59:25.006] Server  DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
+[00:59:25.306] Server  LOG      ✓ Compiled in 726ms
+[00:59:26.239] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:59:27.323] Browser LOG     [appStores] Initializing stores...
+[00:59:27.323] Browser LOG     [appStores] All stores initialized successfully
+[00:59:27.323] Browser DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one

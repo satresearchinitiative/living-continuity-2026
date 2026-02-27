@@ -1,0 +1,35 @@
+@use "../_setup/vars.scss" as *;
+@use "../_setup/fonts.scss" as *;
+@use "../_setup/breakpoints.scss" as *;
+
+.home_button {
+  height: $cross-size;
+  min-height: $cross-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity $transi ease-in-out;
+  white-space: nowrap;
+  color: $color-gray-dark-2;
+  text-transform: uppercase;
+  @extend %inter-regular;
+  font-weight: 500 !important;
+  @include font-size-md;
+  margin-top: -2px !important;
+
+  &:hover {
+    opacity: $opacity-hover;
+  }
+
+  @include sm {
+    margin-top: $margin-menu !important;
+    @include font-size-sm;
+    color: #C3C3C3;
+  }
+  @include aspect-ratio-1-1 {
+    @include mobile;
+  }
+}
+

@@ -1,0 +1,109 @@
+/* [project]/components/sceneModal/style.module.scss.module.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.style-module-scss-module__ALzo2W__camera_wrapper {
+  position: relative;
+}
+
+.style-module-scss-module__ALzo2W__camera_modal {
+  z-index: 999;
+  top: unset;
+  color: #fff;
+  text-align: left;
+  background-color: #000;
+  border-radius: 7px;
+  min-width: 168px;
+  max-width: 170px;
+  padding: 5px 25px 5px 5px;
+  line-height: 1.6;
+  position: absolute;
+  left: 2.69784vw;
+  top: 37px !important;
+}
+
+.style-module-scss-module__ALzo2W__item {
+  font-size: 13px;
+}
+
+.style-module-scss-module__ALzo2W__link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.style-module-scss-module__ALzo2W__link:hover {
+  opacity: .8;
+}
+
+@media only screen and (max-width: 767px) {
+  .style-module-scss-module__ALzo2W__camera_modal {
+    width: calc(100vw - 12px);
+    max-width: unset;
+    padding: 5px;
+    left: 0;
+    top: 27px !important;
+  }
+}
+
+/*# sourceMappingURL=components_sceneModal_style_module_scss_module_css_bad6b30c._.single.css.map*/

@@ -1,0 +1,593 @@
+{
+  "glossary": [
+    {
+      "id": "G1",
+      "index": 1,
+      "title": "self-determination",
+      "translations": {
+        "eng": "self-determination",
+        "arabic": "تقرير المصير",
+        "hindi": "आत्म-निर्णय",
+        "urdu": "خودمختاری",
+        "tagalog": "sariling pagsisikap",
+        "farsi": "خود مختاری",
+        "nepali": "स्वयं-निर्धारण",
+        "bengali": "আত্মসংকল্প",
+        "malayalam": "സ്വയം നിർണയം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G2",
+      "index": 2,
+      "title": "solidarity",
+      "translations": {
+        "eng": "solidarity",
+        "arabic": "تضامن",
+        "hindi": "एकता",
+        "urdu": "یکجہتی",
+        "tagalog": "pagkakaisa",
+        "farsi": "انسجام",
+        "nepali": "समन्वय",
+        "bengali": "সংহতি",
+        "malayalam": "ഐക്യദാര്‍ഢ്യം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G3",
+      "index": 3,
+      "title": "uncertainty",
+      "translations": {
+        "eng": "uncertainty",
+        "arabic": "الشك",
+        "hindi": "अनिश्चितता",
+        "urdu": "غیر یقینی کیفیت",
+        "tagalog": "walang katiyakan",
+        "farsi": "عدم اطمینان",
+        "nepali": "अनिश्चितता",
+        "bengali": "অনিশ্চয়তা",
+        "malayalam": "അനിശ്ചിതത്വം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G4",
+      "index": 4,
+      "title": "crisis",
+      "translations": {
+        "eng": "crisis",
+        "arabic": "أزمة",
+        "hindi": "संकट",
+        "urdu": "بحران",
+        "tagalog": "krisis",
+        "farsi": "بحران",
+        "nepali": "सङ्कट",
+        "bengali": "সংকট",
+        "malayalam": "പ്രതിസന്ധി"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G5",
+      "index": 5,
+      "title": "eviction",
+      "translations": {
+        "eng": "eviction",
+        "arabic": "الإخلاء",
+        "hindi": "निष्कासन",
+        "urdu": "بے دخلی",
+        "tagalog": "pagpapaalis sa tinutuluyan",
+        "farsi": "تخلیه",
+        "nepali": "निष्कासन",
+        "bengali": "উচ্ছেদ",
+        "malayalam": "കുടിയൊഴിപ്പിക്കൽ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": true
+    },
+    {
+      "id": "G6",
+      "index": 6,
+      "title": "displacement",
+      "translations": {
+        "eng": "displacement",
+        "arabic": "التهجير",
+        "hindi": "स्थानांतरण",
+        "urdu": "بے مقامی",
+        "tagalog": "pagkakaalis",
+        "farsi": "جابجایی",
+        "nepali": "विस्थापन",
+        "bengali": "বাস্তুচ্যুতি",
+        "malayalam": "സ്ഥാനമാറ്റം, സ്ഥലംമാറ്റം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": true
+    },
+    {
+      "id": "G7",
+      "index": 7,
+      "title": "erasure",
+      "translations": {
+        "eng": "erasure",
+        "arabic": "محو",
+        "hindi": "विलोपन",
+        "urdu": "مٹانے کا عمل",
+        "tagalog": "pagbubura",
+        "farsi": "محو کردن",
+        "nepali": "मेटाउने",
+        "bengali": "মুছে ফেলা",
+        "malayalam": "മായ്‌ക്കൽ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G8",
+      "index": 8,
+      "title": "fragmentation",
+      "translations": {
+        "eng": "fragmentation",
+        "arabic": "تجزئة",
+        "hindi": "विखंडन",
+        "urdu": "ٹکڑے ٹکڑے کرنا",
+        "tagalog": "pagwawasak-wasak",
+        "farsi": "قطعه قطعه کردن",
+        "nepali": "खण्डीकरण",
+        "bengali": "বিভাজন",
+        "malayalam": "വിഘടനം, ഛിന്നഭിന്നമാകൽ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": true
+    },
+    {
+      "id": "G9",
+      "index": 9,
+      "title": "distribution",
+      "translations": {
+        "eng": "distribution",
+        "arabic": "التوزيع",
+        "hindi": "वितरण",
+        "urdu": "تقسیم",
+        "tagalog": "pamamahagi",
+        "farsi": "توزیع",
+        "nepali": "वितरण",
+        "bengali": "বিতরণ",
+        "malayalam": "വിതരണം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G10",
+      "index": 10,
+      "title": "adapt",
+      "translations": {
+        "eng": "adapt",
+        "arabic": "يتكيف",
+        "hindi": "अनुकूलन",
+        "urdu": "موافقت",
+        "tagalog": "angkop",
+        "farsi": "تطبیق",
+        "nepali": "अनुकूल बनाउनुहोस्",
+        "bengali": "অভিযোজন",
+        "malayalam": "അനുരൂപമാക്കുക"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G11",
+      "index": 11,
+      "title": "participate",
+      "translations": {
+        "eng": "participate",
+        "arabic": "المشاركة",
+        "hindi": "भागीदारी",
+        "urdu": "شرکت کرنا",
+        "tagalog": "paglalahok",
+        "farsi": "مشارکت کردن",
+        "nepali": "सहभागी",
+        "bengali": "অংশগ্রহণ",
+        "malayalam": "പങ്കെടുക്കുക"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G12",
+      "index": 12,
+      "title": "accessibility",
+      "translations": {
+        "eng": "accessibility",
+        "arabic": "التوفر",
+        "hindi": "पहुँच",
+        "urdu": "رسائی",
+        "tagalog": "accessibility",
+        "farsi": "دسترس‌پذیری",
+        "nepali": "उपलब्धता",
+        "bengali": "প্রবেশযোগ্যতা",
+        "malayalam": "അക്സസബിലിറ്റി"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G13",
+      "index": 13,
+      "title": "community",
+      "translations": {
+        "eng": "community",
+        "arabic": "المجتمع",
+        "hindi": "समुदाय",
+        "urdu": "برادری",
+        "tagalog": "komunidad",
+        "farsi": "جامعه",
+        "nepali": "समुदाय",
+        "bengali": "কমিউনিটি",
+        "malayalam": "സമൂഹം, കമ്മ്യൂണിറ്റി"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G14",
+      "index": 14,
+      "title": "neighbourhood",
+      "translations": {
+        "eng": "neighbourhood",
+        "arabic": "الحي",
+        "hindi": "आस-पड़ोस",
+        "urdu": "محلہ",
+        "tagalog": "neighborhood",
+        "farsi": "محله",
+        "nepali": "छिमेकी",
+        "bengali": "মহল্লা",
+        "malayalam": "സമീപപ്രദേശങ്ങൾ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G15",
+      "index": 15,
+      "title": "suburban",
+      "translations": {
+        "eng": "suburban",
+        "arabic": "من الضواحى",
+        "hindi": "अर्द्धशहरी",
+        "urdu": "مضافاتی",
+        "tagalog": "suburban",
+        "farsi": "برون‌شهری",
+        "nepali": "उपनगरीय",
+        "bengali": "শহরতলিতে",
+        "malayalam": "നഗരപ്രാന്തം, സബർബൻ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G16",
+      "index": 16,
+      "title": "urban",
+      "translations": {
+        "eng": "urban",
+        "arabic": "حضري",
+        "hindi": "शहरी",
+        "urdu": "شہری",
+        "tagalog": "urban",
+        "farsi": "شهری",
+        "nepali": "सहरी",
+        "bengali": "শহুরে",
+        "malayalam": "നാഗരികമായ, അർബൻ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G17",
+      "index": 17,
+      "title": "periphery",
+      "translations": {
+        "eng": "periphery",
+        "arabic": "المحيط",
+        "hindi": "परिधि",
+        "urdu": "نواحی",
+        "tagalog": "sa paligid",
+        "farsi": "پیرامون",
+        "nepali": "परिधि",
+        "bengali": "চৌহদ্দি",
+        "malayalam": "ചുറ്റളവ്"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": true
+    },
+    {
+      "id": "G18",
+      "index": 18,
+      "title": "territory",
+      "translations": {
+        "eng": "territory",
+        "arabic": "منطقة ",
+        "hindi": "क्षेत्र",
+        "urdu": "علاقہ",
+        "tagalog": "teritoryo",
+        "farsi": "قلمرو",
+        "nepali": "क्षेत्र",
+        "bengali": "অঞ্চল",
+        "malayalam": "ഭൂപ്രദേശം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G19",
+      "index": 19,
+      "title": "narrative",
+      "translations": {
+        "eng": "narrative",
+        "arabic": "سرد",
+        "hindi": "विमर्श",
+        "urdu": "بیانیہ",
+        "tagalog": "pagsasalaysay",
+        "farsi": "داستانی",
+        "nepali": "कथा",
+        "bengali": "বর্ণনা",
+        "malayalam": "ആഖ്യാനം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G20",
+      "index": 20,
+      "title": "native",
+      "translations": {
+        "eng": "native",
+        "arabic": "محلي",
+        "hindi": "मूल निवासी",
+        "urdu": "مقامی",
+        "tagalog": "katutubo",
+        "farsi": "بومی",
+        "nepali": "निवासी",
+        "bengali": "স্থানীয়",
+        "malayalam": "സ്വദേശി"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G21",
+      "index": 21,
+      "title": "citizen",
+      "translations": {
+        "eng": "citizen",
+        "arabic": "مواطن",
+        "hindi": "नागरिक",
+        "urdu": "شہری",
+        "tagalog": "mamamayan",
+        "farsi": "شهروند",
+        "nepali": "नागरिक",
+        "bengali": "নাগরিক",
+        "malayalam": "പൗരൻ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": true
+    },
+    {
+      "id": "G22",
+      "index": 22,
+      "title": "migrant",
+      "translations": {
+        "eng": "migrant",
+        "arabic": "مهاجر",
+        "hindi": "प्रवासी",
+        "urdu": " مہاجر",
+        "tagalog": "migrante",
+        "farsi": "مهاجر",
+        "nepali": "आप्रवासी",
+        "bengali": "অভিবাসী",
+        "malayalam": "കുടിയേറ്റക്കാരൻ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": true
+    },
+    {
+      "id": "G23",
+      "index": 23,
+      "title": "foreigner",
+      "translations": {
+        "eng": "foreigner",
+        "arabic": "أجنبي",
+        "hindi": "विदेशी",
+        "urdu": "غیرملکی یا پردیسی",
+        "tagalog": "dayuhan",
+        "farsi": "خارجی",
+        "nepali": "विदेशी",
+        "bengali": "বিদেশি",
+        "malayalam": "വിദേശി"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G24",
+      "index": 24,
+      "title": "neighbour",
+      "translations": {
+        "eng": "neighbour",
+        "arabic": "الجار",
+        "hindi": "पड़ोसी",
+        "urdu": "پڑوسی",
+        "tagalog": "kapitbahay",
+        "farsi": "همسایه",
+        "nepali": "छिमेकी",
+        "bengali": "প্রতিবেশী",
+        "malayalam": "അയൽക്കാരൻ, സമീപവാസി"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G25",
+      "index": 25,
+      "title": "density",
+      "translations": {
+        "eng": "density",
+        "arabic": "كثافة",
+        "hindi": "घनत्व",
+        "urdu": "کثافت",
+        "tagalog": "karamihan",
+        "farsi": "تراکم",
+        "nepali": "घनत्व",
+        "bengali": "ঘনত্ব",
+        "malayalam": "സാന്ദ്രത"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": true
+    },
+    {
+      "id": "G26",
+      "index": 26,
+      "title": "consumption",
+      "translations": {
+        "eng": "consumption",
+        "arabic": "استهلاك",
+        "hindi": "उपभोग",
+        "urdu": "استعمال",
+        "tagalog": "paggamit",
+        "farsi": "مصرف",
+        "nepali": "उपभोग",
+        "bengali": "ভোগ",
+        "malayalam": "ഉപഭോഗം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G27",
+      "index": 27,
+      "title": "segregation",
+      "translations": {
+        "eng": "segregation",
+        "arabic": "التمييز العنصري",
+        "hindi": "पृथक्करण",
+        "urdu": "غلیحدہ رکھنا",
+        "tagalog": "paghihiwalay",
+        "farsi": "تفکیک",
+        "nepali": "अलग",
+        "bengali": "পৃথকীকরণ",
+        "malayalam": "വേർതിരിക്കൽ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": true
+    },
+    {
+      "id": "G28",
+      "index": 28,
+      "title": "racial bias",
+      "translations": {
+        "eng": "racial bias",
+        "arabic": "التحيز العنصري",
+        "hindi": "जातीय पूर्वाग्रह",
+        "urdu": "نسلی تعصب",
+        "tagalog": "kinikilingan ayon sa lahi",
+        "farsi": "تعصب نژادی",
+        "nepali": "जातिय पक्षपात",
+        "bengali": "জাতিগত পক্ষপাত",
+        "malayalam": "വംശീയ വിവേചനം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G29",
+      "index": 29,
+      "title": "hierarchy",
+      "translations": {
+        "eng": "hierarchy",
+        "arabic": "التسلسل الهرمي",
+        "hindi": "पदानुक्रम",
+        "urdu": "مراتب کا نظام",
+        "tagalog": "hierarkiya",
+        "farsi": "سلسله مراتب",
+        "nepali": "पदक्रम",
+        "bengali": "অনুক্রম",
+        "malayalam": "അധികാരശ്രേണി"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G30",
+      "index": 30,
+      "title": "coercion",
+      "translations": {
+        "eng": "coercion",
+        "arabic": "إجبار",
+        "hindi": "जबरदस्ती",
+        "urdu": "جبر",
+        "tagalog": "pamimilit",
+        "farsi": "اجبار",
+        "nepali": "जबरजस्ती",
+        "bengali": "ভীতিপ্রদর্শন",
+        "malayalam": "നിര്‍ബന്ധം, ബലാല്‍ക്കാരം"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    },
+    {
+      "id": "G31",
+      "index": 31,
+      "title": "unregulated",
+      "translations": {
+        "eng": "unregulated",
+        "arabic": "غير منظم",
+        "hindi": "अनियमित",
+        "urdu": "غیر منظم",
+        "tagalog": "walang regulasyon",
+        "farsi": "بی‌قانون",
+        "nepali": "अनियन्त्रित",
+        "bengali": "অনিয়ন্ত্রিত",
+        "malayalam": "അനിയന്ത്രിതമായ"
+      },
+      "connections": [],
+      "category": "glossary",
+      "hasOpenButton": false
+    } 
+  ]
+}

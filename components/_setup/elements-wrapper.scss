@@ -1,0 +1,96 @@
+@use "./vars.scss" as *;
+@use "./breakpoints.scss" as *;
+@use "./fonts.scss" as *;
+
+.elements-wrapper {
+  .home_button_wrapper {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: auto;
+    min-height: $margin-side;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: $z-index-modal-1;
+
+    @include mobile {
+      min-height: $margin-side-mobile;
+    }
+  }
+
+  .navigation-controls {
+    position: fixed;
+    bottom: $margin-corner;
+    right: $margin-corner;
+    @include lg {
+      bottom: $margin-corner-desktop;
+      right: $margin-corner-desktop;
+    }
+    z-index: $z-index-modal-overlay;
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    align-items: center;
+    pointer-events: auto;
+
+    @include mobile {
+      bottom: 0;
+      right: 0;
+      width: 100vw;
+      justify-content: flex-end;
+    }
+  
+    @include aspect-ratio-1-1 {
+      @include mobile;
+    }
+  }
+}
+
+.corner-square {
+  position: fixed;
+  background-color: $color-black;
+  width: $margin-corner;
+  height: $margin-corner;
+  @include lg {
+    width: $margin-corner-desktop;
+    height: $margin-corner-desktop;
+  }
+  z-index: $z-index-modal-overlay;
+  pointer-events: none;
+  
+  body.inventory-open & {
+    z-index: calc(#{$z-index-modal-overlay} - 1);
+  }
+  
+  &.top-left {
+    top: 0;
+    left: 0;
+  }
+  
+  &.top-right {
+    top: 0;
+    right: 0;
+  }
+  
+  &.bottom-left {
+    bottom: 0;
+    left: 0;
+  }
+  
+  &.bottom-right {
+    bottom: 0;
+    right: 0;
+  }
+  
+  @include mobile {
+    display: none;
+  }
+
+  @include aspect-ratio-1-1 {
+    width: $margin-corner-phone;
+    height: $margin-corner-phone;
+  }
+}

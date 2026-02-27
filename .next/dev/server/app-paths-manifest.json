@@ -1,0 +1,5 @@
+{
+  "/glossary/page": "app/glossary/page.js",
+  "/living-continuity/page": "app/living-continuity/page.js",
+  "/page": "app/page.js"
+}

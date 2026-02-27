@@ -1,0 +1,224 @@
+@import "https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Ledger&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap";
+/* [project]/app/not-found.module.scss.module.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.not-found-module-scss-module__2jWFaq__container {
+  z-index: 99999;
+  will-change: opacity;
+  contain: layout style paint;
+  background-color: #1c1c1c;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.not-found-module-scss-module__2jWFaq__content {
+  user-select: none;
+  will-change: transform, opacity;
+  contain: layout style paint;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.not-found-module-scss-module__2jWFaq__black_box {
+  background-color: #000;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 5px 0;
+  display: flex;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .not-found-module-scss-module__2jWFaq__black_box {
+    padding: 5px 2.15827vw;
+  }
+}
+
+.not-found-module-scss-module__2jWFaq__title {
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  color: #fff;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0 2.15827vw;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 135%;
+}
+
+@media screen and (max-width: 780px) {
+  .not-found-module-scss-module__2jWFaq__title {
+    letter-spacing: -1px;
+    font-size: clamp(2.6rem, 1.3vw, 3.5rem);
+    line-height: 100%;
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .not-found-module-scss-module__2jWFaq__title {
+    font-size: clamp(1.4rem, 2vw, 1.5rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .not-found-module-scss-module__2jWFaq__title {
+    font-size: clamp(1.4rem, 2vw, 1.5rem);
+  }
+}
+
+.not-found-module-scss-module__2jWFaq__title {
+  font-weight: 700;
+}
+
+.not-found-module-scss-module__2jWFaq__message {
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: lowercase;
+  color: #fff;
+  letter-spacing: .01em;
+  font-family: Ortica Angular, serif;
+  font-size: clamp(1.1rem, 1.1vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .not-found-module-scss-module__2jWFaq__message {
+    font-size: clamp(.9rem, 2.5vw, 1.1rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .not-found-module-scss-module__2jWFaq__message {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .not-found-module-scss-module__2jWFaq__message {
+    font-size: clamp(1.2rem, 1.3vw, 1.35rem);
+  }
+}
+
+.not-found-module-scss-module__2jWFaq__message {
+  margin-bottom: 40px;
+}
+
+.not-found-module-scss-module__2jWFaq__link {
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: lowercase;
+  color: #fff;
+  letter-spacing: .01em;
+  font-family: Ortica Angular, serif;
+  font-size: clamp(1.1rem, 1.1vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .not-found-module-scss-module__2jWFaq__link {
+    font-size: clamp(.9rem, 2.5vw, 1.1rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .not-found-module-scss-module__2jWFaq__link {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .not-found-module-scss-module__2jWFaq__link {
+    font-size: clamp(1.2rem, 1.3vw, 1.35rem);
+  }
+}
+
+.not-found-module-scss-module__2jWFaq__link {
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .3s;
+}
+
+.not-found-module-scss-module__2jWFaq__link:hover {
+  opacity: .7;
+}
+
+/*# sourceMappingURL=app_not-found_module_scss_module_90d14cdd.css.map*/

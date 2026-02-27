@@ -1,0 +1,322 @@
+/* [project]/components/templates/GlossaryNodeTemplate.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.glossaryNodeGroup {
+  cursor: pointer;
+}
+
+.glossaryContainer {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  display: flex;
+}
+
+.glossaryPill {
+  color: #fff;
+  text-transform: lowercase;
+  pointer-events: auto;
+  cursor: pointer;
+  box-shadow: none;
+  background-color: #000;
+  border: 1.5px solid #666;
+  border-radius: 999px;
+  align-items: center;
+  gap: 1.25px;
+  font-size: 10px;
+  font-weight: 600;
+  transition: border-color .2s, color .2s, box-shadow .2s, background-color .2s, font-size .2s, transform .2s;
+  display: inline-flex;
+}
+
+.glossaryPill.highlighted {
+  color: #e9ff00;
+  border: none;
+  transform: scale(1.35);
+  box-shadow: 0 0 12px #e9ff0059;
+}
+
+@media (min-width: 1700px) {
+  .glossaryPill.highlighted {
+    transform: scale(1.25);
+  }
+}
+
+.glossaryPill.secondaryHighlighted {
+  border: none;
+}
+
+.glossaryPill.dimmed {
+  background-color: #0000;
+  border: none;
+}
+
+.glossaryPill.selected {
+  color: #000;
+  letter-spacing: .01em;
+  background-color: #e9ff00;
+  border-color: #e9ff00;
+  font-size: clamp(.6rem, .75vw, .7rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .glossaryPill.selected {
+    font-size: clamp(.45rem, 1.3vw, .6rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .glossaryPill.selected {
+    font-size: clamp(.55rem, .85vw, .65rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .glossaryPill.selected {
+    font-size: clamp(.75rem, .8vw, .75rem);
+  }
+}
+
+.glossaryPill.selected {
+  letter-spacing: .01em;
+  font-family: NectoMono-Regular, monospace;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .glossaryPill.selected {
+    font-size: clamp(.6rem, 1.5vw, .65rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .glossaryPill.selected {
+    font-size: clamp(.6rem, .95vw, .7rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .glossaryPill.selected {
+    font-size: clamp(.95rem, .85vw, .8rem);
+  }
+}
+
+.glossaryPill.selected {
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  leading-trim: NONE;
+  line-height: 115%;
+  box-shadow: 0 0 12px #e9ff0059;
+}
+
+.glossaryPill.selected .glossaryPillTitle {
+  padding: 2px .690648vw;
+}
+
+.glossaryPillTitle {
+  white-space: nowrap;
+  letter-spacing: .01em;
+  padding: 2.25px 8px 2.5px;
+  font-size: clamp(.65rem, .8vw, .75rem);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.2;
+  font-family: NectoMono-Regular, monospace !important;
+}
+
+@media screen and (max-width: 780px) {
+  .glossaryPillTitle {
+    font-size: clamp(.6rem, 1.5vw, .65rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .glossaryPillTitle {
+    font-size: clamp(.6rem, .95vw, .7rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .glossaryPillTitle {
+    font-size: clamp(.95rem, .85vw, .8rem);
+  }
+}
+
+.glossaryPillTitle {
+  letter-spacing: 0%;
+  line-height: 115%;
+  text-transform: lowercase !important;
+}
+
+.glossaryPillOpenButton {
+  color: #000;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  background-color: #e9ff00;
+  border: 1.5px solid #e9ff00;
+  border-radius: 999px;
+  margin-left: 1.25px;
+  padding: 4.75px 5px;
+  font-size: 7px;
+  font-weight: 800;
+  line-height: 1.1;
+  transition: opacity .7s, background-color .2s, color .2s;
+}
+
+.glossaryPill.selected .glossaryPillOpenButton, .glossaryPill.highlighted .glossaryPillOpenButton {
+  color: #e9ff00;
+  background-color: #000;
+}
+
+.glossaryPillOpenButton:hover, .glossaryPill.selected .glossaryPillOpenButton:hover, .glossaryPill.highlighted .glossaryPillOpenButton:hover {
+  color: #000;
+  background-color: #e9ff00;
+  border: 1.5px solid #000;
+}
+
+.glossaryCross {
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: clamp(21px, 1.5vw, 23px);
+  height: clamp(21px, 1.5vw, 23px);
+  display: flex;
+  position: relative;
+  transform: translateY(10%);
+}
+
+.glossaryCrossBackground {
+  z-index: 1;
+  background-color: #000;
+  border-radius: 50%;
+  width: clamp(21px, 1.5vw, 23px);
+  height: clamp(21px, 1.5vw, 23px);
+  transition: background-color .2s;
+  position: absolute;
+}
+
+.glossaryCross.selected .glossaryCrossBackground {
+  background-color: #000;
+}
+
+.glossaryCross:hover .glossaryCrossBackground {
+  background-color: #e9ff00;
+}
+
+.glossaryCross:hover .glossaryCrossBorder {
+  border: 1.5px solid #000;
+}
+
+.glossaryCrossBorder {
+  z-index: 2;
+  border: 1.5px solid #e9ff00;
+  border-radius: 50%;
+  width: clamp(21px, 1.5vw, 23px);
+  height: clamp(21px, 1.5vw, 23px);
+  position: absolute;
+}
+
+.glossaryCrossLines {
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  width: calc(clamp(21px, 1.5vw, 23px) / 1.66667);
+  height: calc(clamp(21px, 1.5vw, 23px) / 1.66667);
+  display: flex;
+  position: absolute;
+}
+
+.glossaryCrossLine {
+  background-color: #e9ff00;
+  width: calc(clamp(21px, 1.5vw, 23px) / 1.66667);
+  height: 1.4px;
+  transition: background-color .2s;
+  position: absolute;
+}
+
+.glossaryCross.selected .glossaryCrossLine {
+  background-color: #e9ff00;
+}
+
+.glossaryCross:hover .glossaryCrossLine {
+  background-color: #000;
+}
+
+.glossaryCrossLine.line1 {
+  transform: rotate(45deg);
+}
+
+.glossaryCrossLine.line2 {
+  transform: rotate(-45deg);
+}
+
+/*# sourceMappingURL=components_templates_GlossaryNodeTemplate_scss_css_bad6b30c._.single.css.map*/

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Applications/MAMP/htdocs/35-SAT/SAT/models/glossaryShell/colonialism.jsx"],"sourcesContent":["import React from 'react';\n\nexport function Colonialism(props) {\n  // Placeholder component - no 3D model available\n  return <group {...props} dispose={null} />;\n}\n\nexport default Colonialism;\n"],"names":[],"mappings":";;;;;;;AAAA;;;AAEO,SAAS,YAAY,KAAK;IAC/B,gDAAgD;IAChD,qBAAO,8OAAC;QAAO,GAAG,KAAK;QAAE,SAAS;;;;;;AACpC;uCAEe"}}]
+}

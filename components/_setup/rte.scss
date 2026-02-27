@@ -1,0 +1,104 @@
+/**
+ * RTE (Rich Text Editor) - Typography and Text Styles
+ * 
+ * This file contains styles for rich text content, paragraphs, headings, etc.
+ */
+
+@use "./vars.scss" as *;
+
+p,
+blockquote {
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer !important;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  a::after {
+    text-decoration: none;
+    content: " ↗";
+  }
+}
+
+.mainTitle {
+  font-style: normal;
+  font-weight: 700;
+  align-items: center;
+  text-align: center;
+  text-transform: capitalize;
+  padding: calc(#{$padding} * 6.25) 0;
+
+  > span {
+    font-weight: 400;
+  }
+}
+
+.enterButton {
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 33px;
+  cursor: pointer;
+}
+
+.info-title {
+  border: none;
+  border-radius: 0;
+  min-width: auto;
+  text-align: left;
+  margin-bottom: calc(#{$padding} * 0.625);
+  min-height: auto;
+  padding: 0;
+  color: white;
+  background: transparent;
+}
+
+.glossary {
+  background-color: transparent;
+  color: $color-white;
+  padding: 0;
+  text-align: left;
+  border: none;
+  border-radius: 0;
+  will-change: transform;
+  contain: layout style paint;
+  transform: translateZ(0);
+  font-family: $font-family-necto-mono;
+}
+
+.glossary.white_bg {
+  background-color: transparent;
+  color: $color-white;
+}
+
+a {
+  transition: all 0;
+  text-decoration: none !important;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+p {
+  font-family: $font-family-inter;
+
+  a {
+    &:hover {
+      font-weight: 700;
+    }
+  }
+
+  &+p {
+    margin-top: $margin;
+  }
+
+  &:first-of-type {
+    text-indent: 0;
+  }
+}
+

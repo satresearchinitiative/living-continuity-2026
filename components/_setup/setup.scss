@@ -1,0 +1,216 @@
+/**
+ * Setup - Main Setup File
+ * 
+ * This file imports all setup files and contains base setup styles.
+ * It should be imported in the main global.scss file.
+ */
+
+// Forward variables, mixins, and functions so they're accessible to files that import this one
+@forward "./breakpoints.scss";
+@forward "./vars.scss";
+@forward "./fonts.scss";
+// Note: globals.scss is NOT forwarded here because it uses setup.scss, which would create a circular dependency
+// globals.scss should be imported directly in layout.js
+
+// Use the modules so we can use them in this file
+@use "./breakpoints.scss" as *;
+@use "./vars.scss" as *;
+@use "./fonts.scss" as *;
+@use "./reset.scss" as *;
+@use "./rte.scss" as *;
+
+// ============================================
+// CSS Custom Properties (CSS Variables)
+// ============================================
+:root {
+  --color-black: #{$color-black};
+  --color-white: #{$color-white};
+  --color-yellow: #{$color-yellow};
+  --color-accent: #{$color-accent};
+  --color-pink-light: #{$color-pink-light};
+  --color-gray-dark-1: #{$color-gray-dark-1};
+  --color-gray-dark-2: #{$color-gray-dark-2};
+  --color-gray-dark-3: #{$color-gray-dark-3};
+  --color-blue: #{$color-blue};
+  --color-orange-1: #{$color-orange-1};
+  --color-orange-2: #{$color-orange-2};
+  --color-blue-light: #{$color-blue-light};
+  --color-purple: #{$color-purple};
+  --color-mint: #{$color-mint};
+  --color-gray-medium: #{$color-gray-medium};
+  --color-red: #{$color-red};
+  --color-magenta: #{$color-magenta};
+  --color-gray-light: #{$color-gray-light};
+  --vh: 1vh;
+}
+
+html {
+    height: 100%;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: $color-blue-light transparent;
+
+    &::-webkit-scrollbar {
+      width: $scroll-bar;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-blue-light;
+      border-radius: 0;
+      border: none;
+    }
+
+    &.page-landing {
+      scrollbar-color: $color-pink-light transparent;
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $color-pink-light;
+        border-radius: 0;
+        border: none;
+      }
+    }
+
+    &.page-glossary {
+      scrollbar-color: $color-blue-light transparent;
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $color-blue-light;
+        border-radius: 0;
+        border: none;
+      }
+    }
+
+    &.page-kit {
+      scrollbar-color: $color-orange-2 transparent;
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $color-orange-2;
+        border-radius: 0;
+        border: none;
+      }
+    }
+}
+
+
+// -------------------------------------------------- 
+// Scroll
+// -------------------------------------------------- 
+.no-scroll {
+  overflow: hidden;
+}
+
+$page-width: calc(100vw - #{$scroll-bar});
+
+body {
+    @include font-regular;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    scrollbar-color: $color-blue-light transparent;
+    scrollbar-width: $scroll-bar !important;
+
+    &.page-landing {
+      scrollbar-color: $color-pink-light transparent;
+    }
+
+    &.page-glossary {
+      scrollbar-color: $color-blue-light transparent;
+    }
+
+    &.page-kit {
+      scrollbar-color: $color-black transparent;
+    }
+
+    &::-webkit-scrollbar {
+      width: $scroll-bar;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-blue-light;
+      border-radius: 0;
+      border: none;
+    }
+
+    &.page-landing::-webkit-scrollbar-thumb {
+      background-color: $color-pink-light;
+      border-radius: 0;
+      border: none;
+    }
+
+    &.page-glossary::-webkit-scrollbar-thumb {
+      background-color: $color-blue-light;
+      border-radius: 0;
+      border: none;
+    }
+
+    &.page-kit::-webkit-scrollbar-thumb {
+      background-color: $color-black;
+      border-radius: 0;
+      border: none;
+    }
+
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-gray-dark-2;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+body.menu-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+main {
+    padding-top: $header-height;
+    flex-grow: 1;
+    padding-bottom: calc($footer-height + 40px);
+}
+
+.page-title.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.site-title.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

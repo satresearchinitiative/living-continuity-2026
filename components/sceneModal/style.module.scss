@@ -1,0 +1,48 @@
+/**
+ * Scene Modal Styles
+ */
+
+@use "../_setup/vars.scss" as *;
+
+.camera_wrapper {
+  position: relative;
+}
+
+.camera_modal {
+  position: absolute;
+  z-index: 999;
+  top: 37px !important;
+  top: unset;
+  left: calc(#{$padding} * 1.25);
+  border-radius: $border-radius-md;
+  background-color: $color-black;
+  color: $color-white;
+  text-align: left;
+  padding: 5px 25px 5px 5px;
+  max-width: 170px;
+  min-width: 168px;
+  line-height: 1.6;
+}
+
+.item {
+  font-size: 13px;
+}
+
+.link {
+  color: $color-white;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .camera_modal {
+    width: calc(100vw - 12px);
+    padding: 5px;
+    max-width: unset;
+    left: 0vw;
+    top: 27px !important;
+  }
+}

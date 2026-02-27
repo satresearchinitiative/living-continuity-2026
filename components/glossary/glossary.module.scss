@@ -1,0 +1,467 @@
+/**
+ * Glossary Component Styles
+ * 
+ * Styles for the glossary list page with large typography matching menu elements
+ */
+
+@use "../_setup/vars.scss" as *;
+@use "../_setup/fonts.scss" as *;
+@use "../_setup/breakpoints.scss" as *;
+
+:global(body.glossary-page) {
+  scroll-behavior: smooth;
+  overflow: visible !important;
+  overflow-y: auto !important;
+  height: auto !important;
+  scroll-padding-top: $glossaryHeight;
+  scroll-padding-bottom: $glossaryHeight;
+  transition: background-color $transi-slow ease-in-out;
+  overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+
+  @include mobile {
+    overflow: hidden !important;
+    overflow-y: hidden !important;
+    height: 100vh !important;
+  }
+}
+
+:global(html.glossary-page) {
+  scroll-behavior: smooth;
+  height: auto !important;
+  overflow-y: auto;
+  scroll-padding-top: $glossaryHeight;
+  scroll-padding-bottom: $glossaryHeight;
+  transition: background-color $transi-slow ease-in-out;
+  overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+
+  @include mobile {
+    overflow: hidden !important;
+    overflow-y: hidden !important;
+    height: 100vh !important;
+  }
+}
+
+.glossaryContainer {
+  min-height: 100vh;
+  color: $color-white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  padding-left: $margin-side;
+  box-sizing: border-box;
+  position: relative;
+  overflow: visible;
+  padding: 0;
+
+  @include mobile {
+    padding: 0;
+    min-height: 100vh;
+  }
+}
+
+.glossaryList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: calc($imageStackHeight * 1) !important;
+  width: 50vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+  transform: translateZ(0);
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  pointer-events: auto;
+  overscroll-behavior: none;
+  margin: calc($wrapperHeight / 3) 0;
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+
+  @include mobile {
+    width: 100vw;
+    height: 50dvh;
+    min-height: 50dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: calc($wrapperHeight / 6.5) 0 $margin-menu 0;
+    @include lg {
+      padding: calc($wrapperHeight / 6.5) 0 $margin-menu-desktop 0;
+    }
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: $glossaryHeight;
+  }
+}
+
+.glossaryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $padding-xxs;
+  width: 100%;
+  cursor: pointer;
+  transition: color $transi ease, opacity $transi ease;
+  scroll-margin-top: $glossaryHeight;
+  scroll-margin-bottom: $glossaryHeight;
+  scroll-margin-left: 0;
+  scroll-margin-right: 0;
+  min-height: $glossaryHeight;
+  padding: 0 $padding;
+  box-sizing: border-box;
+  position: relative;
+  will-change: transform;
+  transform: translateZ(0);
+  font-weight: 700;
+
+  &:first-child {
+    scroll-margin-top: $glossaryHeight;
+    padding-top: calc(#{$glossaryHeight} + #{$padding});
+    margin-top: calc(#{$glossaryHeight} * 0.5);
+
+    @include mobile {
+      scroll-margin-top: 0;
+      padding-top: calc(#{$margin-menu} * 2);
+      margin-top: 0;
+    }
+    @include lg {
+      padding-top: calc(#{$margin-menu-desktop} * 2);
+    }
+  }
+
+  &.glossaryItemNoGap {
+    margin-bottom: 0;
+  }
+
+  @include mobile {
+    scroll-margin-top: 0;
+    scroll-margin-bottom: 0;
+    min-height: calc(50dvh - $margin-menu);
+    height: calc(50dvh - $margin-menu);
+    gap: $padding-xxs;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    flex-shrink: 0;
+    padding: 0;
+    padding-top: calc(#{$margin-menu} * 2);
+  }
+  @include lg {
+    min-height: calc(40vh - $margin-menu-desktop);
+    height: calc(40vh - $margin-menu-desktop);
+    padding-top: calc(#{$margin-menu-desktop} * 2);
+  }
+}
+
+.glossaryItemCentered {
+  color: $color-white !important;
+}
+
+.glossaryItemDimmed {
+  color: $color-gray;
+}
+
+.glossaryItemNumber {
+  position: absolute;
+  top: calc(#{$padding} * 2.5);
+  left: calc(#{$padding} * 2.5);
+  color: rgba($color-white, 0.4);
+  font-size: $font-size-sm;
+  font-weight: 500;
+  font-family: $font-family-inter;
+  line-height: 1;
+  z-index: 1;
+}
+
+.glossaryTranslation {
+  color: inherit;
+  @include font-h2-glossary;
+  font-weight: $font-weight-bold;
+  font-family: $font-family-noto-sans;
+  line-height: 135%;
+  text-align: center;
+}
+
+
+.alphabetBar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $padding-xxs;
+  z-index: $z-index-top * 10;
+  padding: $padding $padding-xxs;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  @include mobile {
+    right: 0;
+    padding: $padding;
+    gap: $padding-s;
+  }
+}
+
+.alphabetLetter {
+  background: transparent;
+  border: none;
+  color: $color-white;
+  @include font-size-md;
+  font-weight: 700;
+  font-family: $font-family-inter;
+  cursor: pointer;
+  padding: $padding-xxs;
+  line-height: 110%;
+  transition: color $transi-fast ease, opacity $transi-fast ease;
+  text-transform: uppercase;
+  min-width: $margin-corner;
+  max-width: $margin-corner;
+  text-align: center;
+
+  &:hover:not(:disabled) {
+    color: $color-white;
+    opacity: 1;
+  }
+
+  &:active:not(:disabled) {
+    color: $color-white;
+    opacity: 0.8;
+  }
+
+  @include sm {
+    font-size: calc($font-size-md-mobile * 0.93);
+    text-align: center;
+    font-weight: 700;
+    min-width: calc($margin-menu * 0.6);
+    max-width: calc($margin-menu * 0.6);
+    width: calc($margin-menu * 0.6);
+  }
+
+  @include lg {
+    min-width: $margin-corner-desktop;
+    max-width: $margin-corner-desktop;
+  }
+
+}
+
+.alphabetLetterDisabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.alphabetLetterActive {
+  color: $color-accent;
+}
+
+.articleImagesStack {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: $imageStackHeight;
+  max-height: $wrapperHeight;
+  overflow-y: var(--stack-overflow, auto);
+  padding: 0;
+  z-index: 100 !important;
+  box-sizing: border-box;
+
+  @include mobile {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: $margin-menu;
+    transform: none;
+    width: 100vw;
+    max-width: 100vw;
+    max-height: none;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 $padding;
+    gap: 0;
+  }
+  @include lg {
+    bottom: $margin-menu-desktop;
+  }
+}
+
+.articleImageWrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 1px solid $color-white;
+  transition: opacity $transi-fast ease, transform $transi-fast ease, border-color $transi-fast ease, max-height $transi-fast ease, max-width $transi-fast ease, min-width $transi-fast ease;
+  box-sizing: border-box;
+  position: relative;
+  background-color: transparent;
+
+  &:hover {
+    border-color: $color-yellow;
+    border-width: $padding-xxs;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  &.selected {
+    border-color: $color-yellow;
+    border-width: $padding-xxs;
+  }
+
+  &.imagePlaceholder {
+    background-color: $color-yellow;
+  }
+
+  @include mobile {
+    width: calc((100vw - (#{$padding} * 2)) / 6);
+    min-width: 60px;
+    max-width: calc((100vw - (#{$padding} * 2)) / 4);
+    height: calc((100vw - (#{$padding} * 2)) / 6);
+    flex: 0 1 calc((100vw - (#{$padding} * 2)) / 6);
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.articleImagePlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(10px);
+  transform: scale(1.1);
+  z-index: 1;
+  transition: opacity $transi-fast ease;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.articleImageFull {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(10px);
+  transition: filter $transi-fast ease;
+  
+  &.imageLoaded {
+    filter: blur(0);
+  }
+}
+
+.articleImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.articleImagePlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: calc(#{$padding} * 6.25);
+  color: rgba($color-white, 0.5);
+  font-size: $font-size-base;
+  text-align: center;
+}
+
+.goBackButton {
+  position: fixed;
+  top: $margin-corner;
+  right: $margin-corner;
+  @include lg {
+    top: $margin-corner-desktop;
+    right: $margin-corner-desktop;
+  }
+  display: flex;
+  align-items: center;
+  gap: $padding-xs;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: $color-white;
+  transition: opacity $transi ease;
+
+  color: $color-accent;
+  border: none;
+  cursor: pointer;
+  transition: all $transi ease;
+  white-space: nowrap;
+  pointer-events: auto;
+  height: $margin-menu;
+  max-height: $margin-menu;
+  min-width: $margin-menu;
+  @include lg {
+    height: $margin-menu-desktop;
+    max-height: $margin-menu-desktop;
+    min-width: $margin-menu-desktop;
+  }
+  z-index: 99999;
+
+  span {
+    display: inline-block;
+    @extend %ronzino;
+    @include font-size-md;
+    text-transform: uppercase;
+    padding: 0;
+    font-weight: 500;
+  }
+  
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  @include mobile {
+    top: $padding;
+    right: $padding;
+  }
+}
+
+
+.goBackArrow {
+  width: calc($margin-corner * 1.8);
+  @include lg {
+    width: calc($margin-corner-desktop * 1.8);
+  }
+  height: 100%;
+  display: block;
+}
+

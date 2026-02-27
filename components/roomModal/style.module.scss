@@ -1,0 +1,107 @@
+/**
+ * Room Modal Styles
+ */
+
+@use "../_setup/vars.scss" as *;
+@use "../_setup/fonts.scss" as *;
+@use "../_setup/breakpoints.scss" as *;
+
+.modal_wrapper {
+  position: fixed;
+  z-index: $z-index-modal;
+  top: $margin;
+  bottom: $margin;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  padding: 0;
+  margin: 0;
+  background-color: $color-white;
+  border-radius: $border-radius-sm;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  h1 {
+    @include modal-text;
+    text-align: center;
+    margin: 0;
+    padding: calc(#{$padding} * 2.5) calc(#{$padding} * 2.5) 0 calc(#{$padding} * 2.5);
+    color: $color-black;
+  }
+}
+
+.close_button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.content {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: calc(#{$padding} * 2.5);
+
+  img {
+    width: 50vw;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: calc(#{$padding} * 2.5) 0;
+    padding: 0;
+  }
+
+  p {
+    width: 50vw;
+    max-width: 100%;
+    word-break: break-word;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    @include modal-text;
+    color: $color-black;
+    text-align: left;
+  }
+}
+
+@include mobile-sm {
+  .modal_wrapper {
+    width: calc(100% - #{$margin} * 2);
+    margin: 0;
+    min-width: unset;
+  }
+}

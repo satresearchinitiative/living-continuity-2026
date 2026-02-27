@@ -1,0 +1,219 @@
+/* [project]/components/kitOfParts/capture-modal.scss.css [app-client] (css) */
+@font-face {
+  font-family: Ortica Angular;
+  src: url("/fonts/ortica-main/OrticaAngular-Bold.woff2") format("woff2"), url("/fonts/ortica-main/OrticaAngular-Bold.woff") format("woff"), url("/fonts/ortica-main/OrticaAngular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Regular.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Medium.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Bold.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-Oblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-Oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-MediumOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-MediumOblique.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/ronzino-main/Ronzino-BoldOblique.woff2") format("woff2"), url("/fonts/ronzino-main/Ronzino-BoldOblique.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NectoMono-Regular;
+  src: url("/fonts/necto-mono-main/NectoMono-Regular.woff2") format("woff2"), url("/fonts/necto-mono-main/NectoMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.capture-modal-wrapper {
+  z-index: 1999999;
+  box-sizing: border-box;
+  background-color: #7c44ff;
+  border: 1px solid #0000;
+  flex-direction: column;
+  width: 31.199vw;
+  height: auto;
+  transition: transform .3s;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  right: max(.4rem, 1.7vw);
+  overflow-y: auto;
+  transform: translateY(100%);
+}
+
+@media (min-width: 1700px) {
+  .capture-modal-wrapper {
+    right: max(.4rem, 1.5vw);
+  }
+}
+
+.capture-modal-wrapper:hover {
+  border-color: #000;
+}
+
+.capture-modal-wrapper.open {
+  z-index: 1999999;
+  transform: translateY(0);
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .capture-modal-wrapper {
+    width: 100vw;
+    left: 0;
+    right: max(.4rem, 2vw);
+  }
+}
+
+.capture-modal-close {
+  z-index: 9999999;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.capture-modal-close svg line {
+  stroke: #000;
+}
+
+.capture-modal-content {
+  color: #fff;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+  margin: clamp(1.2rem, 1.5vw, 2.5rem);
+  padding-top: 0;
+  display: flex;
+}
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
+  .capture-modal-content {
+    margin: 7.63359vw;
+  }
+}
+
+@media (min-width: 1700px) {
+  .capture-modal-content {
+    margin: 5.39568vw;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .capture-modal-content {
+    margin: 2.92969vw;
+  }
+}
+
+.capture-modal-content .capture-modal-text {
+  width: 100%;
+  padding: 2.15827vw 0;
+}
+
+.capture-modal-content .capture-modal-text p {
+  letter-spacing: .01em;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .capture-modal-content .capture-modal-text p {
+    font-size: clamp(.9rem, 2.5vw, 1.1rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .capture-modal-content .capture-modal-text p {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .capture-modal-content .capture-modal-text p {
+    font-size: clamp(1rem, 1.3vw, 1.35rem);
+  }
+}
+
+.capture-modal-content .capture-modal-text p {
+  color: #000;
+  text-align: center;
+  margin: auto;
+  font-family: Inter, sans-serif;
+}
+
+.capture-modal-content .capture-submit-button {
+  letter-spacing: .01em;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 780px) {
+  .capture-modal-content .capture-submit-button {
+    font-size: clamp(.9rem, 2.5vw, 1.1rem);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .capture-modal-content .capture-submit-button {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+}
+
+@media (min-width: 1700px) {
+  .capture-modal-content .capture-submit-button {
+    font-size: clamp(1rem, 1.3vw, 1.35rem);
+  }
+}
+
+.capture-modal-content .capture-submit-button {
+  cursor: pointer;
+  text-transform: lowercase;
+  background-color: #0000;
+  border: none;
+  width: 100%;
+  font-family: Ortica Angular, serif;
+  transition: all .3s;
+}
+
+/*# sourceMappingURL=components_kitOfParts_capture-modal_scss_css_bad6b30c._.single.css.map*/

@@ -1,0 +1,36 @@
+/**
+ * Reset - CSS Reset
+ * 
+ * This file contains CSS reset styles to normalize browser defaults.
+ */
+
+@use "./vars.scss" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+a {
+  text-decoration: none;
+  color: $color-black;
+  cursor: pointer !important;
+}
+

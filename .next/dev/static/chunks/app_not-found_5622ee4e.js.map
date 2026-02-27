@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Applications/MAMP/htdocs/35-SAT/SAT/app/not-found.js"],"sourcesContent":["'use client';\n\nimport Link from 'next/link';\nimport styles from './not-found.module.scss';\n\nexport default function NotFound() {\n  return (\n    <div className={styles.container}>\n      <h1 className={styles.title}>404</h1>\n      <p className={styles.message}>Page not found</p>\n      <Link href=\"/living-continuity\" className={styles.link}>\n        Go to Homepage\n      </Link>\n    </div>\n  );\n}\n\n"],"names":[],"mappings":";;;;;;AAEA;;;;;;AAFA;;;;;AAKe,SAAS;IACtB,qBACE,6LAAC;QAAI,WAAW,OAAO,SAAS;;0BAC9B,6LAAC;gBAAG,WAAW,OAAO,KAAK;0BAAE;;;;;;0BAC7B,6LAAC;gBAAE,WAAW,OAAO,OAAO;0BAAE;;;;;;0BAC9B,6LAAC,0KAAI;gBAAC,MAAK;gBAAqB,WAAW,OAAO,IAAI;0BAAE;;;;;;;;;;;;AAK9D;KAVwB"}}]
+}

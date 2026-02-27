@@ -222,8 +222,8 @@ const HomePage = () => {
       setEnvironmentLoaded(true);
       timer2 = setTimeout(() => {
         setInitialLoad(false);
-      }, 800);
-    }, 200);
+      }, 20);
+    }, 10);
     return () => {
       clearTimeout(timer);
       if (timer2) clearTimeout(timer2);

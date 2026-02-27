@@ -29,7 +29,7 @@ export default function Menu({ isOpen, onClose }) {
   }, [isOpen]);
 
   const menuItems = [
-    { label: 'A Collective Inquiry', href: '/living-continuity', external: false },
+    { label: 'A Collective Inquiry', href: '/', external: false },
     // { label: 'Archive', href: '#', external: false }
     { label: 'Kit Of Parts', href: '/kit-of-parts', external: false },
     { label: 'Glossary', href: '/glossary', external: false },
@@ -55,7 +55,7 @@ export default function Menu({ isOpen, onClose }) {
         <nav className="menu-nav">
           <ul>
             {menuItems.map((item, index) => {
-              const isActive = pathname === item.href || (pathname === '/' && item.href === '/living-continuity');
+              const isActive = pathname === item.href;
               const className = isActive ? 'menu-item menu-item-archive' : 'menu-item';
               
               if (item.external) {

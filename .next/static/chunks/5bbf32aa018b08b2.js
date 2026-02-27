@@ -1,0 +1,3 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,44868,t=>{t.v({backButton:"layout-module-scss-module__Bn0W8G__backButton"})},79142,t=>{"use strict";var e=t.i(43476),s=t.i(22016),a=t.i(18566),l=t.i(44868);function o(t){let{children:o}=t;return"/glossary"===(0,a.usePathname)()?(0,e.jsx)(e.Fragment,{children:o}):(0,e.jsxs)(e.Fragment,{children:[(0,e.jsx)(s.default,{href:"/glossary",className:l.default.backButton,children:"Back to Glossary"}),o]})}t.s(["default",()=>o])}]);
+
+//# sourceMappingURL=d7fb65961e91d092.js.map

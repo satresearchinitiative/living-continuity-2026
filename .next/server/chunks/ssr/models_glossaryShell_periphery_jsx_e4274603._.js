@@ -1,0 +1,3 @@
+module.exports=[4524,a=>{"use strict";var b=a.i(87924);a.i(72131);var c=a.i(19163);function d(a){let{nodes:d,materials:e}=(0,c.useGLTF)("/glossarySelected/periphery.glb");return(0,b.jsx)("group",{...a,dispose:null,children:(0,b.jsxs)("group",{children:[(0,b.jsx)("mesh",{castShadow:!0,receiveShadow:!0,geometry:d.Sphere167.geometry,material:e["glass.004"]}),(0,b.jsx)("mesh",{castShadow:!0,receiveShadow:!0,geometry:d.Sphere167_1.geometry,material:e["glass.001"]}),(0,b.jsx)("mesh",{castShadow:!0,receiveShadow:!0,geometry:d.Sphere167_2.geometry,material:e.outline})]})})}c.useGLTF.preload("/glossarySelected/periphery.glb"),a.s(["Periphery",()=>d,"default",0,d])}];
+
+//# sourceMappingURL=models_glossaryShell_periphery_jsx_e4274603._.js.map

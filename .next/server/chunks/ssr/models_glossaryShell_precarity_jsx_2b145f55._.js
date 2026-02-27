@@ -1,0 +1,3 @@
+module.exports=[59634,a=>{"use strict";var b=a.i(87924);function c(a){return(0,b.jsx)("group",{...a,dispose:null})}a.i(72131),a.s(["Precarity",()=>c,"default",0,c])}];
+
+//# sourceMappingURL=models_glossaryShell_precarity_jsx_2b145f55._.js.map

@@ -47,7 +47,7 @@ export default function InfoPanel({ isOpen, onClose }) {
         
         // Get the route key (normalize pathname)
         const routeKey = pathname === '/' ? '/' : pathname;
-        const routeInfo = data[routeKey] || data['/living-continuity']; // Fallback to landing page
+        const routeInfo = data[routeKey] || data['/'];
         console.log('[InfoPanel] Route key:', routeKey, 'Route info:', routeInfo);
         
         // Ensure we only use the content, not any old array structure
@@ -133,7 +133,7 @@ export default function InfoPanel({ isOpen, onClose }) {
                   ))
                 ) : null
               )}
-              {(pathname !== '/living-continuity' && pathname !== '/') && (
+              {pathname !== '/' && (
                 <span>
                   <a 
                     href="/content_folder/SRCE_LC_Images/Leon Duval.pdf" 

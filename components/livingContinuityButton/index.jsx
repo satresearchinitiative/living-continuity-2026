@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from "react";
-import "../../app/living-continuity/welcomeModal.scss";
 
 const LivingContinuityButton = React.memo(({ onClick }) => {
   return (

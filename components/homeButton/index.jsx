@@ -7,7 +7,7 @@ import "./homeButton.scss";
 export default function HomeButton() {
   return (
     <div className="home_button_wrapper">
-      <Link href="/living-continuity" className="home_button">
+      <Link href="/" className="home_button">
         Living Continuity
       </Link>
     </div>

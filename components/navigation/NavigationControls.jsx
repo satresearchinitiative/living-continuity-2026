@@ -32,8 +32,8 @@ export default function NavigationControls({
     currentKeywordTitleRef.current = currentKeywordTitle;
   }, [currentKeywordTitle]);
   const isKitOfPartsPage = pathname === '/kit-of-parts';
-  const isLivingContinuityPage = pathname === '/living-continuity' || pathname === '/';
-  const isLandingPage = pathname === '/' || pathname === '/living-continuity';
+  const isLivingContinuityPage = pathname === '/';
+  const isLandingPage = pathname === '/';
   const [objects, setObjects] = useStore('kitOfParts_objectsState', false);
   const [bathroom, setBathroom] = useStore('kitOfParts_clickbathroom2', false);
   const [boxbed, setBoxbed] = useStore('kitOfParts_boxbedState', false);
@@ -81,7 +81,7 @@ export default function NavigationControls({
         try {
           if (document.referrer) {
             const referrerUrl = new URL(document.referrer);
-            hasValidReferrer = (referrerUrl.pathname === '/living-continuity' || referrerUrl.pathname === '/') && referrerUrl.origin === window.location.origin;
+            hasValidReferrer = referrerUrl.pathname === '/' && referrerUrl.origin === window.location.origin;
           }
         } catch (e) {
           hasValidReferrer = false;
@@ -99,7 +99,7 @@ export default function NavigationControls({
     if (typeof window !== 'undefined') {
       sessionStorage.removeItem('fromLivingContinuity');
     }
-    window.location.href = '/living-continuity';
+    window.location.href = '/';
   };
 
   const handleInfoClick = () => {

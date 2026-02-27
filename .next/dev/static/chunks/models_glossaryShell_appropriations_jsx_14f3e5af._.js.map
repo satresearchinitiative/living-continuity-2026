@@ -2,5 +2,5 @@
   "version": 3,
   "sources": [],
   "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Applications/MAMP/htdocs/35-SAT/SAT/models/glossaryShell/appropriations.jsx"],"sourcesContent":["import React from 'react';\n\nexport function Appropriations(props) {\n  // Placeholder component - no 3D model available\n  return <group {...props} dispose={null} />;\n}\n\nexport default Appropriations;\n"],"names":[],"mappings":";;;;;;;;;;AAAA;;;;;;AAEO,SAAS,eAAe,KAAK;IAClC,gDAAgD;IAChD,qBAAO,6LAAC,iWAAU;QAAO,SAAS;;;;;;AACpC;KAHgB;uCAKD"}}]
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Applications/MAMP/htdocs/35-SAT/github/living-continuity-2026/models/glossaryShell/appropriations.jsx"],"sourcesContent":["import React from 'react';\n\nexport function Appropriations(props) {\n  // Placeholder component - no 3D model available\n  return <group {...props} dispose={null} />;\n}\n\nexport default Appropriations;\n"],"names":[],"mappings":";;;;;;;;;;AAAA;;;;;;AAEO,SAAS,eAAe,KAAK;IAClC,gDAAgD;IAChD,qBAAO,6LAAC,iWAAU;QAAO,SAAS;;;;;;AACpC;KAHgB;uCAKD"}}]
 }

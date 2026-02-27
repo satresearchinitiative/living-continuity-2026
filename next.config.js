@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      { source: '/living-continuity', destination: '/', permanent: true },
+    ];
+  },
   productionBrowserSourceMaps: true,
   images: {
     formats: ['image/avif', 'image/webp'],

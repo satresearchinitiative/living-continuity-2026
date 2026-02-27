@@ -93,7 +93,7 @@ export default function Error({ error, reset }) {
           Try again
         </button>
         <Link 
-          href="/living-continuity" 
+          href="/" 
           style={{
             padding: '10px 20px',
             border: '1px solid #000',

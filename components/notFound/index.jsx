@@ -10,7 +10,7 @@ export default function NotFound() {
         <div className={styles.black_box}>
           <h1 className={styles.title}>PAGE NOT FOUND</h1>
         </div>
-        <Link href="/living-continuity" className={styles.link}>
+        <Link href="/" className={styles.link}>
           Go to Homepage
         </Link>
       </div>

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, MenuButton } from './index';
 
 const getPageTitle = (pathname) => {
-  if (pathname === '/living-continuity' || pathname === '/') {
+  if (pathname === '/') {
     return 'A collective Inquiry';
   } else if (pathname === '/glossary') {
     return 'Glossary';

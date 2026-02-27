@@ -1,0 +1,3 @@
+module.exports=[43021,a=>{a.v({backButton:"layout-module-scss-module__Bn0W8G__backButton"})},92130,a=>{"use strict";var b=a.i(87924),c=a.i(38246),d=a.i(50944),e=a.i(43021);function f({children:a}){return"/glossary"===(0,d.usePathname)()?(0,b.jsx)(b.Fragment,{children:a}):(0,b.jsxs)(b.Fragment,{children:[(0,b.jsx)(c.default,{href:"/glossary",className:e.default.backButton,children:"Back to Glossary"}),a]})}a.s(["default",()=>f])}];
+
+//# sourceMappingURL=app_glossary_fd7b5acd._.js.map

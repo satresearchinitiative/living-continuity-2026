@@ -97,7 +97,7 @@ export default function RootLayout({ children }) {
     html.classList.remove('page-landing', 'page-glossary', 'page-kit');
     
     // Add landing page class if on landing page
-    if (pathname === '/living-continuity' || pathname === '/') {
+    if (pathname === '/') {
       body.classList.add('page-landing');
       html.classList.add('page-landing');
     } 

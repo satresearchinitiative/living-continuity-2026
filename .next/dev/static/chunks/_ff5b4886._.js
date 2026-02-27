@@ -422,7 +422,7 @@ function Menu(param) {
     var menuItems = [
         {
             label: 'A Collective Inquiry',
-            href: '/living-continuity',
+            href: '/',
             external: false
         },
         // { label: 'Archive', href: '#', external: false }
@@ -474,7 +474,7 @@ function Menu(param) {
                         className: "menu-nav",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                             children: menuItems.map(function(item, index) {
-                                var isActive = pathname === item.href || pathname === '/' && item.href === '/living-continuity';
+                                var isActive = pathname === item.href;
                                 var className = isActive ? 'menu-item menu-item-archive' : 'menu-item';
                                 if (item.external) {
                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -695,7 +695,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 var getPageTitle = function(pathname) {
-    if (pathname === '/living-continuity' || pathname === '/') {
+    if (pathname === '/') {
         return 'A collective Inquiry';
     } else if (pathname === '/glossary') {
         return 'Glossary';
@@ -783,10 +783,6 @@ var _s = __turbopack_context__.k.signature();
 // Define gradient colors for each page
 var PAGE_GRADIENTS = {
     '/': {
-        top: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLOR_PINK_LIGHT"],
-        bottom: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLOR_PINK_LIGHT"]
-    },
-    '/living-continuity': {
         top: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLOR_PINK_LIGHT"],
         bottom: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLOR_PINK_LIGHT"]
     },
@@ -886,7 +882,7 @@ function GradientController() {
     var previousPathnameRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     var previousSelectedNodeRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     var basePageGradient = PAGE_GRADIENTS[pathname] || PAGE_GRADIENTS["default"];
-    var targetGradient = (pathname === '/living-continuity' || pathname === '/') && selectedNode ? {
+    var targetGradient = pathname === '/' && selectedNode ? {
         top: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLOR_MINT"],
         bottom: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLOR_MINT"]
     } : basePageGradient;
@@ -953,7 +949,7 @@ function GradientController() {
             var selectedNodeChanged = previousNodeId !== currentNodeId;
             if (!pathnameChanged && !selectedNodeChanged) return;
             var baseGradient = PAGE_GRADIENTS[pathname] || PAGE_GRADIENTS["default"];
-            var newTargetGradient = (pathname === '/living-continuity' || pathname === '/') && selectedNode ? {
+            var newTargetGradient = pathname === '/' && selectedNode ? {
                 top: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLOR_MINT"],
                 bottom: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLOR_MINT"]
             } : baseGradient;
@@ -1083,7 +1079,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 343,
+                        lineNumber: 339,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1095,7 +1091,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 351,
+                        lineNumber: 347,
                         columnNumber: 11
                     }, this)
                 ]
@@ -1111,7 +1107,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 364,
+                        lineNumber: 360,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1123,7 +1119,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 373,
+                        lineNumber: 369,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1135,7 +1131,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 382,
+                        lineNumber: 378,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1147,7 +1143,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 391,
+                        lineNumber: 387,
                         columnNumber: 11
                     }, this)
                 ]
@@ -1189,7 +1185,7 @@ function HomeButton() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "home_button_wrapper",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-            href: "/living-continuity",
+            href: "/",
             className: "home_button",
             children: "Living Continuity"
         }, void 0, false, {
@@ -1239,7 +1235,7 @@ function HomeTitle() {
     var _React_useState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"](null), 2), highlightedTerm = _React_useState[0], setHighlightedTerm = _React_useState[1];
     var _React_useState1 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"](null), 2), highlightedArticle = _React_useState1[0], setHighlightedArticle = _React_useState1[1];
     var _React_useState2 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"](null), 2), nodeData = _React_useState2[0], setNodeData = _React_useState2[1];
-    var isHomePage = pathname === '/' || pathname === '/living-continuity';
+    var isHomePage = pathname === '/';
     __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
         "HomeTitle.useEffect": function() {
             fetch('/data/nodes.json').then({
@@ -1441,7 +1437,7 @@ function InfoPanel(param) {
                                             console.log('[InfoPanel] Info data loaded successfully:', data);
                                             // Get the route key (normalize pathname)
                                             routeKey = pathname === '/' ? '/' : pathname;
-                                            routeInfo = data[routeKey] || data['/living-continuity']; // Fallback to landing page
+                                            routeInfo = data[routeKey] || data['/'];
                                             console.log('[InfoPanel] Route key:', routeKey, 'Route info:', routeInfo);
                                             // Ensure we only use the content, not any old array structure
                                             if (routeInfo) {
@@ -1594,7 +1590,7 @@ function InfoPanel(param) {
                                                 columnNumber: 21
                                             }, _this);
                                         }) : null),
-                                        pathname !== '/living-continuity' && pathname !== '/' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        pathname !== '/' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                 href: "/content_folder/SRCE_LC_Images/Leon Duval.pdf",
                                                 download: "Leon Duval.pdf",
@@ -3358,8 +3354,8 @@ function NavigationControls(param) {
         currentKeywordTitle
     ]);
     var isKitOfPartsPage = pathname === '/kit-of-parts';
-    var isLivingContinuityPage = pathname === '/living-continuity' || pathname === '/';
-    var isLandingPage = pathname === '/' || pathname === '/living-continuity';
+    var isLivingContinuityPage = pathname === '/';
+    var isLandingPage = pathname === '/';
     var _useStore1 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$usestore$2d$react$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"])('kitOfParts_objectsState', false), 2), objects = _useStore1[0], setObjects = _useStore1[1];
     var _useStore2 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$usestore$2d$react$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"])('kitOfParts_clickbathroom2', false), 2), bathroom = _useStore2[0], setBathroom = _useStore2[1];
     var _useStore3 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$usestore$2d$react$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"])('kitOfParts_boxbedState', false), 2), boxbed = _useStore3[0], setBoxbed = _useStore3[1];
@@ -3420,7 +3416,7 @@ function NavigationControls(param) {
                     try {
                         if (document.referrer) {
                             var referrerUrl = new URL(document.referrer);
-                            hasValidReferrer = (referrerUrl.pathname === '/living-continuity' || referrerUrl.pathname === '/') && referrerUrl.origin === window.location.origin;
+                            hasValidReferrer = referrerUrl.pathname === '/' && referrerUrl.origin === window.location.origin;
                         }
                     } catch (e) {
                         hasValidReferrer = false;
@@ -3440,7 +3436,7 @@ function NavigationControls(param) {
         if ("TURBOPACK compile-time truthy", 1) {
             sessionStorage.removeItem('fromLivingContinuity');
         }
-        window.location.href = '/living-continuity';
+        window.location.href = '/';
     };
     var handleInfoClick = function() {
         setInfoPanelOpen(!infoPanelOpen);
@@ -4410,7 +4406,7 @@ function RootLayout(param) {
             body.classList.remove('page-landing', 'page-glossary', 'page-kit');
             html.classList.remove('page-landing', 'page-glossary', 'page-kit');
             // Add landing page class if on landing page
-            if (pathname === '/living-continuity' || pathname === '/') {
+            if (pathname === '/') {
                 body.classList.add('page-landing');
                 html.classList.add('page-landing');
             } else if (pathname === '/glossary') {

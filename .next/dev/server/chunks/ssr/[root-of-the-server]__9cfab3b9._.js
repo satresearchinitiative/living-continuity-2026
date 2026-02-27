@@ -415,7 +415,7 @@ function Menu({ isOpen, onClose }) {
     const menuItems = [
         {
             label: 'A Collective Inquiry',
-            href: '/living-continuity',
+            href: '/',
             external: false
         },
         // { label: 'Archive', href: '#', external: false }
@@ -467,7 +467,7 @@ function Menu({ isOpen, onClose }) {
                         className: "menu-nav",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                             children: menuItems.map((item, index)=>{
-                                const isActive = pathname === item.href || pathname === '/' && item.href === '/living-continuity';
+                                const isActive = pathname === item.href;
                                 const className = isActive ? 'menu-item menu-item-archive' : 'menu-item';
                                 if (item.external) {
                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -658,7 +658,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$menu$2f$MenuBu
 ;
 ;
 const getPageTitle = (pathname)=>{
-    if (pathname === '/living-continuity' || pathname === '/') {
+    if (pathname === '/') {
         return 'A collective Inquiry';
     } else if (pathname === '/glossary') {
         return 'Glossary';
@@ -725,10 +725,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colo
 // Define gradient colors for each page
 const PAGE_GRADIENTS = {
     '/': {
-        top: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COLOR_PINK_LIGHT"],
-        bottom: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COLOR_PINK_LIGHT"]
-    },
-    '/living-continuity': {
         top: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COLOR_PINK_LIGHT"],
         bottom: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COLOR_PINK_LIGHT"]
     },
@@ -826,7 +822,7 @@ function GradientController() {
     const previousPathnameRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const previousSelectedNodeRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const basePageGradient = PAGE_GRADIENTS[pathname] || PAGE_GRADIENTS.default;
-    const targetGradient = (pathname === '/living-continuity' || pathname === '/') && selectedNode ? {
+    const targetGradient = pathname === '/' && selectedNode ? {
         top: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COLOR_MINT"],
         bottom: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COLOR_MINT"]
     } : basePageGradient;
@@ -885,7 +881,7 @@ function GradientController() {
         const selectedNodeChanged = previousNodeId !== currentNodeId;
         if (!pathnameChanged && !selectedNodeChanged) return;
         const baseGradient = PAGE_GRADIENTS[pathname] || PAGE_GRADIENTS.default;
-        const newTargetGradient = (pathname === '/living-continuity' || pathname === '/') && selectedNode ? {
+        const newTargetGradient = pathname === '/' && selectedNode ? {
             top: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COLOR_MINT"],
             bottom: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$_setup$2f$colors$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COLOR_MINT"]
         } : baseGradient;
@@ -1010,7 +1006,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 343,
+                        lineNumber: 339,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1022,7 +1018,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 351,
+                        lineNumber: 347,
                         columnNumber: 11
                     }, this)
                 ]
@@ -1038,7 +1034,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 364,
+                        lineNumber: 360,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1050,7 +1046,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 373,
+                        lineNumber: 369,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1062,7 +1058,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 382,
+                        lineNumber: 378,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1074,7 +1070,7 @@ function GradientController() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/gradient/index.jsx",
-                        lineNumber: 391,
+                        lineNumber: 387,
                         columnNumber: 11
                     }, this)
                 ]
@@ -1102,7 +1098,7 @@ function HomeButton() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "home_button_wrapper",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-            href: "/living-continuity",
+            href: "/",
             className: "home_button",
             children: "Living Continuity"
         }, void 0, false, {
@@ -1140,7 +1136,7 @@ function HomeTitle() {
     const [highlightedTerm, setHighlightedTerm] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"](null);
     const [highlightedArticle, setHighlightedArticle] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"](null);
     const [nodeData, setNodeData] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"](null);
-    const isHomePage = pathname === '/' || pathname === '/living-continuity';
+    const isHomePage = pathname === '/';
     __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"](()=>{
         fetch('/data/nodes.json').then((res)=>res.json()).then((data)=>{
             setNodeData(data);
@@ -1268,7 +1264,7 @@ function InfoPanel({ isOpen, onClose }) {
                 console.log('[InfoPanel] Info data loaded successfully:', data);
                 // Get the route key (normalize pathname)
                 const routeKey = pathname === '/' ? '/' : pathname;
-                const routeInfo = data[routeKey] || data['/living-continuity']; // Fallback to landing page
+                const routeInfo = data[routeKey] || data['/'];
                 console.log('[InfoPanel] Route key:', routeKey, 'Route info:', routeInfo);
                 // Ensure we only use the content, not any old array structure
                 if (routeInfo) {
@@ -1397,7 +1393,7 @@ function InfoPanel({ isOpen, onClose }) {
                                                 lineNumber: 129,
                                                 columnNumber: 21
                                             }, this)) : null),
-                                        pathname !== '/living-continuity' && pathname !== '/' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        pathname !== '/' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                 href: "/content_folder/SRCE_LC_Images/Leon Duval.pdf",
                                                 download: "Leon Duval.pdf",
@@ -2674,8 +2670,8 @@ function NavigationControls({ camera, setCamera, onSubmitEntry = null, currentKe
         currentKeywordTitle
     ]);
     const isKitOfPartsPage = pathname === '/kit-of-parts';
-    const isLivingContinuityPage = pathname === '/living-continuity' || pathname === '/';
-    const isLandingPage = pathname === '/' || pathname === '/living-continuity';
+    const isLivingContinuityPage = pathname === '/';
+    const isLandingPage = pathname === '/';
     const [objects, setObjects] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$usestore$2d$react$2f$dist$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useStore"])('kitOfParts_objectsState', false);
     const [bathroom, setBathroom] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$usestore$2d$react$2f$dist$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useStore"])('kitOfParts_clickbathroom2', false);
     const [boxbed, setBoxbed] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$usestore$2d$react$2f$dist$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useStore"])('kitOfParts_boxbedState', false);
@@ -2728,7 +2724,7 @@ function NavigationControls({ camera, setCamera, onSubmitEntry = null, currentKe
     const handleGoBack = ()=>{
         if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
         ;
-        window.location.href = '/living-continuity';
+        window.location.href = '/';
     };
     const handleInfoClick = ()=>{
         setInfoPanelOpen(!infoPanelOpen);
@@ -3447,7 +3443,7 @@ function RootLayout({ children }) {
         body.classList.remove('page-landing', 'page-glossary', 'page-kit');
         html.classList.remove('page-landing', 'page-glossary', 'page-kit');
         // Add landing page class if on landing page
-        if (pathname === '/living-continuity' || pathname === '/') {
+        if (pathname === '/') {
             body.classList.add('page-landing');
             html.classList.add('page-landing');
         } else if (pathname === '/glossary') {

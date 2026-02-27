@@ -17,10 +17,6 @@ const PAGE_GRADIENTS = {
     top: COLOR_PINK_LIGHT,
     bottom: COLOR_PINK_LIGHT,
   },
-  '/living-continuity': {
-    top: COLOR_PINK_LIGHT,
-    bottom: COLOR_PINK_LIGHT,
-  },
   '/glossary': {
     top: COLOR_BLUE_LIGHT,
     bottom: COLOR_BLUE_LIGHT,
@@ -135,7 +131,7 @@ export default function GradientController() {
 
   const basePageGradient = PAGE_GRADIENTS[pathname] || PAGE_GRADIENTS.default;
   
-  const targetGradient = (pathname === '/living-continuity' || pathname === '/') && selectedNode
+  const targetGradient = pathname === '/' && selectedNode
     ? { top: COLOR_MINT, bottom: COLOR_MINT }
     : basePageGradient;
 
@@ -199,7 +195,7 @@ export default function GradientController() {
     if (!pathnameChanged && !selectedNodeChanged) return;
 
     const baseGradient = PAGE_GRADIENTS[pathname] || PAGE_GRADIENTS.default;
-    const newTargetGradient = (pathname === '/living-continuity' || pathname === '/') && selectedNode
+    const newTargetGradient = pathname === '/' && selectedNode
       ? { top: COLOR_MINT, bottom: COLOR_MINT }
       : baseGradient;
 

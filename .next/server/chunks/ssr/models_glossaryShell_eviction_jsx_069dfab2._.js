@@ -1,0 +1,3 @@
+module.exports=[12422,a=>{"use strict";var b=a.i(87924);a.i(72131);var c=a.i(19163);function d(a){let{nodes:d,materials:e}=(0,c.useGLTF)("/glossarySelected/eviction.glb");return(0,b.jsx)("group",{...a,dispose:null,children:(0,b.jsxs)("group",{children:[(0,b.jsx)("mesh",{castShadow:!0,receiveShadow:!0,geometry:d.Sphere171.geometry,material:e["glass.004"]}),(0,b.jsx)("mesh",{castShadow:!0,receiveShadow:!0,geometry:d.Sphere171_1.geometry,material:e["glass.001"]}),(0,b.jsx)("mesh",{castShadow:!0,receiveShadow:!0,geometry:d.Sphere171_2.geometry,material:e.outline})]})})}c.useGLTF.preload("/glossarySelected/eviction.glb"),a.s(["Eviction",()=>d,"default",0,d])}];
+
+//# sourceMappingURL=models_glossaryShell_eviction_jsx_069dfab2._.js.map

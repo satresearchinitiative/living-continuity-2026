@@ -1,0 +1,9 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/submit-entry/route": "app/api/submit-entry/route.js",
+  "/api/submit-floor-plan/route": "app/api/submit-floor-plan/route.js",
+  "/glossary/page": "app/glossary/page.js",
+  "/kit-of-parts/page": "app/kit-of-parts/page.js",
+  "/page": "app/page.js"
+}

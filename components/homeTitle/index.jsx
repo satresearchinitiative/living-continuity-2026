@@ -12,7 +12,7 @@ export default function HomeTitle() {
   const [highlightedArticle, setHighlightedArticle] = React.useState(null);
   const [nodeData, setNodeData] = React.useState(null);
 
-  const isHomePage = pathname === '/' || pathname === '/living-continuity';
+  const isHomePage = pathname === '/';
 
   React.useEffect(() => {
     fetch('/data/nodes.json')

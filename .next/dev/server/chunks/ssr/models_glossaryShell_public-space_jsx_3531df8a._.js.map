@@ -2,5 +2,5 @@
   "version": 3,
   "sources": [],
   "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Applications/MAMP/htdocs/35-SAT/SAT/models/glossaryShell/public-space.jsx"],"sourcesContent":["import React from 'react';\n\nexport function PublicSpace(props) {\n  // Placeholder component - no 3D model available\n  return <group {...props} dispose={null} />;\n}\n\nexport default PublicSpace;\n"],"names":[],"mappings":";;;;;;;AAAA;;;AAEO,SAAS,YAAY,KAAK;IAC/B,gDAAgD;IAChD,qBAAO,8OAAC;QAAO,GAAG,KAAK;QAAE,SAAS;;;;;;AACpC;uCAEe"}}]
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Applications/MAMP/htdocs/35-SAT/github/living-continuity-2026/models/glossaryShell/public-space.jsx"],"sourcesContent":["import React from 'react';\n\nexport function PublicSpace(props) {\n  // Placeholder component - no 3D model available\n  return <group {...props} dispose={null} />;\n}\n\nexport default PublicSpace;\n"],"names":[],"mappings":";;;;;;;AAAA;;;AAEO,SAAS,YAAY,KAAK;IAC/B,gDAAgD;IAChD,qBAAO,8OAAC;QAAO,GAAG,KAAK;QAAE,SAAS;;;;;;AACpC;uCAEe"}}]
 }

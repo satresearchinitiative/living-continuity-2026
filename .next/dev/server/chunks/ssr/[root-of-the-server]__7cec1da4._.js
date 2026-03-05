@@ -1510,7 +1510,7 @@ function ElementOpacityController() {
             length: 29
         }, (_, index)=>`A${index + 1}`);
         const KEYWORD_IDS = Array.from({
-            length: 54
+            length: 57
         }, (_, index)=>`G${index + 1}`);
         const directlyConnected = selectedId ? new Set((0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$nodeConnections$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getConnectedNodes"])(selectedId)) : new Set();
         directlyConnected.add(selectedId);
@@ -3725,9 +3725,8 @@ function useNodeVisibility(nodeId, index, totalNodes) {
         nodesVisible: []
     });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const baseDelay = 50;
+        const baseDelay = 20;
         const staggerDelay = index * baseDelay;
-        const maxDelay = totalNodes * baseDelay;
         if (!loadingState.isLoading && loadingState.totalNodes > 0) {
             const timer = setTimeout(()=>{
                 setIsVisible(true);
@@ -6410,7 +6409,7 @@ const HomePage = ()=>{
     const [initialCameraPosition] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(()=>getInitialCameraPosition());
     const frameloopMode = camera || cameraInteraction || initialLoad ? 'always' : 'demand';
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        fetch(`/data/nodes.json?t=${Date.now()}`).then((res)=>{
+        fetch('/data/nodes.json').then((res)=>{
             if (!res.ok) {
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
@@ -6423,6 +6422,7 @@ const HomePage = ()=>{
             });
             const totalNodes = (data.articles?.length || 0) + (data.glossary?.length || 0);
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$LoadingStateManager$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["initializeLoadingState"])(totalNodes);
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$LoadingStateManager$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["completeLoading"])();
             const scheduleIdleWork = (callback)=>{
                 if (("TURBOPACK compile-time value", "undefined") !== 'undefined' && 'requestIdleCallback' in window) //TURBOPACK unreachable
                 ;
@@ -6431,43 +6431,37 @@ const HomePage = ()=>{
                 }
             };
             const loadComponentsInBatches = async ()=>{
-                const batchSize = 5;
+                const batchSize = 8;
                 const allArticles = data.articles || [];
                 const allGlossary = data.glossary || [];
-                const loadBatch = async (items, loader, setter, type)=>{
+                const loadBatch = async (items, loader, setter)=>{
                     for(let i = 0; i < items.length; i += batchSize){
-                        await new Promise((resolve)=>{
-                            scheduleIdleWork(async ()=>{
-                                const batch = items.slice(i, i + batchSize);
-                                const results = await Promise.allSettled(batch.map(async (item)=>{
-                                    try {
-                                        const component = await loader(item);
-                                        return {
-                                            id: item.id,
-                                            component
-                                        };
-                                    } catch (e) {
-                                        console.warn(`Failed to load ${type} component for ${item.id}:`, e);
-                                        return {
-                                            id: item.id,
-                                            component: null
-                                        };
+                        const batch = items.slice(i, i + batchSize);
+                        const results = await Promise.allSettled(batch.map(async (item)=>{
+                            try {
+                                const component = await loader(item);
+                                return {
+                                    id: item.id,
+                                    component
+                                };
+                            } catch (e) {
+                                return {
+                                    id: item.id,
+                                    component: null
+                                };
+                            }
+                        }));
+                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["startTransition"])(()=>{
+                            setter((prev)=>{
+                                const updated = {
+                                    ...prev
+                                };
+                                results.forEach((result)=>{
+                                    if (result.status === 'fulfilled' && result.value?.component) {
+                                        updated[result.value.id] = result.value.component;
                                     }
-                                }));
-                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["startTransition"])(()=>{
-                                    setter((prev)=>{
-                                        const updated = {
-                                            ...prev
-                                        };
-                                        results.forEach((result)=>{
-                                            if (result.status === 'fulfilled' && result.value?.component) {
-                                                updated[result.value.id] = result.value.component;
-                                            }
-                                        });
-                                        return updated;
-                                    });
                                 });
-                                setTimeout(resolve, 50);
+                                return updated;
                             });
                         });
                     }
@@ -6484,22 +6478,16 @@ const HomePage = ()=>{
                     }
                     return Promise.resolve(null);
                 };
-                await Promise.all([
-                    loadBatch(allArticles, articleLoader, setSelectedComponentsMap, 'article'),
-                    loadBatch(allGlossary, glossaryLoader, setGlossaryShellComponentsMap, 'glossary')
-                ]);
-                (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$LoadingStateManager$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["completeLoading"])();
-            };
-            scheduleIdleWork(()=>{
-                (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ModelPreloader$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["preloadAllModels"])(data);
-                (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ModelPreloader$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["preloadImages"])(data).catch(()=>{});
-            });
-            scheduleIdleWork(()=>{
-                loadComponentsInBatches().catch((err)=>{
-                    console.error('Error loading components:', err);
-                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$LoadingStateManager$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["completeLoading"])();
+                scheduleIdleWork(()=>{
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ModelPreloader$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["preloadImages"])(data).catch(()=>{});
                 });
-            });
+                loadBatch(allArticles, articleLoader, setSelectedComponentsMap).then(()=>{
+                    scheduleIdleWork(()=>{
+                        loadBatch(allGlossary, glossaryLoader, setGlossaryShellComponentsMap);
+                    });
+                });
+            };
+            scheduleIdleWork(()=>loadComponentsInBatches());
         }).catch((err)=>{
             console.error('Failed to load node data:', err);
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["startTransition"])(()=>{
@@ -6553,7 +6541,7 @@ const HomePage = ()=>{
         if (!modalIsOpen && processedData && nodeData) {
             const timer = setTimeout(()=>{
                 setWalkThroughActive(true);
-            }, 8000);
+            }, 4000);
             return ()=>clearTimeout(timer);
         }
     }, [
@@ -6672,17 +6660,17 @@ const HomePage = ()=>{
                         onClick: handleOpen
                     }, void 0, false, {
                         fileName: "[project]/app/page.js",
-                        lineNumber: 366,
+                        lineNumber: 352,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/app/page.js",
-                    lineNumber: 365,
+                    lineNumber: 351,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/app/page.js",
-                lineNumber: 353,
+                lineNumber: 339,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             (!processedData || !nodeData) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6690,7 +6678,7 @@ const HomePage = ()=>{
                 children: "Loading..."
             }, void 0, false, {
                 fileName: "[project]/app/page.js",
-                lineNumber: 370,
+                lineNumber: 356,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6699,12 +6687,12 @@ const HomePage = ()=>{
                     title: title
                 }, void 0, false, {
                     fileName: "[project]/app/page.js",
-                    lineNumber: 375,
+                    lineNumber: 361,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/app/page.js",
-                lineNumber: 374,
+                lineNumber: 360,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6714,21 +6702,21 @@ const HomePage = ()=>{
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SceneBackground, {}, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 382,
+                            lineNumber: 368,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(InitialCameraSetup, {
                             initialPosition: initialCameraPosition
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 383,
+                            lineNumber: 369,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ambientLight", {
                             intensity: 1
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 384,
+                            lineNumber: 370,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         environmentLoaded && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Suspense"], {
@@ -6737,19 +6725,19 @@ const HomePage = ()=>{
                                 preset: "city"
                             }, void 0, false, {
                                 fileName: "[project]/app/page.js",
-                                lineNumber: 387,
+                                lineNumber: 373,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 386,
+                            lineNumber: 372,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(CameraDolly, {
                             cameraOptions: cameraOptions
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 390,
+                            lineNumber: 376,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         processedData && nodeData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -6760,27 +6748,27 @@ const HomePage = ()=>{
                                     isActive: walkThroughActive
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 393,
+                                    lineNumber: 379,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ElementOpacityController$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 398,
+                                    lineNumber: 384,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$CameraInteractionTracker$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CameraInteractionTracker"], {}, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 399,
+                                    lineNumber: 385,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ConnectionTransitionController$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ConnectionTransitionController"], {}, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 400,
+                                    lineNumber: 386,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$CameraFOVController$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CameraFOVController"], {}, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 401,
+                                    lineNumber: 387,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 nodeData.articles.map((article)=>{
@@ -6798,12 +6786,12 @@ const HomePage = ()=>{
                                             selectedComponent: SelectedComponent
                                         }, void 0, false, {
                                             fileName: "[project]/app/page.js",
-                                            lineNumber: 412,
+                                            lineNumber: 398,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, article.id, false, {
                                         fileName: "[project]/app/page.js",
-                                        lineNumber: 411,
+                                        lineNumber: 397,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0));
                                 }),
@@ -6823,12 +6811,12 @@ const HomePage = ()=>{
                                             glossaryShellComponent: GlossaryShellComponent
                                         }, void 0, false, {
                                             fileName: "[project]/app/page.js",
-                                            lineNumber: 432,
+                                            lineNumber: 418,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, glossary.id, false, {
                                         fileName: "[project]/app/page.js",
-                                        lineNumber: 431,
+                                        lineNumber: 417,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0));
                                 }),
@@ -6836,7 +6824,7 @@ const HomePage = ()=>{
                                     processedData: processedData
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 444,
+                                    lineNumber: 430,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
@@ -6856,18 +6844,18 @@ const HomePage = ()=>{
                             enableRotate: true
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 448,
+                            lineNumber: 434,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/page.js",
-                    lineNumber: 379,
+                    lineNumber: 365,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/app/page.js",
-                lineNumber: 378,
+                lineNumber: 364,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]

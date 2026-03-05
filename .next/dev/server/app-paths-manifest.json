@@ -1,5 +1,4 @@
 {
   "/glossary/page": "app/glossary/page.js",
-  "/kit-of-parts/page": "app/kit-of-parts/page.js",
   "/page": "app/page.js"
 }

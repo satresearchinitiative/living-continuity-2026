@@ -23,9 +23,8 @@ export function useNodeVisibility(nodeId, index, totalNodes) {
   });
 
   useEffect(() => {
-    const baseDelay = 50;
+    const baseDelay = 20;
     const staggerDelay = index * baseDelay;
-    const maxDelay = totalNodes * baseDelay;
     
     if (!loadingState.isLoading && loadingState.totalNodes > 0) {
       const timer = setTimeout(() => {

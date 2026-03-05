@@ -73,7 +73,7 @@ export function ElementOpacityController() {
     const selectedId = selectedNode?.id;
 
     const ARTICLE_IDS = Array.from({ length: 29 }, (_, index) => `A${index + 1}`);
-    const KEYWORD_IDS = Array.from({ length: 54 }, (_, index) => `G${index + 1}`);
+    const KEYWORD_IDS = Array.from({ length: 57 }, (_, index) => `G${index + 1}`);
 
     const directlyConnected = selectedId ? new Set(getConnectedNodes(selectedId)) : new Set();
     directlyConnected.add(selectedId);

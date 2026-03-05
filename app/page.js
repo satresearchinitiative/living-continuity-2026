@@ -108,7 +108,7 @@ const HomePage = () => {
   
 
   useEffect(() => {
-    fetch(`/data/nodes.json?t=${Date.now()}`)
+    fetch('/data/nodes.json')
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -121,10 +121,11 @@ const HomePage = () => {
           const processed = processNodeData(data);
           setProcessedData(processed);
         });
-        
+
         const totalNodes = (data.articles?.length || 0) + (data.glossary?.length || 0);
         initializeLoadingState(totalNodes);
-        
+        completeLoading();
+
         const scheduleIdleWork = (callback) => {
           if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
             requestIdleCallback(callback, { timeout: 2000 });
@@ -132,80 +133,65 @@ const HomePage = () => {
             setTimeout(callback, 100);
           }
         };
-        
+
         const loadComponentsInBatches = async () => {
-          const batchSize = 5;
+          const batchSize = 8;
           const allArticles = data.articles || [];
           const allGlossary = data.glossary || [];
-          
-          const loadBatch = async (items, loader, setter, type) => {
+
+          const loadBatch = async (items, loader, setter) => {
             for (let i = 0; i < items.length; i += batchSize) {
-              await new Promise(resolve => {
-                scheduleIdleWork(async () => {
-                  const batch = items.slice(i, i + batchSize);
-                  const results = await Promise.allSettled(
-                    batch.map(async (item) => {
-                      try {
-                        const component = await loader(item);
-                        return { id: item.id, component };
-                      } catch (e) {
-                        console.warn(`Failed to load ${type} component for ${item.id}:`, e);
-                        return { id: item.id, component: null };
-                      }
-                    })
-                  );
-                  
-                  startTransition(() => {
-                    setter(prev => {
-                      const updated = { ...prev };
-                      results.forEach((result) => {
-                        if (result.status === 'fulfilled' && result.value?.component) {
-                          updated[result.value.id] = result.value.component;
-                        }
-                      });
-                      return updated;
-                    });
+              const batch = items.slice(i, i + batchSize);
+              const results = await Promise.allSettled(
+                batch.map(async (item) => {
+                  try {
+                    const component = await loader(item);
+                    return { id: item.id, component };
+                  } catch (e) {
+                    return { id: item.id, component: null };
+                  }
+                })
+              );
+              startTransition(() => {
+                setter(prev => {
+                  const updated = { ...prev };
+                  results.forEach((result) => {
+                    if (result.status === 'fulfilled' && result.value?.component) {
+                      updated[result.value.id] = result.value.component;
+                    }
                   });
-                  
-                  setTimeout(resolve, 50);
+                  return updated;
                 });
               });
             }
           };
-          
+
           const articleLoader = (article) => {
             if (article.selectedModelPath) {
               return getSelectedComponent(article.id);
             }
             return Promise.resolve(null);
           };
-          
+
           const glossaryLoader = (glossary) => {
             if (glossary.glossaryShellPath) {
               return getGlossaryShellComponent(glossary.glossaryShellPath);
             }
             return Promise.resolve(null);
           };
-          
-          await Promise.all([
-            loadBatch(allArticles, articleLoader, setSelectedComponentsMap, 'article'),
-            loadBatch(allGlossary, glossaryLoader, setGlossaryShellComponentsMap, 'glossary')
-          ]);
-          
-          completeLoading();
-        };
-        
-        scheduleIdleWork(() => {
-          preloadAllModels(data);
-          preloadImages(data).catch(() => {});
-        });
-        
-        scheduleIdleWork(() => {
-          loadComponentsInBatches().catch(err => {
-            console.error('Error loading components:', err);
-            completeLoading();
+
+          scheduleIdleWork(() => {
+            preloadImages(data).catch(() => {});
           });
-        });
+
+          loadBatch(allArticles, articleLoader, setSelectedComponentsMap).then(() => {
+            scheduleIdleWork(() => {
+              loadBatch(allGlossary, glossaryLoader, setGlossaryShellComponentsMap);
+            });
+          });
+        };
+
+        scheduleIdleWork(() => loadComponentsInBatches());
       })
       .catch(err => {
         console.error('Failed to load node data:', err);
@@ -256,7 +242,7 @@ const HomePage = () => {
     if (!modalIsOpen && processedData && nodeData) {
       const timer = setTimeout(() => {
         setWalkThroughActive(true);
-      }, 8000);
+      }, 4000);
       
       return () => clearTimeout(timer);
     }

@@ -1715,7 +1715,7 @@ function ElementOpacityController() {
                 }
             }["ElementOpacityController.useEffect.ARTICLE_IDS"]);
             var KEYWORD_IDS = Array.from({
-                length: 54
+                length: 57
             }, {
                 "ElementOpacityController.useEffect.KEYWORD_IDS": function(_, index) {
                     return "G".concat(index + 1);
@@ -4354,9 +4354,8 @@ function useNodeVisibility(nodeId, index, totalNodes) {
     }), 1), loadingState = _useStore[0];
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "useNodeVisibility.useEffect": function() {
-            var baseDelay = 50;
+            var baseDelay = 20;
             var staggerDelay = index * baseDelay;
-            var maxDelay = totalNodes * baseDelay;
             if (!loadingState.isLoading && loadingState.totalNodes > 0) {
                 var timer = setTimeout({
                     "useNodeVisibility.useEffect.timer": function() {
@@ -7546,7 +7545,7 @@ var HomePage = function() {
     var frameloopMode = camera || cameraInteraction || initialLoad ? 'always' : 'demand';
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "HomePage.useEffect": function() {
-            fetch("/data/nodes.json?t=".concat(Date.now())).then({
+            fetch('/data/nodes.json').then({
                 "HomePage.useEffect": function(res) {
                     if (!res.ok) {
                         throw new Error("HTTP error! status: ".concat(res.status));
@@ -7565,6 +7564,7 @@ var HomePage = function() {
                     }["HomePage.useEffect"]);
                     var totalNodes = (((_data_articles = data.articles) === null || _data_articles === void 0 ? void 0 : _data_articles.length) || 0) + (((_data_glossary = data.glossary) === null || _data_glossary === void 0 ? void 0 : _data_glossary.length) || 0);
                     (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$LoadingStateManager$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["initializeLoadingState"])(totalNodes);
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$LoadingStateManager$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["completeLoading"])();
                     var scheduleIdleWork = {
                         "HomePage.useEffect.scheduleIdleWork": function(callback) {
                             if (("TURBOPACK compile-time value", "object") !== 'undefined' && 'requestIdleCallback' in window) {
@@ -7583,197 +7583,171 @@ var HomePage = function() {
                                     var batchSize, allArticles, allGlossary, loadBatch, articleLoader, glossaryLoader;
                                     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
                                         "HomePage.useEffect.loadComponentsInBatches": function(_state) {
-                                            switch(_state.label){
-                                                case 0:
-                                                    batchSize = 5;
-                                                    allArticles = data.articles || [];
-                                                    allGlossary = data.glossary || [];
-                                                    loadBatch = ({
-                                                        "HomePage.useEffect.loadComponentsInBatches": function(items, loader, setter, type) {
-                                                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_async_to_generator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])({
-                                                                "HomePage.useEffect.loadComponentsInBatches": function() {
-                                                                    var _loop, i;
-                                                                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
-                                                                        "HomePage.useEffect.loadComponentsInBatches": function(_state) {
-                                                                            switch(_state.label){
-                                                                                case 0:
-                                                                                    _loop = ({
-                                                                                        "HomePage.useEffect.loadComponentsInBatches": function(i) {
-                                                                                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
-                                                                                                "HomePage.useEffect.loadComponentsInBatches": function(_state) {
-                                                                                                    switch(_state.label){
-                                                                                                        case 0:
-                                                                                                            return [
-                                                                                                                4,
-                                                                                                                new Promise({
-                                                                                                                    "HomePage.useEffect.loadComponentsInBatches": function(resolve) {
-                                                                                                                        scheduleIdleWork({
-                                                                                                                            "HomePage.useEffect.loadComponentsInBatches": function() {
-                                                                                                                                return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_async_to_generator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])({
-                                                                                                                                    "HomePage.useEffect.loadComponentsInBatches": function() {
-                                                                                                                                        var batch, results;
-                                                                                                                                        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
-                                                                                                                                            "HomePage.useEffect.loadComponentsInBatches": function(_state) {
-                                                                                                                                                switch(_state.label){
-                                                                                                                                                    case 0:
-                                                                                                                                                        batch = items.slice(i, i + batchSize);
-                                                                                                                                                        return [
-                                                                                                                                                            4,
-                                                                                                                                                            Promise.allSettled(batch.map({
-                                                                                                                                                                "HomePage.useEffect.loadComponentsInBatches": function(item) {
-                                                                                                                                                                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_async_to_generator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])({
-                                                                                                                                                                        "HomePage.useEffect.loadComponentsInBatches": function() {
-                                                                                                                                                                            var component, e;
-                                                                                                                                                                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
-                                                                                                                                                                                "HomePage.useEffect.loadComponentsInBatches": function(_state) {
-                                                                                                                                                                                    switch(_state.label){
-                                                                                                                                                                                        case 0:
-                                                                                                                                                                                            _state.trys.push([
-                                                                                                                                                                                                0,
-                                                                                                                                                                                                2,
-                                                                                                                                                                                                ,
-                                                                                                                                                                                                3
-                                                                                                                                                                                            ]);
-                                                                                                                                                                                            return [
-                                                                                                                                                                                                4,
-                                                                                                                                                                                                loader(item)
-                                                                                                                                                                                            ];
-                                                                                                                                                                                        case 1:
-                                                                                                                                                                                            component = _state.sent();
-                                                                                                                                                                                            return [
-                                                                                                                                                                                                2,
-                                                                                                                                                                                                {
-                                                                                                                                                                                                    id: item.id,
-                                                                                                                                                                                                    component: component
-                                                                                                                                                                                                }
-                                                                                                                                                                                            ];
-                                                                                                                                                                                        case 2:
-                                                                                                                                                                                            e = _state.sent();
-                                                                                                                                                                                            console.warn("Failed to load ".concat(type, " component for ").concat(item.id, ":"), e);
-                                                                                                                                                                                            return [
-                                                                                                                                                                                                2,
-                                                                                                                                                                                                {
-                                                                                                                                                                                                    id: item.id,
-                                                                                                                                                                                                    component: null
-                                                                                                                                                                                                }
-                                                                                                                                                                                            ];
-                                                                                                                                                                                        case 3:
-                                                                                                                                                                                            return [
-                                                                                                                                                                                                2
-                                                                                                                                                                                            ];
-                                                                                                                                                                                    }
-                                                                                                                                                                                }
-                                                                                                                                                                            }["HomePage.useEffect.loadComponentsInBatches"]);
-                                                                                                                                                                        }
-                                                                                                                                                                    }["HomePage.useEffect.loadComponentsInBatches"])();
-                                                                                                                                                                }
-                                                                                                                                                            }["HomePage.useEffect.loadComponentsInBatches"]))
-                                                                                                                                                        ];
-                                                                                                                                                    case 1:
-                                                                                                                                                        results = _state.sent();
-                                                                                                                                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["startTransition"])({
-                                                                                                                                                            "HomePage.useEffect.loadComponentsInBatches": function() {
-                                                                                                                                                                setter({
-                                                                                                                                                                    "HomePage.useEffect.loadComponentsInBatches": function(prev) {
-                                                                                                                                                                        var updated = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_object_spread$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])({}, prev);
-                                                                                                                                                                        results.forEach({
-                                                                                                                                                                            "HomePage.useEffect.loadComponentsInBatches": function(result) {
-                                                                                                                                                                                var _result_value;
-                                                                                                                                                                                if (result.status === 'fulfilled' && ((_result_value = result.value) === null || _result_value === void 0 ? void 0 : _result_value.component)) {
-                                                                                                                                                                                    updated[result.value.id] = result.value.component;
-                                                                                                                                                                                }
-                                                                                                                                                                            }
-                                                                                                                                                                        }["HomePage.useEffect.loadComponentsInBatches"]);
-                                                                                                                                                                        return updated;
-                                                                                                                                                                    }
-                                                                                                                                                                }["HomePage.useEffect.loadComponentsInBatches"]);
-                                                                                                                                                            }
-                                                                                                                                                        }["HomePage.useEffect.loadComponentsInBatches"]);
-                                                                                                                                                        setTimeout(resolve, 50);
-                                                                                                                                                        return [
-                                                                                                                                                            2
-                                                                                                                                                        ];
-                                                                                                                                                }
+                                            batchSize = 8;
+                                            allArticles = data.articles || [];
+                                            allGlossary = data.glossary || [];
+                                            loadBatch = ({
+                                                "HomePage.useEffect.loadComponentsInBatches": function(items, loader, setter) {
+                                                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_async_to_generator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])({
+                                                        "HomePage.useEffect.loadComponentsInBatches": function() {
+                                                            var _loop, i;
+                                                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
+                                                                "HomePage.useEffect.loadComponentsInBatches": function(_state) {
+                                                                    switch(_state.label){
+                                                                        case 0:
+                                                                            _loop = ({
+                                                                                "HomePage.useEffect.loadComponentsInBatches": function(i) {
+                                                                                    var batch, results;
+                                                                                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
+                                                                                        "HomePage.useEffect.loadComponentsInBatches": function(_state) {
+                                                                                            switch(_state.label){
+                                                                                                case 0:
+                                                                                                    batch = items.slice(i, i + batchSize);
+                                                                                                    return [
+                                                                                                        4,
+                                                                                                        Promise.allSettled(batch.map({
+                                                                                                            "HomePage.useEffect.loadComponentsInBatches": function(item) {
+                                                                                                                return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_async_to_generator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])({
+                                                                                                                    "HomePage.useEffect.loadComponentsInBatches": function() {
+                                                                                                                        var component, e;
+                                                                                                                        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
+                                                                                                                            "HomePage.useEffect.loadComponentsInBatches": function(_state) {
+                                                                                                                                switch(_state.label){
+                                                                                                                                    case 0:
+                                                                                                                                        _state.trys.push([
+                                                                                                                                            0,
+                                                                                                                                            2,
+                                                                                                                                            ,
+                                                                                                                                            3
+                                                                                                                                        ]);
+                                                                                                                                        return [
+                                                                                                                                            4,
+                                                                                                                                            loader(item)
+                                                                                                                                        ];
+                                                                                                                                    case 1:
+                                                                                                                                        component = _state.sent();
+                                                                                                                                        return [
+                                                                                                                                            2,
+                                                                                                                                            {
+                                                                                                                                                id: item.id,
+                                                                                                                                                component: component
                                                                                                                                             }
-                                                                                                                                        }["HomePage.useEffect.loadComponentsInBatches"]);
-                                                                                                                                    }
-                                                                                                                                }["HomePage.useEffect.loadComponentsInBatches"])();
+                                                                                                                                        ];
+                                                                                                                                    case 2:
+                                                                                                                                        e = _state.sent();
+                                                                                                                                        return [
+                                                                                                                                            2,
+                                                                                                                                            {
+                                                                                                                                                id: item.id,
+                                                                                                                                                component: null
+                                                                                                                                            }
+                                                                                                                                        ];
+                                                                                                                                    case 3:
+                                                                                                                                        return [
+                                                                                                                                            2
+                                                                                                                                        ];
+                                                                                                                                }
                                                                                                                             }
                                                                                                                         }["HomePage.useEffect.loadComponentsInBatches"]);
                                                                                                                     }
-                                                                                                                }["HomePage.useEffect.loadComponentsInBatches"])
-                                                                                                            ];
-                                                                                                        case 1:
-                                                                                                            _state.sent();
-                                                                                                            return [
-                                                                                                                2
-                                                                                                            ];
-                                                                                                    }
-                                                                                                }
-                                                                                            }["HomePage.useEffect.loadComponentsInBatches"]);
+                                                                                                                }["HomePage.useEffect.loadComponentsInBatches"])();
+                                                                                                            }
+                                                                                                        }["HomePage.useEffect.loadComponentsInBatches"]))
+                                                                                                    ];
+                                                                                                case 1:
+                                                                                                    results = _state.sent();
+                                                                                                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["startTransition"])({
+                                                                                                        "HomePage.useEffect.loadComponentsInBatches": function() {
+                                                                                                            setter({
+                                                                                                                "HomePage.useEffect.loadComponentsInBatches": function(prev) {
+                                                                                                                    var updated = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_object_spread$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])({}, prev);
+                                                                                                                    results.forEach({
+                                                                                                                        "HomePage.useEffect.loadComponentsInBatches": function(result) {
+                                                                                                                            var _result_value;
+                                                                                                                            if (result.status === 'fulfilled' && ((_result_value = result.value) === null || _result_value === void 0 ? void 0 : _result_value.component)) {
+                                                                                                                                updated[result.value.id] = result.value.component;
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }["HomePage.useEffect.loadComponentsInBatches"]);
+                                                                                                                    return updated;
+                                                                                                                }
+                                                                                                            }["HomePage.useEffect.loadComponentsInBatches"]);
+                                                                                                        }
+                                                                                                    }["HomePage.useEffect.loadComponentsInBatches"]);
+                                                                                                    return [
+                                                                                                        2
+                                                                                                    ];
+                                                                                            }
                                                                                         }
-                                                                                    })["HomePage.useEffect.loadComponentsInBatches"];
-                                                                                    i = 0;
-                                                                                    _state.label = 1;
-                                                                                case 1:
-                                                                                    if (!(i < items.length)) return [
-                                                                                        3,
-                                                                                        4
-                                                                                    ];
-                                                                                    return [
-                                                                                        5,
-                                                                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_values__as__$5f3e$__["_"])(_loop(i))
-                                                                                    ];
-                                                                                case 2:
-                                                                                    _state.sent();
-                                                                                    _state.label = 3;
-                                                                                case 3:
-                                                                                    i += batchSize;
-                                                                                    return [
-                                                                                        3,
-                                                                                        1
-                                                                                    ];
-                                                                                case 4:
-                                                                                    return [
-                                                                                        2
-                                                                                    ];
-                                                                            }
-                                                                        }
-                                                                    }["HomePage.useEffect.loadComponentsInBatches"]);
+                                                                                    }["HomePage.useEffect.loadComponentsInBatches"]);
+                                                                                }
+                                                                            })["HomePage.useEffect.loadComponentsInBatches"];
+                                                                            i = 0;
+                                                                            _state.label = 1;
+                                                                        case 1:
+                                                                            if (!(i < items.length)) return [
+                                                                                3,
+                                                                                4
+                                                                            ];
+                                                                            return [
+                                                                                5,
+                                                                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_values__as__$5f3e$__["_"])(_loop(i))
+                                                                            ];
+                                                                        case 2:
+                                                                            _state.sent();
+                                                                            _state.label = 3;
+                                                                        case 3:
+                                                                            i += batchSize;
+                                                                            return [
+                                                                                3,
+                                                                                1
+                                                                            ];
+                                                                        case 4:
+                                                                            return [
+                                                                                2
+                                                                            ];
+                                                                    }
                                                                 }
-                                                            }["HomePage.useEffect.loadComponentsInBatches"])();
+                                                            }["HomePage.useEffect.loadComponentsInBatches"]);
                                                         }
-                                                    })["HomePage.useEffect.loadComponentsInBatches"];
-                                                    articleLoader = ({
-                                                        "HomePage.useEffect.loadComponentsInBatches": function(article) {
-                                                            if (article.selectedModelPath) {
-                                                                return getSelectedComponent(article.id);
-                                                            }
-                                                            return Promise.resolve(null);
+                                                    }["HomePage.useEffect.loadComponentsInBatches"])();
+                                                }
+                                            })["HomePage.useEffect.loadComponentsInBatches"];
+                                            articleLoader = ({
+                                                "HomePage.useEffect.loadComponentsInBatches": function(article) {
+                                                    if (article.selectedModelPath) {
+                                                        return getSelectedComponent(article.id);
+                                                    }
+                                                    return Promise.resolve(null);
+                                                }
+                                            })["HomePage.useEffect.loadComponentsInBatches"];
+                                            glossaryLoader = ({
+                                                "HomePage.useEffect.loadComponentsInBatches": function(glossary) {
+                                                    if (glossary.glossaryShellPath) {
+                                                        return getGlossaryShellComponent(glossary.glossaryShellPath);
+                                                    }
+                                                    return Promise.resolve(null);
+                                                }
+                                            })["HomePage.useEffect.loadComponentsInBatches"];
+                                            scheduleIdleWork({
+                                                "HomePage.useEffect.loadComponentsInBatches": function() {
+                                                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ModelPreloader$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["preloadImages"])(data)["catch"]({
+                                                        "HomePage.useEffect.loadComponentsInBatches": function() {}
+                                                    }["HomePage.useEffect.loadComponentsInBatches"]);
+                                                }
+                                            }["HomePage.useEffect.loadComponentsInBatches"]);
+                                            loadBatch(allArticles, articleLoader, setSelectedComponentsMap).then({
+                                                "HomePage.useEffect.loadComponentsInBatches": function() {
+                                                    scheduleIdleWork({
+                                                        "HomePage.useEffect.loadComponentsInBatches": function() {
+                                                            loadBatch(allGlossary, glossaryLoader, setGlossaryShellComponentsMap);
                                                         }
-                                                    })["HomePage.useEffect.loadComponentsInBatches"];
-                                                    glossaryLoader = ({
-                                                        "HomePage.useEffect.loadComponentsInBatches": function(glossary) {
-                                                            if (glossary.glossaryShellPath) {
-                                                                return getGlossaryShellComponent(glossary.glossaryShellPath);
-                                                            }
-                                                            return Promise.resolve(null);
-                                                        }
-                                                    })["HomePage.useEffect.loadComponentsInBatches"];
-                                                    return [
-                                                        4,
-                                                        Promise.all([
-                                                            loadBatch(allArticles, articleLoader, setSelectedComponentsMap, 'article'),
-                                                            loadBatch(allGlossary, glossaryLoader, setGlossaryShellComponentsMap, 'glossary')
-                                                        ])
-                                                    ];
-                                                case 1:
-                                                    _state.sent();
-                                                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$LoadingStateManager$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["completeLoading"])();
-                                                    return [
-                                                        2
-                                                    ];
-                                            }
+                                                    }["HomePage.useEffect.loadComponentsInBatches"]);
+                                                }
+                                            }["HomePage.useEffect.loadComponentsInBatches"]);
+                                            return [
+                                                2
+                                            ];
                                         }
                                     }["HomePage.useEffect.loadComponentsInBatches"]);
                                 }
@@ -7782,20 +7756,7 @@ var HomePage = function() {
                     }["HomePage.useEffect.loadComponentsInBatches"];
                     scheduleIdleWork({
                         "HomePage.useEffect": function() {
-                            (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ModelPreloader$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["preloadAllModels"])(data);
-                            (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ModelPreloader$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["preloadImages"])(data)["catch"]({
-                                "HomePage.useEffect": function() {}
-                            }["HomePage.useEffect"]);
-                        }
-                    }["HomePage.useEffect"]);
-                    scheduleIdleWork({
-                        "HomePage.useEffect": function() {
-                            loadComponentsInBatches()["catch"]({
-                                "HomePage.useEffect": function(err) {
-                                    console.error('Error loading components:', err);
-                                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$LoadingStateManager$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["completeLoading"])();
-                                }
-                            }["HomePage.useEffect"]);
+                            return loadComponentsInBatches();
                         }
                     }["HomePage.useEffect"]);
                 }
@@ -7882,7 +7843,7 @@ var HomePage = function() {
                     "HomePage.useEffect.timer": function() {
                         setWalkThroughActive(true);
                     }
-                }["HomePage.useEffect.timer"], 8000);
+                }["HomePage.useEffect.timer"], 4000);
                 return ({
                     "HomePage.useEffect": function() {
                         return clearTimeout(timer);
@@ -8056,17 +8017,17 @@ var HomePage = function() {
                         onClick: handleOpen
                     }, void 0, false, {
                         fileName: "[project]/app/page.js",
-                        lineNumber: 366,
+                        lineNumber: 352,
                         columnNumber: 11
                     }, _this)
                 }, void 0, false, {
                     fileName: "[project]/app/page.js",
-                    lineNumber: 365,
+                    lineNumber: 351,
                     columnNumber: 9
                 }, _this)
             }, void 0, false, {
                 fileName: "[project]/app/page.js",
-                lineNumber: 353,
+                lineNumber: 339,
                 columnNumber: 7
             }, _this),
             (!processedData || !nodeData) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8074,7 +8035,7 @@ var HomePage = function() {
                 children: "Loading..."
             }, void 0, false, {
                 fileName: "[project]/app/page.js",
-                lineNumber: 370,
+                lineNumber: 356,
                 columnNumber: 9
             }, _this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8083,12 +8044,12 @@ var HomePage = function() {
                     title: title
                 }, void 0, false, {
                     fileName: "[project]/app/page.js",
-                    lineNumber: 375,
+                    lineNumber: 361,
                     columnNumber: 9
                 }, _this)
             }, void 0, false, {
                 fileName: "[project]/app/page.js",
-                lineNumber: 374,
+                lineNumber: 360,
                 columnNumber: 7
             }, _this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8098,21 +8059,21 @@ var HomePage = function() {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SceneBackground, {}, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 382,
+                            lineNumber: 368,
                             columnNumber: 9
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(InitialCameraSetup, {
                             initialPosition: initialCameraPosition
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 383,
+                            lineNumber: 369,
                             columnNumber: 9
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ambientLight", {
                             intensity: 1
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 384,
+                            lineNumber: 370,
                             columnNumber: 9
                         }, _this),
                         environmentLoaded && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
@@ -8121,19 +8082,19 @@ var HomePage = function() {
                                 preset: "city"
                             }, void 0, false, {
                                 fileName: "[project]/app/page.js",
-                                lineNumber: 387,
+                                lineNumber: 373,
                                 columnNumber: 13
                             }, _this)
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 386,
+                            lineNumber: 372,
                             columnNumber: 11
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CameraDolly, {
                             cameraOptions: cameraOptions
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 390,
+                            lineNumber: 376,
                             columnNumber: 9
                         }, _this),
                         processedData && nodeData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -8144,27 +8105,27 @@ var HomePage = function() {
                                     isActive: walkThroughActive
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 393,
+                                    lineNumber: 379,
                                     columnNumber: 13
                                 }, _this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ElementOpacityController$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 398,
+                                    lineNumber: 384,
                                     columnNumber: 13
                                 }, _this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$CameraInteractionTracker$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CameraInteractionTracker"], {}, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 399,
+                                    lineNumber: 385,
                                     columnNumber: 13
                                 }, _this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$ConnectionTransitionController$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ConnectionTransitionController"], {}, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 400,
+                                    lineNumber: 386,
                                     columnNumber: 13
                                 }, _this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$utils$2f$CameraFOVController$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CameraFOVController"], {}, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 401,
+                                    lineNumber: 387,
                                     columnNumber: 13
                                 }, _this),
                                 nodeData.articles.map(function(article) {
@@ -8182,12 +8143,12 @@ var HomePage = function() {
                                             selectedComponent: SelectedComponent
                                         }, void 0, false, {
                                             fileName: "[project]/app/page.js",
-                                            lineNumber: 412,
+                                            lineNumber: 398,
                                             columnNumber: 19
                                         }, _this)
                                     }, article.id, false, {
                                         fileName: "[project]/app/page.js",
-                                        lineNumber: 411,
+                                        lineNumber: 397,
                                         columnNumber: 17
                                     }, _this);
                                 }),
@@ -8207,12 +8168,12 @@ var HomePage = function() {
                                             glossaryShellComponent: GlossaryShellComponent
                                         }, void 0, false, {
                                             fileName: "[project]/app/page.js",
-                                            lineNumber: 432,
+                                            lineNumber: 418,
                                             columnNumber: 19
                                         }, _this)
                                     }, glossary.id, false, {
                                         fileName: "[project]/app/page.js",
-                                        lineNumber: 431,
+                                        lineNumber: 417,
                                         columnNumber: 17
                                     }, _this);
                                 }),
@@ -8220,7 +8181,7 @@ var HomePage = function() {
                                     processedData: processedData
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.js",
-                                    lineNumber: 444,
+                                    lineNumber: 430,
                                     columnNumber: 13
                                 }, _this)
                             ]
@@ -8240,18 +8201,18 @@ var HomePage = function() {
                             enableRotate: true
                         }, void 0, false, {
                             fileName: "[project]/app/page.js",
-                            lineNumber: 448,
+                            lineNumber: 434,
                             columnNumber: 9
                         }, _this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/page.js",
-                    lineNumber: 379,
+                    lineNumber: 365,
                     columnNumber: 9
                 }, _this)
             }, void 0, false, {
                 fileName: "[project]/app/page.js",
-                lineNumber: 378,
+                lineNumber: 364,
                 columnNumber: 7
             }, _this)
         ]

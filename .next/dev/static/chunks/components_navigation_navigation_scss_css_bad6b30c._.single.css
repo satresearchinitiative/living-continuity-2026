@@ -1434,15 +1434,15 @@ body.menu-open .corner-square.top-right {
 
 @media (min-width: 780px) and (max-width: 1040px) {
   .submit-entry-interpretation {
-    min-height: calc(79.2vh - clamp(3rem, 7.5vw, 6rem) / 1.38889 - clamp(4.5rem, 12vw, 10rem) / 1.38889);
-    max-height: calc(79.2vh - clamp(3rem, 7.5vw, 6rem) / 1.38889 - clamp(4.5rem, 12vw, 10rem) / 1.38889);
+    min-height: calc(68.2vh - clamp(3rem, 7.5vw, 6rem) / 1.6129 - clamp(4.5rem, 12vw, 10rem) / 1.6129);
+    max-height: calc(68.2vh - clamp(3rem, 7.5vw, 6rem) / 1.6129 - clamp(4.5rem, 12vw, 10rem) / 1.6129);
   }
 }
 
 @media only screen and (max-width: 767px) {
   .submit-entry-interpretation {
-    min-height: calc(79.2vh - clamp(3rem, 7.5vw, 6rem) / 1.38889 - clamp(4.5rem, 12vw, 10rem) / 1.38889);
-    max-height: calc(79.2vh - clamp(3rem, 7.5vw, 6rem) / 1.38889 - clamp(4.5rem, 12vw, 10rem) / 1.38889);
+    min-height: calc(68.2vh - clamp(3rem, 7.5vw, 6rem) / 1.6129 - clamp(4.5rem, 12vw, 10rem) / 1.6129);
+    max-height: calc(68.2vh - clamp(3rem, 7.5vw, 6rem) / 1.6129 - clamp(4.5rem, 12vw, 10rem) / 1.6129);
   }
 }
 
@@ -1603,6 +1603,18 @@ body.menu-open .corner-square.top-right {
 @media screen and (max-width: 780px) {
   .submit-entry-privacy-text .submit-entry-privacy-content {
     padding-right: 2.15827vw;
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1040px) {
+  .submit-entry-privacy-text .submit-entry-privacy-content {
+    padding-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .submit-entry-privacy-text .submit-entry-privacy-content {
+    padding-right: 5px;
   }
 }
 

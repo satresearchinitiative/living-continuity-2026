@@ -932,12 +932,12 @@ body.menu-open .corner-square.top-right {
   min-height: calc($wrapperHeight*0.74);
   max-height: calc($wrapperHeight*0.74);
   @include mm {
-    min-height: calc($wrapperHeight*0.72);
-    max-height: calc($wrapperHeight*0.72);
+    min-height: calc($wrapperHeight*0.62);
+    max-height: calc($wrapperHeight*0.62);
   }
   @include tablet {
-    min-height: calc($wrapperHeight*0.72);
-    max-height: calc($wrapperHeight*0.72);
+    min-height: calc($wrapperHeight*0.62);
+    max-height: calc($wrapperHeight*0.62);
   }
   @include lg {
     min-height: calc($wrapperHeight*0.60);
@@ -996,6 +996,12 @@ body.menu-open .corner-square.top-right {
     padding-right: 15%;
     @include sm {
       padding-right: $padding;
+    }
+    @include mm {
+      padding-right: $padding-xs;
+    }
+    @include tablet {
+      padding-right: $padding-xs;
     }
   }
 }

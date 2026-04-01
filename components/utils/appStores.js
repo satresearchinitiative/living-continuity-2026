@@ -37,6 +37,7 @@ export const kitOfPartsCameraStateStore = createStoreSafe('kitOfParts_cameraStat
 export const kitOfPartsCaptureModeStore = createStoreSafe('kitOfParts_captureMode', false);
 export const kitOfPartsCaptureModalOpenStore = createStoreSafe('kitOfParts_captureModalOpen', false);
 export const kitOfPartsCachedImageDataUrlStore = createStoreSafe('kitOfParts_cachedImageDataUrl', null);
+export const kitOfPartsCloseAllPanelsStore = createStoreSafe('kitOfParts_closeAllPanels', false);
 
 export const clickbathroom2Store = createStoreSafe('clickbathroom2', false);
 export const boxbedStateStore = createStoreSafe('boxbedState', false);

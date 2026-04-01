@@ -1,5 +1,11 @@
 import { Resend } from 'resend';
 import { verifyRecaptchaToken } from '../utils/verifyRecaptcha';
+import {
+  escapeHtmlForEmail,
+  formatResendError,
+  isFormSubmissionDebug,
+  jsonError
+} from '../utils/formSubmissionErrors';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,32 +15,45 @@ export async function POST(request) {
     const { interpretation, name, keyword, recaptchaToken, website } = body;
 
     if (website) {
-      return Response.json(
-        { error: 'Invalid submission' },
-        { status: 400 }
+      return jsonError(
+        { error: 'Invalid submission', code: 'INVALID_SUBMISSION' },
+        400
       );
     }
 
     if (!interpretation) {
-      return Response.json(
-        { error: 'Interpretation is required' },
-        { status: 400 }
+      return jsonError(
+        { error: 'Interpretation is required', code: 'VALIDATION_REQUIRED' },
+        400
       );
     }
 
     const recaptcha = await verifyRecaptchaToken(recaptchaToken, 'glossary_submit');
     if (!recaptcha.valid) {
-      return Response.json(
-        { error: 'Verification failed. Please try again.' },
-        { status: 403 }
+      return jsonError(
+        {
+          error: 'Verification failed. Please try again.',
+          code: 'RECAPTCHA_FAILED',
+          details: recaptcha.error,
+          ...(isFormSubmissionDebug() && {
+            debug: { step: 'recaptcha', recaptchaError: recaptcha.error }
+          })
+        },
+        403
       );
     }
 
     if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured');
-      return Response.json(
-        { error: 'Email service is not configured' },
-        { status: 500 }
+      console.error('[submit-entry] RESEND_API_KEY is not configured');
+      return jsonError(
+        {
+          error: 'Email service is not configured',
+          code: 'RESEND_NOT_CONFIGURED',
+          ...(isFormSubmissionDebug() && {
+            debug: { step: 'env', resendApiKeySet: false }
+          })
+        },
+        500
       );
     }
 
@@ -47,6 +66,10 @@ export async function POST(request) {
       timestamp: new Date().toISOString()
     };
 
+    const safeKeyword = escapeHtmlForEmail(String(keyword ?? ''));
+    const safeName = escapeHtmlForEmail(String(emailData.name));
+    const safeInterpretation = escapeHtmlForEmail(String(interpretation)).replace(/\n/g, '<br>');
+
     const toEmails = process.env.RESEND_INTERPRETATION_EMAIL || process.env.RESEND_TO_EMAIL
       ? (process.env.RESEND_INTERPRETATION_EMAIL || process.env.RESEND_TO_EMAIL).split(',').map(email => email.trim())
       : ['digitalresearch@sharjaharchitecture.org'];
@@ -58,31 +81,62 @@ export async function POST(request) {
       subject: `New Interpretation Submission: ${keyword}`,
       html: `
         <h2>New Interpretation Submission</h2>
-        <p><strong>Keyword:</strong> ${keyword}</p>
-        <p><strong>Name:</strong> ${emailData.name}</p>
+        <p><strong>Keyword:</strong> ${safeKeyword}</p>
+        <p><strong>Name:</strong> ${safeName}</p>
         <p><strong>Interpretation:</strong></p>
-        <p>${interpretation.replace(/\n/g, '<br>')}</p>
+        <p>${safeInterpretation}</p>
         <p><strong>Submitted:</strong> ${emailData.timestamp}</p>
       `
     });
-    
+
+    if (result.error) {
+      const details = formatResendError(result.error);
+      console.error('[submit-entry] Resend error:', result.error);
+      return jsonError(
+        {
+          error: 'Failed to send email',
+          code: 'RESEND_SEND_FAILED',
+          details,
+          ...(isFormSubmissionDebug() && {
+            debug: { step: 'resend', resendError: result.error }
+          })
+        },
+        502
+      );
+    }
+
+    if (!result.data?.id) {
+      console.error('[submit-entry] Resend returned no id:', result);
+      return jsonError(
+        {
+          error: 'Failed to send email',
+          code: 'RESEND_INCOMPLETE_RESPONSE',
+          ...(isFormSubmissionDebug() && { debug: { step: 'resend', result } })
+        },
+        502
+      );
+    }
+
     return Response.json(
-      { 
-        success: true, 
-        messageId: result.id,
-        message: 'Entry submitted successfully' 
+      {
+        success: true,
+        messageId: result.data.id,
+        message: 'Entry submitted successfully'
       },
       { status: 200 }
     );
-
   } catch (error) {
-    console.error('Error processing submission:', error);
-    return Response.json(
-      { 
+    console.error('[submit-entry] Error processing submission:', error);
+    return jsonError(
+      {
         error: 'Internal server error',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        code: 'INTERNAL',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        ...(isFormSubmissionDebug() && {
+          debug: { step: 'exception', name: error instanceof Error ? error.name : undefined }
+        })
       },
-      { status: 500 }
+      500
     );
   }
 }

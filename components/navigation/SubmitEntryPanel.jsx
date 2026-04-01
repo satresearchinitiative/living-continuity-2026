@@ -5,6 +5,10 @@ import { usePathname } from 'next/navigation';
 import CrossButton from '../menu/CrossButton';
 import { COLOR_WHITE } from '../_setup/colors';
 import { getRecaptchaToken } from '../utils/recaptcha';
+import {
+  parseFormErrorResponse,
+  userFacingFormError
+} from '../utils/formSubmissionClient';
 import './navigation.scss';
 
 const slugifyTitle = (title) => {
@@ -33,6 +37,7 @@ export default function SubmitEntryPanel({
   const [name, setName] = useState('');
   const [website, setWebsite] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const formRef = useRef(null);
   const pathname = usePathname();
   const isGlossaryPage = pathname === '/glossary';
@@ -150,12 +155,17 @@ export default function SubmitEntryPanel({
     };
   }, [isOpen, isGlossaryPage]);
 
+  useEffect(() => {
+    if (isOpen) setSubmitError('');
+  }, [isOpen]);
+
   const handleSubmit = useCallback(async () => {
     if (!interpretation.trim()) {
       return;
     }
 
     setIsSubmitting(true);
+    setSubmitError('');
 
     try {
       const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -180,17 +190,19 @@ export default function SubmitEntryPanel({
       if (response.ok) {
         setInterpretation('');
         setName('');
+        setWebsite('');
         onClose();
       } else {
-        const error = await response.json();
-        console.error('Failed to submit entry:', error);
+        const errorBody = await parseFormErrorResponse(response, 'submit-entry');
+        setSubmitError(userFacingFormError(errorBody, 'Submission failed.'));
       }
     } catch (error) {
       console.error('Error submitting entry:', error);
+      setSubmitError('Network error. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
-  }, [interpretation, name, effectiveKeywordTitle, onClose]);
+  }, [interpretation, name, website, effectiveKeywordTitle, onClose]);
 
   useEffect(() => {
     if (onSubmitRef) {
@@ -236,6 +248,11 @@ export default function SubmitEntryPanel({
               <p>Data Privacy Consent:</p>
               <p className="submit-entry-privacy-content">By submitting an entry, you consent to its use for research, educational, and documentation purposes related to this project. Identifying information will not be shared without your consent.</p>
             </div>
+            {submitError ? (
+              <p className="submit-entry-submit-error" role="alert">
+                {submitError}
+              </p>
+            ) : null}
           </form>
         </div>
       </div>

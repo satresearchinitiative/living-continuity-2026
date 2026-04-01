@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import CrossButton from '../menu/CrossButton';
 import { COLOR_WHITE } from '../_setup/colors';
 import { getRecaptchaToken } from '../utils/recaptcha';
+import {
+  parseFormErrorResponse,
+  userFacingFormError
+} from '../utils/formSubmissionClient';
 import './capture-modal.scss';
 
 export default function CaptureModal({ 
@@ -12,6 +16,7 @@ export default function CaptureModal({
   cachedImageDataUrl 
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [website, setWebsite] = useState('');
 
   React.useEffect(() => {
@@ -23,6 +28,10 @@ export default function CaptureModal({
     return () => {
       document.body.classList.remove('menu-open');
     };
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    if (isOpen) setSubmitError('');
   }, [isOpen]);
 
   const downloadImage = (dataUrl) => {
@@ -41,6 +50,7 @@ export default function CaptureModal({
     }
 
     setIsSubmitting(true);
+    setSubmitError('');
 
     try {
       downloadImage(cachedImageDataUrl);
@@ -62,14 +72,17 @@ export default function CaptureModal({
       });
 
       if (!submitResponse.ok) {
-        const err = await submitResponse.json();
-        console.error('Error submitting floor plan:', err);
+        const err = await parseFormErrorResponse(submitResponse, 'submit-floor-plan');
+        setSubmitError(userFacingFormError(err, 'Could not send your floor plan.'));
+        setIsSubmitting(false);
+        return;
       }
 
       setIsSubmitting(false);
       onClose();
     } catch (error) {
       console.error('Error processing submission:', error);
+      setSubmitError('Network error. Please try again.');
       setIsSubmitting(false);
     }
   };
@@ -94,6 +107,12 @@ export default function CaptureModal({
         <div className="capture-modal-text">
           <p>If you want to share your floor Plan arrangement with us Click submit Below</p>
         </div>
+
+        {submitError ? (
+          <p className="capture-modal-submit-error" role="alert">
+            {submitError}
+          </p>
+        ) : null}
 
         <button 
           type="button" 

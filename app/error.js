@@ -1,10 +1,3 @@
-/**
- * Error Boundary - Next.js App Router
- * 
- * This component catches errors in the app and displays a fallback UI.
- * In the App Router, this replaces error handling from pages/_app.js and pages/500.js.
- * This file must be a Client Component.
- */
 'use client';
 
 import { useEffect } from 'react';

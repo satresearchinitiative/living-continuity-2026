@@ -408,7 +408,7 @@ html.glossary-page {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  z-index: 100 !important;
+  z-index: calc(99999 + 1) !important;
 }
 
 @media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {

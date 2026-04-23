@@ -1270,6 +1270,28 @@ export default function GlossaryList() {
     });
   };
 
+  const handleArticleSwap = (article) => {
+    setSelectedArticle(article);
+
+    requestAnimationFrame(() => {
+      const currentHash = typeof window !== 'undefined' ? window.location.hash.substring(1) : '';
+      const { keywordSlug: parsedSlug } = parseGlossaryHash(currentHash);
+      const keywordSlug = keywordHashBeforeModalRef.current || parsedSlug;
+
+      if (typeof window !== 'undefined' && keywordSlug && article?.id) {
+        window.history.replaceState(null, '', `#${keywordSlug}:${article.id}`);
+      }
+    });
+  };
+
+  const handleArticleImageClick = (article) => {
+    if (articleModalOpen) {
+      handleArticleSwap(article);
+      return;
+    }
+    handleArticleClick(article);
+  };
+
   // Close article modal – remove :AXX from param, restore keyword hash, then instant jump to that keyword position
   const handleCloseArticleModal = () => {
     isClosingModalRef.current = true;
@@ -1345,7 +1367,7 @@ export default function GlossaryList() {
             key={article.id}
             className={`${styles.articleImageWrapper} ${isSelected ? styles.selected : ''} ${!article.imageUrl ? styles.imagePlaceholder : ''
               }`}
-            onClick={() => handleArticleClick(article)}
+            onClick={() => handleArticleImageClick(article)}
             style={Object.keys(style).length > 0 ? style : undefined}
           >
             {article.imageUrl ? (

@@ -1745,6 +1745,24 @@ function GlossaryList() {
             }, 600);
         });
     };
+    var handleArticleSwap = function(article) {
+        setSelectedArticle(article);
+        requestAnimationFrame(function() {
+            var currentHash = ("TURBOPACK compile-time truthy", 1) ? window.location.hash.substring(1) : "TURBOPACK unreachable";
+            var _parseGlossaryHash = parseGlossaryHash(currentHash), parsedSlug = _parseGlossaryHash.keywordSlug;
+            var keywordSlug = keywordHashBeforeModalRef.current || parsedSlug;
+            if (("TURBOPACK compile-time value", "object") !== 'undefined' && keywordSlug && (article === null || article === void 0 ? void 0 : article.id)) {
+                window.history.replaceState(null, '', "#".concat(keywordSlug, ":").concat(article.id));
+            }
+        });
+    };
+    var handleArticleImageClick = function(article) {
+        if (articleModalOpen) {
+            handleArticleSwap(article);
+            return;
+        }
+        handleArticleClick(article);
+    };
     // Close article modal – remove :AXX from param, restore keyword hash, then instant jump to that keyword position
     var handleCloseArticleModal = function() {
         isClosingModalRef.current = true;
@@ -1817,7 +1835,7 @@ function GlossaryList() {
             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "".concat(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$glossary$2f$glossary$2e$module$2e$scss__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].articleImageWrapper, " ").concat(isSelected ? __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$glossary$2f$glossary$2e$module$2e$scss__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].selected : '', " ").concat(!article.imageUrl ? __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$glossary$2f$glossary$2e$module$2e$scss__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].imagePlaceholder : ''),
                 onClick: function() {
-                    return handleArticleClick(article);
+                    return handleArticleImageClick(article);
                 },
                 style: Object.keys(style).length > 0 ? style : undefined,
                 children: article.imageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1831,7 +1849,7 @@ function GlossaryList() {
                             loading: "eager"
                         }, void 0, false, {
                             fileName: "[project]/components/glossary/GlossaryList.jsx",
-                            lineNumber: 1353,
+                            lineNumber: 1375,
                             columnNumber: 17
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -1867,24 +1885,24 @@ function GlossaryList() {
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/glossary/GlossaryList.jsx",
-                            lineNumber: 1360,
+                            lineNumber: 1382,
                             columnNumber: 17
                         }, _this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/glossary/GlossaryList.jsx",
-                    lineNumber: 1352,
+                    lineNumber: 1374,
                     columnNumber: 15
                 }, _this) : null
             }, article.id, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1344,
+                lineNumber: 1366,
                 columnNumber: 11
             }, _this);
         })
     }, void 0, false, {
         fileName: "[project]/components/glossary/GlossaryList.jsx",
-        lineNumber: 1328,
+        lineNumber: 1350,
         columnNumber: 5
     }, this) : null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1912,12 +1930,12 @@ function GlossaryList() {
                     closeModal: handleCloseArticleModal
                 }, void 0, false, {
                     fileName: "[project]/components/glossary/GlossaryList.jsx",
-                    lineNumber: 1420,
+                    lineNumber: 1442,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1408,
+                lineNumber: 1430,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1953,7 +1971,7 @@ function GlossaryList() {
                                 children: keyword.index
                             }, void 0, false, {
                                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                                lineNumber: 1460,
+                                lineNumber: 1482,
                                 columnNumber: 15
                             }, _this),
                             LANGUAGE_ORDER.map(function(langKey, langIndex) {
@@ -1967,20 +1985,20 @@ function GlossaryList() {
                                     children: translation
                                 }, langKey, false, {
                                     fileName: "[project]/components/glossary/GlossaryList.jsx",
-                                    lineNumber: 1467,
+                                    lineNumber: 1489,
                                     columnNumber: 19
                                 }, _this);
                             })
                         ]
                     }, keyword.id, true, {
                         fileName: "[project]/components/glossary/GlossaryList.jsx",
-                        lineNumber: 1451,
+                        lineNumber: 1473,
                         columnNumber: 13
                     }, _this);
                 })
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1433,
+                lineNumber: 1455,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2005,13 +2023,13 @@ function GlossaryList() {
                         children: letter
                     }, letter, false, {
                         fileName: "[project]/components/glossary/GlossaryList.jsx",
-                        lineNumber: 1491,
+                        lineNumber: 1513,
                         columnNumber: 13
                     }, _this);
                 })
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1478,
+                lineNumber: 1500,
                 columnNumber: 7
             }, this),
             alphabetPreview && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2019,7 +2037,7 @@ function GlossaryList() {
                 children: alphabetPreview
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1505,
+                lineNumber: 1527,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2f$NavigationControls$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__NavigationControls$3e$__["NavigationControls"], {
@@ -2027,7 +2045,7 @@ function GlossaryList() {
                 currentKeywordTitle: currentKeywordTitle
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1511,
+                lineNumber: 1533,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$glossary$2f$contributions$2f$Contributions$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2037,13 +2055,13 @@ function GlossaryList() {
                 onSubmitClick: handleSubmitClick
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1517,
+                lineNumber: 1539,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/glossary/GlossaryList.jsx",
-        lineNumber: 1401,
+        lineNumber: 1423,
         columnNumber: 5
     }, this);
 }

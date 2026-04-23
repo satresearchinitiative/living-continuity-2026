@@ -1,23 +1,23 @@
-[00:00:01.748] Server  LOG      ✓ Ready in 1105ms
-[00:00:09.200] Server  LOG      ○ Compiling / ...
-[00:00:15.188] Server  DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
-[00:00:17.147] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:17.770] Browser LOG     [appStores] Initializing stores...
-[00:00:17.770] Browser LOG     [appStores] All stores initialized successfully
-[00:00:17.772] Browser DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
-[00:07:58.879] Browser WARN    React-Modal: Cannot register modal instance that's already open
-[00:07:58.879] Browser DEBUG   [usestore-react] Store named "G55Store" does not exist. Creating one
-[00:07:58.879] Browser DEBUG   [usestore-react] Store named "G56Store" does not exist. Creating one
-[00:07:58.879] Browser DEBUG   [usestore-react] Store named "G57Store" does not exist. Creating one
-[00:08:03.521] Browser WARN    Could not load glossary shell for residential: {"code":"MODULE_NOT_FOUND"}
-[00:08:03.836] Browser WARN    Could not load glossary shell for zoning: {"code":"MODULE_NOT_FOUND"}
-[09:20:50.119] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[09:20:50.119] Browser LOG     [appStores] Initializing stores...
-[09:20:50.119] Browser LOG     [appStores] All stores initialized successfully
-[09:20:50.290] Browser DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
-[09:21:08.857] Browser LOG     [appStores] Initializing stores...
-[09:21:08.857] Browser LOG     [appStores] All stores initialized successfully
-[09:21:09.325] Browser DEBUG   [usestore-react] Store named "kitOfParts_closeAllPanels" does not exist. Creating one
-[09:23:20.663] Server  LOG      ✓ Compiled in 444ms
-[09:23:31.386] Server  LOG      ✓ Compiled in 269ms
-[09:23:59.885] Server  LOG      ✓ Compiled in 311ms
+[00:00:03.156] Server  LOG      ✓ Ready in 2.6s
+[00:00:10.109] Server  LOG      ○ Compiling / ...
+[00:00:16.924] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:16.924] Browser LOG     [appStores] Initializing stores...
+[00:00:16.924] Browser LOG     [appStores] All stores initialized successfully
+[00:01:25.239] Browser WARN    React-Modal: Cannot register modal instance that's already open
+[00:01:25.239] Browser DEBUG   [usestore-react] Store named "G55Store" does not exist. Creating one
+[00:01:25.239] Browser DEBUG   [usestore-react] Store named "G56Store" does not exist. Creating one
+[00:01:25.239] Browser DEBUG   [usestore-react] Store named "G57Store" does not exist. Creating one
+[00:01:28.639] Browser WARN    Could not load glossary shell for residential: {"code":"MODULE_NOT_FOUND"}
+[00:01:28.639] Browser WARN    Could not load glossary shell for zoning: {"code":"MODULE_NOT_FOUND"}
+[00:05:50.681] Server  LOG      ✓ Compiled in 322ms
+[00:06:00.762] Server  LOG      ○ Compiling /glossary ...
+[00:06:08.331] Browser LOG     THREE.WebGLRenderer: Context Lost.
+[18:30:28.818] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:30:28.818] Browser LOG     [appStores] Initializing stores...
+[18:30:28.818] Browser LOG     [appStores] All stores initialized successfully
+[18:45:27.628] Server  LOG      ✓ Compiled in 434ms
+[18:45:31.767] Server  LOG      ✓ Compiled in 91ms
+[18:46:35.614] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:46:35.614] Browser LOG     [appStores] Initializing stores...
+[18:46:35.614] Browser LOG     [appStores] All stores initialized successfully
+[18:48:43.063] Server  LOG      ✓ Compiled in 623ms

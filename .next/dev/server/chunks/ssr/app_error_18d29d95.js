@@ -2,13 +2,7 @@ module.exports = [
 "[project]/app/error.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-/**
- * Error Boundary - Next.js App Router
- * 
- * This component catches errors in the app and displays a fallback UI.
- * In the App Router, this replaces error handling from pages/_app.js and pages/500.js.
- * This file must be a Client Component.
- */ __turbopack_context__.s([
+__turbopack_context__.s([
     "default",
     ()=>Error
 ]);
@@ -52,7 +46,7 @@ function Error({ error, reset }) {
                 children: "500"
             }, void 0, false, {
                 fileName: "[project]/app/error.js",
-                lineNumber: 45,
+                lineNumber: 38,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -63,7 +57,7 @@ function Error({ error, reset }) {
                 children: "Something went wrong!"
             }, void 0, false, {
                 fileName: "[project]/app/error.js",
-                lineNumber: 46,
+                lineNumber: 39,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -73,7 +67,7 @@ function Error({ error, reset }) {
                 children: "An error occurred while loading this page. Please try again."
             }, void 0, false, {
                 fileName: "[project]/app/error.js",
-                lineNumber: 47,
+                lineNumber: 40,
                 columnNumber: 7
             }, this),
             isDevelopment && error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -96,7 +90,7 @@ function Error({ error, reset }) {
                         children: "Error Details (Development Only):"
                     }, void 0, false, {
                         fileName: "[project]/app/error.js",
-                        lineNumber: 61,
+                        lineNumber: 54,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -105,7 +99,7 @@ function Error({ error, reset }) {
                                 children: "Message:"
                             }, void 0, false, {
                                 fileName: "[project]/app/error.js",
-                                lineNumber: 62,
+                                lineNumber: 55,
                                 columnNumber: 14
                             }, this),
                             " ",
@@ -113,7 +107,7 @@ function Error({ error, reset }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/error.js",
-                        lineNumber: 62,
+                        lineNumber: 55,
                         columnNumber: 11
                     }, this),
                     error.stack && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("details", {
@@ -129,7 +123,7 @@ function Error({ error, reset }) {
                                 children: "Stack Trace"
                             }, void 0, false, {
                                 fileName: "[project]/app/error.js",
-                                lineNumber: 65,
+                                lineNumber: 58,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("pre", {
@@ -146,19 +140,19 @@ function Error({ error, reset }) {
                                 children: error.stack
                             }, void 0, false, {
                                 fileName: "[project]/app/error.js",
-                                lineNumber: 66,
+                                lineNumber: 59,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/error.js",
-                        lineNumber: 64,
+                        lineNumber: 57,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/error.js",
-                lineNumber: 51,
+                lineNumber: 44,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -179,7 +173,7 @@ function Error({ error, reset }) {
                         children: "Try again"
                     }, void 0, false, {
                         fileName: "[project]/app/error.js",
-                        lineNumber: 83,
+                        lineNumber: 76,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -194,19 +188,19 @@ function Error({ error, reset }) {
                         children: "Go to Homepage"
                     }, void 0, false, {
                         fileName: "[project]/app/error.js",
-                        lineNumber: 95,
+                        lineNumber: 88,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/error.js",
-                lineNumber: 82,
+                lineNumber: 75,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/error.js",
-        lineNumber: 36,
+        lineNumber: 29,
         columnNumber: 5
     }, this);
 }

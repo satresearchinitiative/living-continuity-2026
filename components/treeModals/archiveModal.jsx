@@ -115,17 +115,29 @@ export default function ArchiveModal({
               }
             }
             
-            const hasKeywordsToShow = keywordsToDisplay.length > 0;
+            const getKeywordText = (keyword) => {
+              return keyword && typeof keyword === 'object' ? (keyword.text || keyword) : keyword;
+            };
+
+            const sortedKeywordsToDisplay = [...keywordsToDisplay].sort((a, b) =>
+              String(getKeywordText(a) || '').localeCompare(String(getKeywordText(b) || ''), undefined, { sensitivity: 'base' })
+            );
+
+            const connectionsToDisplay = [connect1, connect2, connect3, connect4]
+              .filter(Boolean)
+              .sort((a, b) => String(a).localeCompare(String(b), undefined, { sensitivity: 'base' }));
+
+            const hasKeywordsToShow = sortedKeywordsToDisplay.length > 0;
             
-            if (!hasKeywordsToShow && !hasConnections) return null;
+            if (!hasKeywordsToShow && connectionsToDisplay.length === 0) return null;
             
             return (
               <div className="section">
                 <h5 className="section_label">Keywords:</h5>
                 {hasKeywordsToShow ? (
                   <div className="connections">
-                    {keywordsToDisplay.map((keyword, index) => {
-                      const keywordText = keyword && typeof keyword === 'object' ? (keyword.text || keyword) : keyword;
+                    {sortedKeywordsToDisplay.map((keyword, index) => {
+                      const keywordText = getKeywordText(keyword);
                       let keywordLink = keyword && typeof keyword === 'object' && keyword.link !== undefined 
                         ? keyword.link 
                         : null;
@@ -158,14 +170,14 @@ export default function ArchiveModal({
                               {keywordText}
                             </span>
                           )}
-                          {index < keywordsToDisplay.length - 1 && <span className="comma">, </span>}
+                          {index < sortedKeywordsToDisplay.length - 1 && <span className="comma">, </span>}
                         </span>
                       );
                     })}
                   </div>
-                ) : hasConnections ? (
+                ) : connectionsToDisplay.length > 0 ? (
                   <div className="connections">
-                    {[connect1, connect2, connect3, connect4].filter(Boolean).map((item, index, array) => (
+                    {connectionsToDisplay.map((item, index, array) => (
                       <span key={index}>
                         <span className="item">{item}</span>
                         {index < array.length - 1 && <span className="comma">, </span>}

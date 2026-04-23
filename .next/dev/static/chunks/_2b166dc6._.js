@@ -330,6 +330,15 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+function glossaryPerfDebugEnabled() {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    try {
+        return window.localStorage.getItem('DEBUG_GLOSSARY_PERF') === '1';
+    } catch (e) {
+        return false;
+    }
+}
 // Generate alphabet array A-Z and #
 var alphabet = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_to_consumable_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])(Array(26)).map(function(_, i) {
     return String.fromCharCode(65 + i);
@@ -386,6 +395,14 @@ function GlossaryList() {
     var _useState6 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]), 2), allArticles = _useState6[0], setAllArticles = _useState6[1];
     var _useState7 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null), 2), selectedArticle = _useState7[0], setSelectedArticle = _useState7[1];
     var _useState8 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false), 2), articleModalOpen = _useState8[0], setArticleModalOpen = _useState8[1];
+    var articleModalOpenRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(articleModalOpen);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "GlossaryList.useEffect": function() {
+            articleModalOpenRef.current = articleModalOpen;
+        }
+    }["GlossaryList.useEffect"], [
+        articleModalOpen
+    ]);
     var slugifyTitle = function(title) {
         return title.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
     };
@@ -453,7 +470,10 @@ function GlossaryList() {
                             return articleHash === currentHash || currentHash.endsWith("-".concat(article.id)) || currentHash.endsWith(":".concat(article.id));
                         }
                     }["GlossaryList.useCallback[updateCenteredKeyword].isArticleHash"]);
-                    if (!currentHash.endsWith('-submit') && currentHash !== keywordSlug && !isArticleHash && !hasArticleInHash && !articleModalOpen && !isOpeningModalRef.current && !isClosingModalRef.current) {
+                    if (typeof document !== 'undefined' && document.body.hasAttribute('data-restoring-scroll')) {
+                        return;
+                    }
+                    if (!currentHash.endsWith('-submit') && currentHash !== keywordSlug && !isArticleHash && !hasArticleInHash && !articleModalOpenRef.current && !isOpeningModalRef.current && !isClosingModalRef.current) {
                         window.history.replaceState(null, '', "#".concat(keywordSlug));
                     }
                 }
@@ -462,12 +482,48 @@ function GlossaryList() {
     }["GlossaryList.useCallback[updateCenteredKeyword]"], [
         glossaryData,
         allArticles,
-        articleModalOpen,
         parseGlossaryHash
     ]);
     var scrollToElement = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "GlossaryList.useCallback[scrollToElement]": function(element, keywordId) {
-            var retryCount = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 0;
+            var thirdArg = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 0;
+            if (thirdArg && (typeof thirdArg === "undefined" ? "undefined" : (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_type_of$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])(thirdArg)) === 'object' && thirdArg.smooth) {
+                if (!element) {
+                    isProgrammaticScroll.current = false;
+                    isScrollingRef.current = false;
+                    return;
+                }
+                isProgrammaticScroll.current = true;
+                isScrollingRef.current = true;
+                var useSmooth = ("TURBOPACK compile-time value", "object") !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                requestAnimationFrame({
+                    "GlossaryList.useCallback[scrollToElement]": function() {
+                        var itemRect = element.getBoundingClientRect();
+                        var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        var itemTop = itemRect.top + currentScrollTop;
+                        var itemHeight = itemRect.height;
+                        var viewportHeight = window.innerHeight;
+                        var targetScrollTop = Math.max(0, itemTop - viewportHeight / 2 + itemHeight / 2);
+                        window.scrollTo({
+                            top: targetScrollTop,
+                            behavior: useSmooth ? 'smooth' : 'auto'
+                        });
+                        updateCenteredKeyword(keywordId);
+                        if (scrollTimeoutRef.current) {
+                            clearTimeout(scrollTimeoutRef.current);
+                        }
+                        var lockMs = useSmooth ? 1200 : 300;
+                        scrollTimeoutRef.current = setTimeout({
+                            "GlossaryList.useCallback[scrollToElement]": function() {
+                                isProgrammaticScroll.current = false;
+                                isScrollingRef.current = false;
+                            }
+                        }["GlossaryList.useCallback[scrollToElement]"], lockMs);
+                    }
+                }["GlossaryList.useCallback[scrollToElement]"]);
+                return;
+            }
+            var retryCount = typeof thirdArg === 'number' ? thirdArg : 0;
             if (!element || retryCount > 15) {
                 isProgrammaticScroll.current = false;
                 isScrollingRef.current = false;
@@ -491,7 +547,7 @@ function GlossaryList() {
                     }
                     window.scrollTo({
                         top: targetScrollTop,
-                        behavior: 'smooth'
+                        behavior: 'auto'
                     });
                     updateCenteredKeyword(keywordId);
                     if (scrollTimeoutRef.current) {
@@ -533,7 +589,6 @@ function GlossaryList() {
     var isProgrammaticScroll = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
     var scrollVelocityRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
     var lastScrollTimeRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
-    var lastScrollTopRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
     var isScrollingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
     var scrollTimeoutRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     var _useState9 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([
@@ -554,6 +609,9 @@ function GlossaryList() {
     var skipHashNavigationUntilRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
     var isOpeningModalRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
     var keywordHashBeforeModalRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    var glossaryInitialUrlArticleHandledRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
+    var lastGlossaryScrollKeywordCheckMsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
+    var lastCenteredKeywordIndexRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
     var LANDING_PAGE_NODE_ID = 'A1';
     var currentKeywordTitle = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "GlossaryList.useMemo[currentKeywordTitle]": function() {
@@ -592,14 +650,34 @@ function GlossaryList() {
             })["GlossaryList.useEffect"];
         }
     }["GlossaryList.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "GlossaryList.useEffect": function() {
+            if (("TURBOPACK compile-time value", "object") === 'undefined' || !glossaryPerfDebugEnabled()) return;
+            console.info('[glossary-perf] Debug on. O(keywords) getBoundingClientRect per getCurrentKeyword(). Disable: localStorage.removeItem("DEBUG_GLOSSARY_PERF")');
+        }
+    }["GlossaryList.useEffect"], []);
     var handleHashNavigation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "GlossaryList.useCallback[handleHashNavigation]": function(hash) {
             if (!hash || !glossaryData.length) return;
-            // Prevent interference from other scroll handlers or when closing modal
-            if (isScrollingRef.current || isProgrammaticScroll.current || isClosingModalRef.current || isOpeningModalRef.current) {
+            if (("TURBOPACK compile-time value", "object") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) {
                 return;
             }
-            var _parseGlossaryHash = parseGlossaryHash(hash), parsedKeywordSlug = _parseGlossaryHash.keywordSlug;
+            if (isOpeningModalRef.current) {
+                return;
+            }
+            if (isClosingModalRef.current) {
+                var _parseGlossaryHash = parseGlossaryHash(hash), idInHash = _parseGlossaryHash.articleId;
+                if (idInHash) {
+                    return;
+                }
+            } else if (isScrollingRef.current || isProgrammaticScroll.current) {
+                return;
+            }
+            var _parseGlossaryHash1 = parseGlossaryHash(hash), hashArticleIdFromNav = _parseGlossaryHash1.articleId;
+            if (hashArticleIdFromNav) {
+                return;
+            }
+            var _parseGlossaryHash2 = parseGlossaryHash(hash), parsedKeywordSlug = _parseGlossaryHash2.keywordSlug;
             var keywordSlug = parsedKeywordSlug || hash;
             if (keywordSlug.endsWith('-submit')) {
                 var keywordSlugClean = keywordSlug.replace('-submit', '');
@@ -608,6 +686,11 @@ function GlossaryList() {
                     var attemptScroll = {
                         "GlossaryList.useCallback[handleHashNavigation].attemptScroll": function() {
                             var attempt = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
+                            if (("TURBOPACK compile-time value", "object") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) {
+                                isProgrammaticScroll.current = false;
+                                isScrollingRef.current = false;
+                                return;
+                            }
                             if (attempt > 30) {
                                 isProgrammaticScroll.current = false;
                                 isScrollingRef.current = false;
@@ -640,7 +723,10 @@ function GlossaryList() {
                     // Longer delay when coming from modal to ensure DOM is ready
                     setTimeout({
                         "GlossaryList.useCallback[handleHashNavigation]": function() {
-                            return attemptScroll();
+                            if (("TURBOPACK compile-time value", "object") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) {
+                                return;
+                            }
+                            attemptScroll();
                         }
                     }["GlossaryList.useCallback[handleHashNavigation]"], 500);
                 }
@@ -651,6 +737,11 @@ function GlossaryList() {
                 var attemptScroll1 = {
                     "GlossaryList.useCallback[handleHashNavigation].attemptScroll": function() {
                         var attempt = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
+                        if (("TURBOPACK compile-time value", "object") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) {
+                            isProgrammaticScroll.current = false;
+                            isScrollingRef.current = false;
+                            return;
+                        }
                         if (attempt > 30) {
                             isProgrammaticScroll.current = false;
                             isScrollingRef.current = false;
@@ -683,7 +774,10 @@ function GlossaryList() {
                 // Longer delay when coming from modal to ensure DOM is ready
                 setTimeout({
                     "GlossaryList.useCallback[handleHashNavigation]": function() {
-                        return attemptScroll1();
+                        if (("TURBOPACK compile-time value", "object") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) {
+                            return;
+                        }
+                        attemptScroll1();
                     }
                 }["GlossaryList.useCallback[handleHashNavigation]"], 500);
                 return;
@@ -704,7 +798,7 @@ function GlossaryList() {
             }
             var handleHashChange = {
                 "GlossaryList.useEffect.handleHashChange": function() {
-                    if (isOpeningModalRef.current || isClosingModalRef.current) {
+                    if (isOpeningModalRef.current) {
                         return;
                     }
                     if (Date.now() < skipHashNavigationUntilRef.current) {
@@ -712,6 +806,12 @@ function GlossaryList() {
                     }
                     var newHash = window.location.hash.substring(1);
                     if (newHash) {
+                        if (isClosingModalRef.current) {
+                            var _parseGlossaryHash = parseGlossaryHash(newHash), idInHash = _parseGlossaryHash.articleId;
+                            if (idInHash) {
+                                return;
+                            }
+                        }
                         handleHashNavigation(newHash);
                     }
                 }
@@ -725,98 +825,116 @@ function GlossaryList() {
         }
     }["GlossaryList.useEffect"], [
         glossaryData.length,
-        handleHashNavigation
+        handleHashNavigation,
+        parseGlossaryHash
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "GlossaryList.useEffect": function() {
             if (("TURBOPACK compile-time value", "object") === 'undefined' || !glossaryData.length || !allArticles.length) return;
+            if (glossaryInitialUrlArticleHandledRef.current) return;
             var hash = window.location.hash.substring(1);
-            if (!hash) return;
-            var isKeywordId = glossaryData.some({
-                "GlossaryList.useEffect.isKeywordId": function(k) {
+            if (!hash) {
+                glossaryInitialUrlArticleHandledRef.current = true;
+                return;
+            }
+            if (glossaryData.some({
+                "GlossaryList.useEffect": function(k) {
                     return k.id === hash;
                 }
-            }["GlossaryList.useEffect.isKeywordId"]);
-            if (isKeywordId) return;
+            }["GlossaryList.useEffect"])) {
+                glossaryInitialUrlArticleHandledRef.current = true;
+                return;
+            }
             var _parseGlossaryHash = parseGlossaryHash(hash), parsedKeywordSlug = _parseGlossaryHash.keywordSlug, parsedArticleId = _parseGlossaryHash.articleId;
-            var articleId = parsedArticleId;
-            var keywordSlug = parsedKeywordSlug;
+            var keywordOnly = parsedKeywordSlug && getKeywordBySlug(parsedKeywordSlug);
+            if (keywordOnly && !parsedArticleId) {
+                glossaryInitialUrlArticleHandledRef.current = true;
+                return;
+            }
             var findArticleByHash = {
                 "GlossaryList.useEffect.findArticleByHash": function() {
-                    if (articleId) {
+                    if (parsedArticleId) {
                         return allArticles.find({
                             "GlossaryList.useEffect.findArticleByHash": function(article) {
-                                return article.id === articleId;
+                                return article.id === parsedArticleId;
                             }
                         }["GlossaryList.useEffect.findArticleByHash"]);
                     }
                     return allArticles.find({
                         "GlossaryList.useEffect.findArticleByHash": function(article) {
                             if (!article.title) return false;
-                            var articleHash = slugifyTitle(article.title);
-                            return articleHash === hash;
+                            return slugifyTitle(article.title) === hash;
                         }
                     }["GlossaryList.useEffect.findArticleByHash"]);
                 }
             }["GlossaryList.useEffect.findArticleByHash"];
             var article = findArticleByHash();
-            if (article) {
-                setTimeout({
+            if (!article) {
+                glossaryInitialUrlArticleHandledRef.current = true;
+                return;
+            }
+            var keywordSlugForUrl = parsedKeywordSlug && getKeywordBySlug(parsedKeywordSlug) ? parsedKeywordSlug : null;
+            if (keywordSlugForUrl) {
+                window.history.replaceState(null, '', "#".concat(keywordSlugForUrl));
+                requestAnimationFrame({
                     "GlossaryList.useEffect": function() {
-                        var keywords = article.keywords && article.keywords.length > 0 ? article.keywords : article.connectionKeywords ? article.connectionKeywords.map({
-                            "GlossaryList.useEffect": function(keyword, index) {
-                                var connectionId = article.connections && article.connections[index];
-                                if (connectionId) {
-                                    var keywordInGlossary = glossaryData.find({
-                                        "GlossaryList.useEffect.keywordInGlossary": function(k) {
-                                            return k.id === connectionId;
-                                        }
-                                    }["GlossaryList.useEffect.keywordInGlossary"]);
-                                    if (keywordInGlossary) {
-                                        var keywordSlug = slugifyTitle(keywordInGlossary.title);
-                                        return {
-                                            text: keyword,
-                                            link: "/glossary#".concat(keywordSlug)
-                                        };
-                                    }
-                                }
-                                return {
-                                    text: keyword,
-                                    link: null
-                                };
+                        handleHashNavigation(keywordSlugForUrl);
+                    }
+                }["GlossaryList.useEffect"]);
+            }
+            glossaryInitialUrlArticleHandledRef.current = true;
+            var keywords = article.keywords && article.keywords.length > 0 ? article.keywords : article.connectionKeywords ? article.connectionKeywords.map({
+                "GlossaryList.useEffect": function(kw, index) {
+                    var connectionId = article.connections && article.connections[index];
+                    if (connectionId) {
+                        var keywordInGlossary = glossaryData.find({
+                            "GlossaryList.useEffect.keywordInGlossary": function(k) {
+                                return k.id === connectionId;
                             }
-                        }["GlossaryList.useEffect"]) : [];
-                        setSelectedArticle({
-                            id: article.id,
-                            title: article.title,
-                            author: article.author,
-                            imageUrl: article.imageUrl,
-                            content: article.content,
-                            authorBio: article.authorBio || '',
-                            keywords: keywords,
-                            connectionKeywords: article.connectionKeywords || []
-                        });
-                        setArticleModalOpen(true);
-                        if (keywordSlug) {
-                            var keyword = getKeywordBySlug(keywordSlug);
-                            if (keyword) {
-                                keywordHashBeforeModalRef.current = keywordSlug;
-                                var isMobile = window.innerWidth <= 812;
-                                if (isMobile && listRef.current) {
-                                    scrollPositionBeforeModalRef.current = listRef.current.scrollTop;
-                                } else {
-                                    scrollPositionBeforeModalRef.current = window.pageYOffset || document.documentElement.scrollTop;
-                                }
-                            }
+                        }["GlossaryList.useEffect.keywordInGlossary"]);
+                        if (keywordInGlossary) {
+                            var kSlug = slugifyTitle(keywordInGlossary.title);
+                            return {
+                                text: kw,
+                                link: "/glossary#".concat(kSlug)
+                            };
                         }
                     }
-                }["GlossaryList.useEffect"], 1000);
+                    return {
+                        text: kw,
+                        link: null
+                    };
+                }
+            }["GlossaryList.useEffect"]) : [];
+            setSelectedArticle({
+                id: article.id,
+                title: article.title,
+                author: article.author,
+                imageUrl: article.imageUrl,
+                content: article.content,
+                authorBio: article.authorBio || '',
+                keywords: keywords,
+                connectionKeywords: article.connectionKeywords || []
+            });
+            setArticleModalOpen(true);
+            if (keywordSlugForUrl) {
+                var kw = getKeywordBySlug(keywordSlugForUrl);
+                if (kw) {
+                    keywordHashBeforeModalRef.current = keywordSlugForUrl;
+                    var isMobile = window.innerWidth <= 812;
+                    if (isMobile && listRef.current) {
+                        scrollPositionBeforeModalRef.current = listRef.current.scrollTop;
+                    } else {
+                        scrollPositionBeforeModalRef.current = window.pageYOffset || document.documentElement.scrollTop;
+                    }
+                }
             }
         }
     }["GlossaryList.useEffect"], [
         glossaryData,
         allArticles,
-        parseGlossaryHash
+        parseGlossaryHash,
+        handleHashNavigation
     ]);
     // Load glossary data and articles from files
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
@@ -1189,13 +1307,29 @@ function GlossaryList() {
     }["GlossaryList.useMemo[allKeywordsInOrder]"], [
         groupedKeywords
     ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "GlossaryList.useEffect": function() {
+            if (!centeredKeywordId || !allKeywordsInOrder.length) return;
+            var idx = allKeywordsInOrder.findIndex({
+                "GlossaryList.useEffect.idx": function(k) {
+                    return k.id === centeredKeywordId;
+                }
+            }["GlossaryList.useEffect.idx"]);
+            if (idx >= 0) {
+                lastCenteredKeywordIndexRef.current = idx;
+            }
+        }
+    }["GlossaryList.useEffect"], [
+        centeredKeywordId,
+        allKeywordsInOrder
+    ]);
     // Ensure a keyword is always selected when keywords are available
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "GlossaryList.useEffect": function() {
             if (allKeywordsInOrder.length === 0) return;
             var checkAndSetKeyword = {
                 "GlossaryList.useEffect.checkAndSetKeyword": function() {
-                    if (isProgrammaticScroll.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpen) return;
+                    if (isProgrammaticScroll.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) return;
                     // If there's no hash on initial load, don't override the first keyword selection
                     // This prevents unwanted scrolling when entering the glossary page
                     var hasHash = ("TURBOPACK compile-time value", "object") !== 'undefined' && window.location.hash;
@@ -1263,109 +1397,135 @@ function GlossaryList() {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "GlossaryList.useEffect": function() {
             if (allKeywordsInOrder.length === 0) return;
-            var snapToNearestCard = {
-                "GlossaryList.useEffect.snapToNearestCard": function(scrollTop) {
-                    if (allKeywordsInOrder.length === 0 || isScrollingRef.current || isProgrammaticScroll.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpen) return;
-                    var viewportCenter = window.innerHeight / 2;
-                    var nearestKeyword = null;
-                    var minDistance = Infinity;
-                    allKeywordsInOrder.forEach({
-                        "GlossaryList.useEffect.snapToNearestCard": function(keyword) {
-                            var itemElement = itemRefs.current[keyword.id];
-                            if (itemElement) {
-                                var itemRect = itemElement.getBoundingClientRect();
-                                var itemCenter = itemRect.top + itemRect.height / 2;
-                                var distanceFromCenter = Math.abs(itemCenter - viewportCenter);
-                                if (distanceFromCenter < minDistance) {
-                                    minDistance = distanceFromCenter;
-                                    nearestKeyword = keyword;
-                                }
-                            }
-                        }
-                    }["GlossaryList.useEffect.snapToNearestCard"]);
-                    if (nearestKeyword) {
-                        var itemElement = itemRefs.current[nearestKeyword.id];
-                        if (itemElement) {
-                            isScrollingRef.current = true;
-                            isProgrammaticScroll.current = true;
-                            var itemRect = itemElement.getBoundingClientRect();
-                            var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                            var itemTop = itemRect.top + currentScrollTop;
-                            var itemHeight = itemRect.height;
-                            var viewportHeight = window.innerHeight;
-                            var targetScrollTop = itemTop - viewportHeight / 2 + itemHeight / 2;
-                            window.scrollTo({
-                                top: targetScrollTop,
-                                behavior: 'smooth'
-                            });
-                            updateCenteredKeyword(nearestKeyword.id);
-                            if (scrollTimeoutRef.current) {
-                                clearTimeout(scrollTimeoutRef.current);
-                            }
-                            scrollTimeoutRef.current = setTimeout({
-                                "GlossaryList.useEffect.snapToNearestCard": function() {
-                                    isScrollingRef.current = false;
-                                    isProgrammaticScroll.current = false;
-                                }
-                            }["GlossaryList.useEffect.snapToNearestCard"], 500);
-                        }
-                    }
-                }
-            }["GlossaryList.useEffect.snapToNearestCard"];
             var ticking = false;
             var lastScrollTop = 0;
-            var scrollEndTimer = null;
             var getCurrentKeyword = {
                 "GlossaryList.useEffect.getCurrentKeyword": function() {
+                    var perfT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
                     var isMobile = listRef.current && window.innerWidth <= 812;
-                    var viewportCenter;
-                    var containerRect;
-                    if (isMobile && listRef.current) {
-                        containerRect = listRef.current.getBoundingClientRect();
-                        viewportCenter = containerRect.top + containerRect.height / 2;
-                    } else {
-                        viewportCenter = window.innerHeight / 2;
-                    }
-                    var nearestKeyword = null;
-                    var minDistance = Infinity;
-                    var mostVisibleKeyword = null;
-                    var maxVisibleArea = 0;
-                    allKeywordsInOrder.forEach({
-                        "GlossaryList.useEffect.getCurrentKeyword": function(keyword) {
-                            var itemElement = itemRefs.current[keyword.id];
-                            if (itemElement) {
-                                var itemRect = itemElement.getBoundingClientRect();
-                                var itemCenter = itemRect.top + itemRect.height / 2;
-                                var distanceFromCenter = Math.abs(itemCenter - viewportCenter);
-                                if (distanceFromCenter < minDistance) {
-                                    minDistance = distanceFromCenter;
-                                    nearestKeyword = keyword;
-                                }
-                                if (isMobile && containerRect) {
-                                    var visibleTop = Math.max(itemRect.top, containerRect.top);
-                                    var visibleBottom = Math.min(itemRect.bottom, containerRect.bottom);
-                                    var visibleHeight = Math.max(0, visibleBottom - visibleTop);
-                                    var visibleArea = visibleHeight / itemRect.height;
-                                    if (visibleArea > maxVisibleArea && visibleArea > 0.3) {
-                                        maxVisibleArea = visibleArea;
-                                        mostVisibleKeyword = keyword;
+                    var n = allKeywordsInOrder.length;
+                    if (n === 0) return null;
+                    var scanRange = {
+                        "GlossaryList.useEffect.getCurrentKeyword.scanRange": function(lo, hi) {
+                            var viewportCenter;
+                            var containerRect;
+                            if (isMobile && listRef.current) {
+                                containerRect = listRef.current.getBoundingClientRect();
+                                viewportCenter = containerRect.top + containerRect.height / 2;
+                            } else {
+                                viewportCenter = window.innerHeight / 2;
+                            }
+                            var nearestKeyword = null;
+                            var minDistance = Infinity;
+                            var mostVisibleKeyword = null;
+                            var maxVisibleArea = 0;
+                            var rectReadCount = isMobile && listRef.current ? 1 : 0;
+                            for(var i = lo; i <= hi; i++){
+                                var keyword = allKeywordsInOrder[i];
+                                var itemElement = itemRefs.current[keyword.id];
+                                if (itemElement) {
+                                    rectReadCount += 1;
+                                    var itemRect = itemElement.getBoundingClientRect();
+                                    var itemCenter = itemRect.top + itemRect.height / 2;
+                                    var distanceFromCenter = Math.abs(itemCenter - viewportCenter);
+                                    if (distanceFromCenter < minDistance) {
+                                        minDistance = distanceFromCenter;
+                                        nearestKeyword = keyword;
                                     }
-                                } else {
-                                    var visibleTop1 = Math.max(itemRect.top, 0);
-                                    var visibleBottom1 = Math.min(itemRect.bottom, window.innerHeight);
-                                    var visibleHeight1 = Math.max(0, visibleBottom1 - visibleTop1);
-                                    var visibleArea1 = visibleHeight1 / itemRect.height;
-                                    if (visibleArea1 > maxVisibleArea && visibleArea1 > 0.3) {
-                                        maxVisibleArea = visibleArea1;
-                                        mostVisibleKeyword = keyword;
+                                    if (isMobile && containerRect) {
+                                        var visibleTop = Math.max(itemRect.top, containerRect.top);
+                                        var visibleBottom = Math.min(itemRect.bottom, containerRect.bottom);
+                                        var visibleHeight = Math.max(0, visibleBottom - visibleTop);
+                                        var visibleArea = visibleHeight / itemRect.height;
+                                        if (visibleArea > maxVisibleArea && visibleArea > 0.3) {
+                                            maxVisibleArea = visibleArea;
+                                            mostVisibleKeyword = keyword;
+                                        }
+                                    } else {
+                                        var visibleTop1 = Math.max(itemRect.top, 0);
+                                        var visibleBottom1 = Math.min(itemRect.bottom, window.innerHeight);
+                                        var visibleHeight1 = Math.max(0, visibleBottom1 - visibleTop1);
+                                        var visibleArea1 = visibleHeight1 / itemRect.height;
+                                        if (visibleArea1 > maxVisibleArea && visibleArea1 > 0.3) {
+                                            maxVisibleArea = visibleArea1;
+                                            mostVisibleKeyword = keyword;
+                                        }
                                     }
                                 }
                             }
+                            return {
+                                nearestKeyword: nearestKeyword,
+                                mostVisibleKeyword: mostVisibleKeyword,
+                                minDistance: minDistance,
+                                rectReadCount: rectReadCount
+                            };
                         }
-                    }["GlossaryList.useEffect.getCurrentKeyword"]);
-                    return mostVisibleKeyword || nearestKeyword || (allKeywordsInOrder.length > 0 ? allKeywordsInOrder[0] : null);
+                    }["GlossaryList.useEffect.getCurrentKeyword.scanRange"];
+                    var vh = window.innerHeight;
+                    var out;
+                    if (n > 48) {
+                        var c = lastCenteredKeywordIndexRef.current;
+                        var r = 32;
+                        var lo = Math.max(0, c - r);
+                        var hi = Math.min(n - 1, c + r);
+                        out = scanRange(lo, hi);
+                        if (out.minDistance === Infinity || out.minDistance > vh * 0.45) {
+                            out = scanRange(0, n - 1);
+                        }
+                    } else {
+                        out = scanRange(0, n - 1);
+                    }
+                    var result = out.mostVisibleKeyword || out.nearestKeyword || allKeywordsInOrder[0];
+                    if (glossaryPerfDebugEnabled() && perfT0) {
+                        var ms = performance.now() - perfT0;
+                        if (ms > 4) {
+                            console.warn('[glossary-perf] getCurrentKeyword', {
+                                ms: Number(ms.toFixed(1)),
+                                keywordCount: n,
+                                getBoundingClientRectCount: out.rectReadCount
+                            });
+                        }
+                    }
+                    return result;
                 }
             }["GlossaryList.useEffect.getCurrentKeyword"];
+            var NUDGE_MIN_PX = 8;
+            var nudgeDesktopScrollToCenteredRow = {
+                "GlossaryList.useEffect.nudgeDesktopScrollToCenteredRow": function() {
+                    var _document_documentElement;
+                    if (typeof document !== 'undefined' && document.body.hasAttribute('data-restoring-scroll')) return;
+                    if (allKeywordsInOrder.length === 0 || isScrollingRef.current || isProgrammaticScroll.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) return;
+                    if (listRef.current && window.innerWidth <= 812) return;
+                    var keyword = getCurrentKeyword();
+                    if (!keyword) return;
+                    var el = itemRefs.current[keyword.id];
+                    if (!el) return;
+                    var itemRect = el.getBoundingClientRect();
+                    var delta = itemRect.top + itemRect.height / 2 - window.innerHeight / 2;
+                    if (Math.abs(delta) <= NUDGE_MIN_PX) return;
+                    var useSmooth = ("TURBOPACK compile-time value", "object") !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    isScrollingRef.current = true;
+                    isProgrammaticScroll.current = true;
+                    var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                    var maxScroll = Math.max(0, (((_document_documentElement = document.documentElement) === null || _document_documentElement === void 0 ? void 0 : _document_documentElement.scrollHeight) || 0) - window.innerHeight);
+                    var nextTop = Math.max(0, Math.min(currentScroll + delta, maxScroll));
+                    window.scrollTo({
+                        top: nextTop,
+                        behavior: useSmooth ? 'smooth' : 'auto'
+                    });
+                    updateCenteredKeyword(keyword.id);
+                    if (scrollTimeoutRef.current) {
+                        clearTimeout(scrollTimeoutRef.current);
+                    }
+                    var lockMs = useSmooth ? 800 : 450;
+                    scrollTimeoutRef.current = setTimeout({
+                        "GlossaryList.useEffect.nudgeDesktopScrollToCenteredRow": function() {
+                            isScrollingRef.current = false;
+                            isProgrammaticScroll.current = false;
+                        }
+                    }["GlossaryList.useEffect.nudgeDesktopScrollToCenteredRow"], lockMs);
+                }
+            }["GlossaryList.useEffect.nudgeDesktopScrollToCenteredRow"];
             var handleScroll = {
                 "GlossaryList.useEffect.handleScroll": function() {
                     if (document.body.hasAttribute('data-restoring-scroll')) {
@@ -1373,7 +1533,7 @@ function GlossaryList() {
                         return;
                     }
                     // Don't interfere with programmatic scrolling from hash navigation or when modal is opening/closing
-                    if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpen) {
+                    if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) {
                         ticking = false;
                         return;
                     }
@@ -1384,20 +1544,35 @@ function GlossaryList() {
                         ticking = false;
                         return;
                     }
-                    // On mobile, update more frequently for better responsiveness
                     if (isMobile) {
-                        var visibleKeyword = getCurrentKeyword();
-                        if (visibleKeyword && visibleKeyword.id !== centeredKeywordIdRef.current) {
-                            updateCenteredKeyword(visibleKeyword.id);
+                        if (scrollDelta < 2) {
+                            ticking = false;
+                            return;
                         }
                     } else {
                         if (scrollDelta < 5) {
                             ticking = false;
                             return;
                         }
-                        var visibleKeyword1 = getCurrentKeyword();
-                        if (visibleKeyword1 && visibleKeyword1.id !== centeredKeywordIdRef.current) {
-                            updateCenteredKeyword(visibleKeyword1.id);
+                    }
+                    var now = Date.now();
+                    if (now - lastGlossaryScrollKeywordCheckMsRef.current < 100) {
+                        lastScrollTop = currentScrollTop;
+                        ticking = false;
+                        return;
+                    }
+                    lastGlossaryScrollKeywordCheckMsRef.current = now;
+                    var scrollPerfT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
+                    var visibleKeyword = getCurrentKeyword();
+                    if (visibleKeyword && visibleKeyword.id !== centeredKeywordIdRef.current) {
+                        updateCenteredKeyword(visibleKeyword.id);
+                    }
+                    if (glossaryPerfDebugEnabled() && scrollPerfT0) {
+                        var ms = performance.now() - scrollPerfT0;
+                        if (ms > 8) {
+                            console.warn('[glossary-perf] handleScroll (rAF, after 100ms throttle)', {
+                                ms: Number(ms.toFixed(1))
+                            });
                         }
                     }
                     lastScrollTop = currentScrollTop;
@@ -1414,11 +1589,24 @@ function GlossaryList() {
             }["GlossaryList.useEffect.onScroll"];
             var handleScrollEnd = {
                 "GlossaryList.useEffect.handleScrollEnd": function() {
-                    if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpen) return;
-                    // Always update on scroll end to ensure correct item is highlighted
+                    if (typeof document !== 'undefined' && document.body.hasAttribute('data-restoring-scroll')) return;
+                    if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) return;
+                    var isMobile = listRef.current && window.innerWidth <= 812;
+                    var endT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
                     var visibleKeyword = getCurrentKeyword();
                     if (visibleKeyword) {
                         updateCenteredKeyword(visibleKeyword.id);
+                    }
+                    if (!isMobile) {
+                        nudgeDesktopScrollToCenteredRow();
+                    }
+                    if (glossaryPerfDebugEnabled() && endT0) {
+                        var ms = performance.now() - endT0;
+                        if (ms > 8) {
+                            console.warn('[glossary-perf] handleScrollEnd (220ms debounce)', {
+                                ms: Number(ms.toFixed(1))
+                            });
+                        }
                     }
                 }
             }["GlossaryList.useEffect.handleScrollEnd"];
@@ -1457,7 +1645,7 @@ function GlossaryList() {
                         "GlossaryList.useEffect.onScrollWithEndDetection": function() {
                             handleScrollEnd();
                         }
-                    }["GlossaryList.useEffect.onScrollWithEndDetection"], 150);
+                    }["GlossaryList.useEffect.onScrollWithEndDetection"], 220);
                 }
             }["GlossaryList.useEffect.onScrollWithEndDetection"];
             if (isMobile && listRef.current) {
@@ -1499,17 +1687,32 @@ function GlossaryList() {
             }["GlossaryList.useEffect.ensureKeywordSelected"];
             setTimeout({
                 "GlossaryList.useEffect": function() {
-                    // Don't trigger scroll handling on initial load if there's no hash
+                    var initT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
                     var hasHash = ("TURBOPACK compile-time value", "object") !== 'undefined' && window.location.hash;
                     if (!hasHash && !centeredKeywordIdRef.current) {
-                        // Just ensure first keyword is selected without scrolling
                         ensureKeywordSelected();
+                        if (glossaryPerfDebugEnabled() && initT0) {
+                            var ms = performance.now() - initT0;
+                            if (ms > 8) {
+                                console.warn('[glossary-perf] init setTimeout(100) ensureKeywordSelected', {
+                                    ms: Number(ms.toFixed(1))
+                                });
+                            }
+                        }
                         return;
                     }
                     if (!isProgrammaticScroll.current) {
                         handleScroll();
                     }
                     ensureKeywordSelected();
+                    if (glossaryPerfDebugEnabled() && initT0) {
+                        var ms1 = performance.now() - initT0;
+                        if (ms1 > 8) {
+                            console.warn('[glossary-perf] init setTimeout(100) full', {
+                                ms: Number(ms1.toFixed(1))
+                            });
+                        }
+                    }
                 }
             }["GlossaryList.useEffect"], 100);
             return ({
@@ -1522,8 +1725,6 @@ function GlossaryList() {
                     window.removeEventListener('touchmove', handleTouchMove);
                     window.removeEventListener('resize', onScroll);
                     window.removeEventListener('mousemove', handleMouseMove);
-                    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
-                    ;
                     if (scrollEndTimeout) {
                         clearTimeout(scrollEndTimeout);
                     }
@@ -1538,11 +1739,14 @@ function GlossaryList() {
         groupedKeywords
     ]);
     var scrollToSection = function(letter) {
+        var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+        var _options_animated = options.animated, animated = _options_animated === void 0 ? true : _options_animated;
         var firstKeywordForLetter = allKeywordsInOrder.find(function(k) {
             return getFirstLetter(k) === letter;
         });
         if (firstKeywordForLetter) {
             var firstKeywordId = firstKeywordForLetter.id;
+            var useSmooth = animated && ("TURBOPACK compile-time value", "object") !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var attemptScroll = function() {
                 var attempt = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
                 if (attempt > 20) return;
@@ -1560,14 +1764,20 @@ function GlossaryList() {
                         var targetScrollTop = itemTopRelative - containerHeight / 2 + itemHeight / 2;
                         listRef.current.scrollTo({
                             top: Math.max(0, targetScrollTop),
-                            behavior: 'smooth'
+                            behavior: useSmooth ? 'smooth' : 'auto'
                         });
                         updateCenteredKeyword(firstKeywordId);
                         setTimeout(function() {
                             isProgrammaticScroll.current = false;
-                        }, 500);
+                        }, useSmooth ? 1000 : 500);
                     } else {
-                        scrollToElement(itemElement, firstKeywordId);
+                        if (animated) {
+                            scrollToElement(itemElement, firstKeywordId, {
+                                smooth: true
+                            });
+                        } else {
+                            scrollToElement(itemElement, firstKeywordId);
+                        }
                     }
                 } else {
                     setTimeout(function() {
@@ -1602,7 +1812,9 @@ function GlossaryList() {
         var letter = getLetterFromTouch(touch.clientY);
         if (letter && groupedKeywords[letter] && groupedKeywords[letter].length > 0) {
             setAlphabetPreview(letter);
-            scrollToSection(letter);
+            scrollToSection(letter, {
+                animated: false
+            });
         }
     };
     var handleAlphabetTouchMove = function(e) {
@@ -1612,7 +1824,9 @@ function GlossaryList() {
         var letter = getLetterFromTouch(touch.clientY);
         if (letter && groupedKeywords[letter] && groupedKeywords[letter].length > 0) {
             setAlphabetPreview(letter);
-            scrollToSection(letter);
+            scrollToSection(letter, {
+                animated: false
+            });
         }
     };
     var handleAlphabetTouchEnd = function() {
@@ -1725,10 +1939,6 @@ function GlossaryList() {
         setSelectedArticle(article);
         setArticleModalOpen(true);
         requestAnimationFrame(function() {
-            if (keywordHashBeforeModalRef.current && article.id) {
-                window.history.replaceState(null, '', "#".concat(keywordHashBeforeModalRef.current, ":").concat(article.id));
-            }
-            // Never set hash to article-only (#A2) – keeps feed stable and avoids jumping
             setTimeout(function() {
                 if (isMobile && listRef.current) {
                     listRef.current.removeEventListener('scroll', preventScroll, {
@@ -1747,14 +1957,6 @@ function GlossaryList() {
     };
     var handleArticleSwap = function(article) {
         setSelectedArticle(article);
-        requestAnimationFrame(function() {
-            var currentHash = ("TURBOPACK compile-time truthy", 1) ? window.location.hash.substring(1) : "TURBOPACK unreachable";
-            var _parseGlossaryHash = parseGlossaryHash(currentHash), parsedSlug = _parseGlossaryHash.keywordSlug;
-            var keywordSlug = keywordHashBeforeModalRef.current || parsedSlug;
-            if (("TURBOPACK compile-time value", "object") !== 'undefined' && keywordSlug && (article === null || article === void 0 ? void 0 : article.id)) {
-                window.history.replaceState(null, '', "#".concat(keywordSlug, ":").concat(article.id));
-            }
-        });
     };
     var handleArticleImageClick = function(article) {
         if (articleModalOpen) {
@@ -1763,61 +1965,83 @@ function GlossaryList() {
         }
         handleArticleClick(article);
     };
-    // Close article modal – remove :AXX from param, restore keyword hash, then instant jump to that keyword position
+    var handleGlossaryArticleModalAfterOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "GlossaryList.useCallback[handleGlossaryArticleModalAfterOpen]": function() {
+            if (typeof document === 'undefined' || ("TURBOPACK compile-time value", "object") === 'undefined') return;
+            var y = scrollPositionBeforeModalRef.current;
+            if (y == null) return;
+            var isMobile = window.innerWidth <= 812;
+            if (isMobile) {
+                requestAnimationFrame({
+                    "GlossaryList.useCallback[handleGlossaryArticleModalAfterOpen]": function() {
+                        if (listRef.current) {
+                            listRef.current.scrollTop = y;
+                        }
+                    }
+                }["GlossaryList.useCallback[handleGlossaryArticleModalAfterOpen]"]);
+            } else {
+                document.body.style.top = "-".concat(y, "px");
+            }
+        }
+    }["GlossaryList.useCallback[handleGlossaryArticleModalAfterOpen]"], []);
+    var handleGlossaryArticleModalAfterClose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "GlossaryList.useCallback[handleGlossaryArticleModalAfterClose]": function() {
+            if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+            ;
+            var y = scrollPositionBeforeModalRef.current;
+            var isMobile = window.innerWidth <= 812;
+            if (typeof document !== 'undefined') {
+                document.body.style.top = '';
+                document.body.style.width = '';
+                document.documentElement.style.top = '';
+            }
+            var apply = {
+                "GlossaryList.useCallback[handleGlossaryArticleModalAfterClose].apply": function() {
+                    if (y == null || y < 0) return;
+                    if (isMobile && listRef.current) {
+                        listRef.current.scrollTop = y;
+                    } else {
+                        window.scrollTo(0, y);
+                        var se = document.scrollingElement;
+                        if (se) {
+                            se.scrollTop = y;
+                        }
+                    }
+                }
+            }["GlossaryList.useCallback[handleGlossaryArticleModalAfterClose].apply"];
+            apply();
+            requestAnimationFrame(apply);
+            scrollPositionBeforeModalRef.current = null;
+            if (typeof document !== 'undefined') {
+                document.body.removeAttribute('data-restoring-scroll');
+            }
+            isClosingModalRef.current = false;
+            isProgrammaticScroll.current = false;
+            isScrollingRef.current = false;
+        }
+    }["GlossaryList.useCallback[handleGlossaryArticleModalAfterClose]"], []);
     var handleCloseArticleModal = function() {
+        var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+        var _options_fromGlossaryKeywordLink = options.fromGlossaryKeywordLink, fromGlossaryKeywordLink = _options_fromGlossaryKeywordLink === void 0 ? false : _options_fromGlossaryKeywordLink;
         isClosingModalRef.current = true;
-        isProgrammaticScroll.current = true;
-        isScrollingRef.current = true;
-        var keywordSlug = keywordHashBeforeModalRef.current;
+        if (fromGlossaryKeywordLink) {
+            isProgrammaticScroll.current = false;
+            isScrollingRef.current = false;
+            skipHashNavigationUntilRef.current = 0;
+            if (typeof document !== 'undefined') {
+                document.body.removeAttribute('data-restoring-scroll');
+            }
+        } else {
+            isProgrammaticScroll.current = true;
+            isScrollingRef.current = true;
+            if (typeof document !== 'undefined') {
+                document.body.setAttribute('data-restoring-scroll', 'true');
+            }
+            skipHashNavigationUntilRef.current = Date.now() + 2500;
+        }
         setArticleModalOpen(false);
         setSelectedArticle(null);
-        scrollPositionBeforeModalRef.current = null;
-        if (keywordSlug) {
-            skipHashNavigationUntilRef.current = Date.now() + 1200;
-            window.history.replaceState(null, '', "#".concat(keywordSlug));
-            keywordHashBeforeModalRef.current = null;
-        }
-        var doInstantScrollToKeyword = function() {
-            if (!keywordSlug) return;
-            var keyword = getKeywordBySlug(keywordSlug);
-            if (!keyword) return;
-            var itemElement = itemRefs.current[keyword.id] || (typeof document !== 'undefined' ? document.getElementById(keyword.id) : null);
-            if (!itemElement) return;
-            var isMobile = ("TURBOPACK compile-time value", "object") !== 'undefined' && window.innerWidth <= 812;
-            if (isMobile && listRef.current) {
-                var containerRect = listRef.current.getBoundingClientRect();
-                var itemRect = itemElement.getBoundingClientRect();
-                var scrollTop = listRef.current.scrollTop;
-                var itemTopRelative = itemRect.top - containerRect.top + scrollTop;
-                var targetScrollTop = itemTopRelative - containerRect.height / 2 + itemRect.height / 2;
-                listRef.current.scrollTo({
-                    top: Math.max(0, targetScrollTop),
-                    behavior: 'auto'
-                });
-            } else {
-                var itemRect1 = itemElement.getBoundingClientRect();
-                var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                var itemTop = itemRect1.top + currentScrollTop;
-                var targetScrollTop1 = Math.max(0, itemTop - window.innerHeight / 2 + itemRect1.height / 2);
-                window.scrollTo({
-                    top: targetScrollTop1,
-                    left: 0,
-                    behavior: 'auto'
-                });
-            }
-            updateCenteredKeyword(keyword.id);
-        };
-        requestAnimationFrame(function() {
-            doInstantScrollToKeyword();
-            requestAnimationFrame(function() {
-                doInstantScrollToKeyword();
-                setTimeout(function() {
-                    isClosingModalRef.current = false;
-                    isProgrammaticScroll.current = false;
-                    isScrollingRef.current = false;
-                }, 200);
-            });
-        });
+        keywordHashBeforeModalRef.current = null;
     };
     var articleImagesStackContent = relatedArticles.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$glossary$2f$glossary$2e$module$2e$scss__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].articleImagesStack,
@@ -1849,7 +2073,7 @@ function GlossaryList() {
                             loading: "eager"
                         }, void 0, false, {
                             fileName: "[project]/components/glossary/GlossaryList.jsx",
-                            lineNumber: 1375,
+                            lineNumber: 1564,
                             columnNumber: 17
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -1885,24 +2109,24 @@ function GlossaryList() {
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/glossary/GlossaryList.jsx",
-                            lineNumber: 1382,
+                            lineNumber: 1571,
                             columnNumber: 17
                         }, _this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/glossary/GlossaryList.jsx",
-                    lineNumber: 1374,
+                    lineNumber: 1563,
                     columnNumber: 15
                 }, _this) : null
             }, article.id, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1366,
+                lineNumber: 1555,
                 columnNumber: 11
             }, _this);
         })
     }, void 0, false, {
         fileName: "[project]/components/glossary/GlossaryList.jsx",
-        lineNumber: 1350,
+        lineNumber: 1539,
         columnNumber: 5
     }, this) : null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1913,6 +2137,8 @@ function GlossaryList() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$modal$2f$lib$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 isOpen: articleModalOpen,
                 onRequestClose: handleCloseArticleModal,
+                onAfterOpen: handleGlossaryArticleModalAfterOpen,
+                onAfterClose: handleGlossaryArticleModalAfterClose,
                 contentLabel: "Article Modal",
                 className: "archive-modal-content",
                 overlayClassName: "archive-modal-overlay",
@@ -1930,12 +2156,12 @@ function GlossaryList() {
                     closeModal: handleCloseArticleModal
                 }, void 0, false, {
                     fileName: "[project]/components/glossary/GlossaryList.jsx",
-                    lineNumber: 1442,
+                    lineNumber: 1633,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1430,
+                lineNumber: 1619,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1971,7 +2197,7 @@ function GlossaryList() {
                                 children: keyword.index
                             }, void 0, false, {
                                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                                lineNumber: 1482,
+                                lineNumber: 1673,
                                 columnNumber: 15
                             }, _this),
                             LANGUAGE_ORDER.map(function(langKey, langIndex) {
@@ -1985,20 +2211,20 @@ function GlossaryList() {
                                     children: translation
                                 }, langKey, false, {
                                     fileName: "[project]/components/glossary/GlossaryList.jsx",
-                                    lineNumber: 1489,
+                                    lineNumber: 1680,
                                     columnNumber: 19
                                 }, _this);
                             })
                         ]
                     }, keyword.id, true, {
                         fileName: "[project]/components/glossary/GlossaryList.jsx",
-                        lineNumber: 1473,
+                        lineNumber: 1664,
                         columnNumber: 13
                     }, _this);
                 })
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1455,
+                lineNumber: 1646,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2023,13 +2249,13 @@ function GlossaryList() {
                         children: letter
                     }, letter, false, {
                         fileName: "[project]/components/glossary/GlossaryList.jsx",
-                        lineNumber: 1513,
+                        lineNumber: 1704,
                         columnNumber: 13
                     }, _this);
                 })
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1500,
+                lineNumber: 1691,
                 columnNumber: 7
             }, this),
             alphabetPreview && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2037,7 +2263,7 @@ function GlossaryList() {
                 children: alphabetPreview
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1527,
+                lineNumber: 1718,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2f$NavigationControls$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__NavigationControls$3e$__["NavigationControls"], {
@@ -2045,7 +2271,7 @@ function GlossaryList() {
                 currentKeywordTitle: currentKeywordTitle
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1533,
+                lineNumber: 1724,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$glossary$2f$contributions$2f$Contributions$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2055,17 +2281,17 @@ function GlossaryList() {
                 onSubmitClick: handleSubmitClick
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1539,
+                lineNumber: 1730,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/glossary/GlossaryList.jsx",
-        lineNumber: 1423,
+        lineNumber: 1612,
         columnNumber: 5
     }, this);
 }
-_s(GlossaryList, "DeeQrtPugEYD53pXFI9Q7BpXXbg=");
+_s(GlossaryList, "ngrECKVLaBOZfS2szutKQV6uhxQ=");
 _c = GlossaryList;
 var _c;
 __turbopack_context__.k.register(_c, "GlossaryList");

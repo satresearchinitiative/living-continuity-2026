@@ -1,7 +1,13 @@
 'use client';
 
 import '../components/utils/appStores';
+import { registerPerfDebugConsole, initPerfDebugHooks } from '../components/utils/perfDebugHooks';
 import { useEffect, useState, useRef, Suspense } from 'react';
+
+if (typeof window !== 'undefined') {
+  registerPerfDebugConsole();
+  initPerfDebugHooks();
+}
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Modal from 'react-modal';
@@ -56,34 +62,25 @@ export default function RootLayout({ children }) {
     // Trigger fade-out when pathname changes
     setIsPageVisible(false);
     
-    // After fade-out, update children and fade-in using requestAnimationFrame
     let rafId1 = null;
     let rafId2 = null;
     let rafId3 = null;
-    let checkTimeRafId = null;
-    
-    const startTime = performance.now();
-    const checkTime = () => {
-      if (performance.now() - startTime >= 350) {
-        rafId1 = requestAnimationFrame(() => {
-          rafId2 = requestAnimationFrame(() => {
-      setDisplayChildren(children);
-            rafId3 = requestAnimationFrame(() => {
-          setIsPageVisible(true);
+    const timeoutId = window.setTimeout(() => {
+      rafId1 = requestAnimationFrame(() => {
+        rafId2 = requestAnimationFrame(() => {
+          setDisplayChildren(children);
+          rafId3 = requestAnimationFrame(() => {
+            setIsPageVisible(true);
+          });
         });
       });
-        });
-      } else {
-        checkTimeRafId = requestAnimationFrame(checkTime);
-      }
-    };
-    checkTimeRafId = requestAnimationFrame(checkTime);
-    
+    }, 350);
+
     return () => {
+      window.clearTimeout(timeoutId);
       if (rafId1) cancelAnimationFrame(rafId1);
       if (rafId2) cancelAnimationFrame(rafId2);
       if (rafId3) cancelAnimationFrame(rafId3);
-      if (checkTimeRafId) cancelAnimationFrame(checkTimeRafId);
     };
   }, [pathname, children, isInitialMount]);
   

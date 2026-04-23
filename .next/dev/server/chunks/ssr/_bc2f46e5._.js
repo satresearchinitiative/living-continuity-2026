@@ -289,6 +289,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$glossary$2f$gl
 ;
 ;
 ;
+function glossaryPerfDebugEnabled() {
+    if ("TURBOPACK compile-time truthy", 1) return false;
+    //TURBOPACK unreachable
+    ;
+}
 // Generate alphabet array A-Z and #
 const alphabet = [
     ...Array(26)
@@ -343,6 +348,12 @@ function GlossaryList() {
     const [allArticles, setAllArticles] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedArticle, setSelectedArticle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [articleModalOpen, setArticleModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const articleModalOpenRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(articleModalOpen);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        articleModalOpenRef.current = articleModalOpen;
+    }, [
+        articleModalOpen
+    ]);
     const slugifyTitle = (title)=>{
         return title.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
     };
@@ -388,10 +399,42 @@ function GlossaryList() {
     }, [
         glossaryData,
         allArticles,
-        articleModalOpen,
         parseGlossaryHash
     ]);
-    const scrollToElement = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((element, keywordId, retryCount = 0)=>{
+    const scrollToElement = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((element, keywordId, thirdArg = 0)=>{
+        if (thirdArg && typeof thirdArg === 'object' && thirdArg.smooth) {
+            if (!element) {
+                isProgrammaticScroll.current = false;
+                isScrollingRef.current = false;
+                return;
+            }
+            isProgrammaticScroll.current = true;
+            isScrollingRef.current = true;
+            const useSmooth = ("TURBOPACK compile-time value", "undefined") !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            requestAnimationFrame(()=>{
+                const itemRect = element.getBoundingClientRect();
+                const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const itemTop = itemRect.top + currentScrollTop;
+                const itemHeight = itemRect.height;
+                const viewportHeight = window.innerHeight;
+                const targetScrollTop = Math.max(0, itemTop - viewportHeight / 2 + itemHeight / 2);
+                window.scrollTo({
+                    top: targetScrollTop,
+                    behavior: ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 'auto'
+                });
+                updateCenteredKeyword(keywordId);
+                if (scrollTimeoutRef.current) {
+                    clearTimeout(scrollTimeoutRef.current);
+                }
+                const lockMs = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 300;
+                scrollTimeoutRef.current = setTimeout(()=>{
+                    isProgrammaticScroll.current = false;
+                    isScrollingRef.current = false;
+                }, lockMs);
+            });
+            return;
+        }
+        const retryCount = typeof thirdArg === 'number' ? thirdArg : 0;
         if (!element || retryCount > 15) {
             isProgrammaticScroll.current = false;
             isScrollingRef.current = false;
@@ -414,7 +457,7 @@ function GlossaryList() {
             }
             window.scrollTo({
                 top: targetScrollTop,
-                behavior: 'smooth'
+                behavior: 'auto'
             });
             updateCenteredKeyword(keywordId);
             if (scrollTimeoutRef.current) {
@@ -450,7 +493,6 @@ function GlossaryList() {
     const isProgrammaticScroll = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
     const scrollVelocityRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
     const lastScrollTimeRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
-    const lastScrollTopRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
     const isScrollingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
     const scrollTimeoutRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const [keywordsWithArticles, setKeywordsWithArticles] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([
@@ -471,6 +513,9 @@ function GlossaryList() {
     const skipHashNavigationUntilRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
     const isOpeningModalRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
     const keywordHashBeforeModalRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const glossaryInitialUrlArticleHandledRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    const lastGlossaryScrollKeywordCheckMsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
+    const lastCenteredKeywordIndexRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
     const LANDING_PAGE_NODE_ID = 'A1';
     const currentKeywordTitle = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
         if (!centeredKeywordId || !glossaryData.length) {
@@ -497,10 +542,28 @@ function GlossaryList() {
             html.classList.remove('glossary-page');
         };
     }, []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (("TURBOPACK compile-time value", "undefined") === 'undefined' || !glossaryPerfDebugEnabled()) return;
+        //TURBOPACK unreachable
+        ;
+    }, []);
     const handleHashNavigation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((hash)=>{
         if (!hash || !glossaryData.length) return;
-        // Prevent interference from other scroll handlers or when closing modal
-        if (isScrollingRef.current || isProgrammaticScroll.current || isClosingModalRef.current || isOpeningModalRef.current) {
+        if (("TURBOPACK compile-time value", "undefined") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) //TURBOPACK unreachable
+        ;
+        if (isOpeningModalRef.current) {
+            return;
+        }
+        if (isClosingModalRef.current) {
+            const { articleId: idInHash } = parseGlossaryHash(hash);
+            if (idInHash) {
+                return;
+            }
+        } else if (isScrollingRef.current || isProgrammaticScroll.current) {
+            return;
+        }
+        const { articleId: hashArticleIdFromNav } = parseGlossaryHash(hash);
+        if (hashArticleIdFromNav) {
             return;
         }
         const { keywordSlug: parsedKeywordSlug } = parseGlossaryHash(hash);
@@ -510,6 +573,8 @@ function GlossaryList() {
             const keyword = getKeywordBySlug(keywordSlugClean);
             if (keyword) {
                 const attemptScroll = (attempt = 0)=>{
+                    if (("TURBOPACK compile-time value", "undefined") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) //TURBOPACK unreachable
+                    ;
                     if (attempt > 30) {
                         isProgrammaticScroll.current = false;
                         isScrollingRef.current = false;
@@ -531,13 +596,19 @@ function GlossaryList() {
                     }
                 };
                 // Longer delay when coming from modal to ensure DOM is ready
-                setTimeout(()=>attemptScroll(), 500);
+                setTimeout(()=>{
+                    if (("TURBOPACK compile-time value", "undefined") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) //TURBOPACK unreachable
+                    ;
+                    attemptScroll();
+                }, 500);
             }
             return;
         }
         const keyword = getKeywordBySlug(keywordSlug);
         if (keyword) {
             const attemptScroll = (attempt = 0)=>{
+                if (("TURBOPACK compile-time value", "undefined") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) //TURBOPACK unreachable
+                ;
                 if (attempt > 30) {
                     isProgrammaticScroll.current = false;
                     isScrollingRef.current = false;
@@ -559,7 +630,11 @@ function GlossaryList() {
                 }
             };
             // Longer delay when coming from modal to ensure DOM is ready
-            setTimeout(()=>attemptScroll(), 500);
+            setTimeout(()=>{
+                if (("TURBOPACK compile-time value", "undefined") !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) //TURBOPACK unreachable
+                ;
+                attemptScroll();
+            }, 500);
             return;
         }
     }, [
@@ -576,23 +651,25 @@ function GlossaryList() {
         const handleHashChange = undefined;
     }, [
         glossaryData.length,
-        handleHashNavigation
+        handleHashNavigation,
+        parseGlossaryHash
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if ("TURBOPACK compile-time truthy", 1) return;
         //TURBOPACK unreachable
         ;
         const hash = undefined;
-        const isKeywordId = undefined;
         const parsedKeywordSlug = undefined, parsedArticleId = undefined;
-        let articleId;
-        const keywordSlug = undefined;
+        const keywordOnly = undefined;
         const findArticleByHash = undefined;
         const article = undefined;
+        const keywordSlugForUrl = undefined;
+        const keywords = undefined;
     }, [
         glossaryData,
         allArticles,
-        parseGlossaryHash
+        parseGlossaryHash,
+        handleHashNavigation
     ]);
     // Load glossary data and articles from files
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
@@ -789,11 +866,21 @@ function GlossaryList() {
     }, [
         groupedKeywords
     ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!centeredKeywordId || !allKeywordsInOrder.length) return;
+        const idx = allKeywordsInOrder.findIndex((k)=>k.id === centeredKeywordId);
+        if (idx >= 0) {
+            lastCenteredKeywordIndexRef.current = idx;
+        }
+    }, [
+        centeredKeywordId,
+        allKeywordsInOrder
+    ]);
     // Ensure a keyword is always selected when keywords are available
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (allKeywordsInOrder.length === 0) return;
         const checkAndSetKeyword = ()=>{
-            if (isProgrammaticScroll.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpen) return;
+            if (isProgrammaticScroll.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) return;
             // If there's no hash on initial load, don't override the first keyword selection
             // This prevents unwanted scrolling when entering the glossary page
             const hasHash = ("TURBOPACK compile-time value", "undefined") !== 'undefined' && window.location.hash;
@@ -846,98 +933,125 @@ function GlossaryList() {
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (allKeywordsInOrder.length === 0) return;
-        const snapToNearestCard = (scrollTop)=>{
-            if (allKeywordsInOrder.length === 0 || isScrollingRef.current || isProgrammaticScroll.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpen) return;
-            const viewportCenter = window.innerHeight / 2;
-            let nearestKeyword = null;
-            let minDistance = Infinity;
-            allKeywordsInOrder.forEach((keyword)=>{
-                const itemElement = itemRefs.current[keyword.id];
-                if (itemElement) {
-                    const itemRect = itemElement.getBoundingClientRect();
-                    const itemCenter = itemRect.top + itemRect.height / 2;
-                    const distanceFromCenter = Math.abs(itemCenter - viewportCenter);
-                    if (distanceFromCenter < minDistance) {
-                        minDistance = distanceFromCenter;
-                        nearestKeyword = keyword;
-                    }
-                }
-            });
-            if (nearestKeyword) {
-                const itemElement = itemRefs.current[nearestKeyword.id];
-                if (itemElement) {
-                    isScrollingRef.current = true;
-                    isProgrammaticScroll.current = true;
-                    const itemRect = itemElement.getBoundingClientRect();
-                    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    const itemTop = itemRect.top + currentScrollTop;
-                    const itemHeight = itemRect.height;
-                    const viewportHeight = window.innerHeight;
-                    const targetScrollTop = itemTop - viewportHeight / 2 + itemHeight / 2;
-                    window.scrollTo({
-                        top: targetScrollTop,
-                        behavior: 'smooth'
-                    });
-                    updateCenteredKeyword(nearestKeyword.id);
-                    if (scrollTimeoutRef.current) {
-                        clearTimeout(scrollTimeoutRef.current);
-                    }
-                    scrollTimeoutRef.current = setTimeout(()=>{
-                        isScrollingRef.current = false;
-                        isProgrammaticScroll.current = false;
-                    }, 500);
-                }
-            }
-        };
         let ticking = false;
         let lastScrollTop = 0;
-        let scrollEndTimer = null;
         const getCurrentKeyword = ()=>{
+            const perfT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
             const isMobile = listRef.current && window.innerWidth <= 812;
-            let viewportCenter;
-            let containerRect;
-            if (isMobile && listRef.current) {
-                containerRect = listRef.current.getBoundingClientRect();
-                viewportCenter = containerRect.top + containerRect.height / 2;
-            } else {
-                viewportCenter = window.innerHeight / 2;
-            }
-            let nearestKeyword = null;
-            let minDistance = Infinity;
-            let mostVisibleKeyword = null;
-            let maxVisibleArea = 0;
-            allKeywordsInOrder.forEach((keyword)=>{
-                const itemElement = itemRefs.current[keyword.id];
-                if (itemElement) {
-                    const itemRect = itemElement.getBoundingClientRect();
-                    const itemCenter = itemRect.top + itemRect.height / 2;
-                    const distanceFromCenter = Math.abs(itemCenter - viewportCenter);
-                    if (distanceFromCenter < minDistance) {
-                        minDistance = distanceFromCenter;
-                        nearestKeyword = keyword;
-                    }
-                    if (isMobile && containerRect) {
-                        const visibleTop = Math.max(itemRect.top, containerRect.top);
-                        const visibleBottom = Math.min(itemRect.bottom, containerRect.bottom);
-                        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-                        const visibleArea = visibleHeight / itemRect.height;
-                        if (visibleArea > maxVisibleArea && visibleArea > 0.3) {
-                            maxVisibleArea = visibleArea;
-                            mostVisibleKeyword = keyword;
+            const n = allKeywordsInOrder.length;
+            if (n === 0) return null;
+            const scanRange = (lo, hi)=>{
+                let viewportCenter;
+                let containerRect;
+                if (isMobile && listRef.current) {
+                    containerRect = listRef.current.getBoundingClientRect();
+                    viewportCenter = containerRect.top + containerRect.height / 2;
+                } else {
+                    viewportCenter = window.innerHeight / 2;
+                }
+                let nearestKeyword = null;
+                let minDistance = Infinity;
+                let mostVisibleKeyword = null;
+                let maxVisibleArea = 0;
+                let rectReadCount = isMobile && listRef.current ? 1 : 0;
+                for(let i = lo; i <= hi; i++){
+                    const keyword = allKeywordsInOrder[i];
+                    const itemElement = itemRefs.current[keyword.id];
+                    if (itemElement) {
+                        rectReadCount += 1;
+                        const itemRect = itemElement.getBoundingClientRect();
+                        const itemCenter = itemRect.top + itemRect.height / 2;
+                        const distanceFromCenter = Math.abs(itemCenter - viewportCenter);
+                        if (distanceFromCenter < minDistance) {
+                            minDistance = distanceFromCenter;
+                            nearestKeyword = keyword;
                         }
-                    } else {
-                        const visibleTop = Math.max(itemRect.top, 0);
-                        const visibleBottom = Math.min(itemRect.bottom, window.innerHeight);
-                        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-                        const visibleArea = visibleHeight / itemRect.height;
-                        if (visibleArea > maxVisibleArea && visibleArea > 0.3) {
-                            maxVisibleArea = visibleArea;
-                            mostVisibleKeyword = keyword;
+                        if (isMobile && containerRect) {
+                            const visibleTop = Math.max(itemRect.top, containerRect.top);
+                            const visibleBottom = Math.min(itemRect.bottom, containerRect.bottom);
+                            const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+                            const visibleArea = visibleHeight / itemRect.height;
+                            if (visibleArea > maxVisibleArea && visibleArea > 0.3) {
+                                maxVisibleArea = visibleArea;
+                                mostVisibleKeyword = keyword;
+                            }
+                        } else {
+                            const visibleTop = Math.max(itemRect.top, 0);
+                            const visibleBottom = Math.min(itemRect.bottom, window.innerHeight);
+                            const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+                            const visibleArea = visibleHeight / itemRect.height;
+                            if (visibleArea > maxVisibleArea && visibleArea > 0.3) {
+                                maxVisibleArea = visibleArea;
+                                mostVisibleKeyword = keyword;
+                            }
                         }
                     }
                 }
+                return {
+                    nearestKeyword,
+                    mostVisibleKeyword,
+                    minDistance,
+                    rectReadCount
+                };
+            };
+            const vh = window.innerHeight;
+            let out;
+            if (n > 48) {
+                const c = lastCenteredKeywordIndexRef.current;
+                const r = 32;
+                const lo = Math.max(0, c - r);
+                const hi = Math.min(n - 1, c + r);
+                out = scanRange(lo, hi);
+                if (out.minDistance === Infinity || out.minDistance > vh * 0.45) {
+                    out = scanRange(0, n - 1);
+                }
+            } else {
+                out = scanRange(0, n - 1);
+            }
+            const result = out.mostVisibleKeyword || out.nearestKeyword || allKeywordsInOrder[0];
+            if (glossaryPerfDebugEnabled() && perfT0) {
+                const ms = performance.now() - perfT0;
+                if (ms > 4) {
+                    console.warn('[glossary-perf] getCurrentKeyword', {
+                        ms: Number(ms.toFixed(1)),
+                        keywordCount: n,
+                        getBoundingClientRectCount: out.rectReadCount
+                    });
+                }
+            }
+            return result;
+        };
+        const NUDGE_MIN_PX = 8;
+        const nudgeDesktopScrollToCenteredRow = ()=>{
+            if (typeof document !== 'undefined' && document.body.hasAttribute('data-restoring-scroll')) return;
+            if (allKeywordsInOrder.length === 0 || isScrollingRef.current || isProgrammaticScroll.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) return;
+            if (listRef.current && window.innerWidth <= 812) return;
+            const keyword = getCurrentKeyword();
+            if (!keyword) return;
+            const el = itemRefs.current[keyword.id];
+            if (!el) return;
+            const itemRect = el.getBoundingClientRect();
+            const delta = itemRect.top + itemRect.height / 2 - window.innerHeight / 2;
+            if (Math.abs(delta) <= NUDGE_MIN_PX) return;
+            const useSmooth = ("TURBOPACK compile-time value", "undefined") !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            isScrollingRef.current = true;
+            isProgrammaticScroll.current = true;
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            const maxScroll = Math.max(0, (document.documentElement?.scrollHeight || 0) - window.innerHeight);
+            const nextTop = Math.max(0, Math.min(currentScroll + delta, maxScroll));
+            window.scrollTo({
+                top: nextTop,
+                behavior: ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 'auto'
             });
-            return mostVisibleKeyword || nearestKeyword || (allKeywordsInOrder.length > 0 ? allKeywordsInOrder[0] : null);
+            updateCenteredKeyword(keyword.id);
+            if (scrollTimeoutRef.current) {
+                clearTimeout(scrollTimeoutRef.current);
+            }
+            const lockMs = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 450;
+            scrollTimeoutRef.current = setTimeout(()=>{
+                isScrollingRef.current = false;
+                isProgrammaticScroll.current = false;
+            }, lockMs);
         };
         const handleScroll = ()=>{
             if (document.body.hasAttribute('data-restoring-scroll')) {
@@ -945,7 +1059,7 @@ function GlossaryList() {
                 return;
             }
             // Don't interfere with programmatic scrolling from hash navigation or when modal is opening/closing
-            if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpen) {
+            if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) {
                 ticking = false;
                 return;
             }
@@ -956,20 +1070,35 @@ function GlossaryList() {
                 ticking = false;
                 return;
             }
-            // On mobile, update more frequently for better responsiveness
             if (isMobile) {
-                const visibleKeyword = getCurrentKeyword();
-                if (visibleKeyword && visibleKeyword.id !== centeredKeywordIdRef.current) {
-                    updateCenteredKeyword(visibleKeyword.id);
+                if (scrollDelta < 2) {
+                    ticking = false;
+                    return;
                 }
             } else {
                 if (scrollDelta < 5) {
                     ticking = false;
                     return;
                 }
-                const visibleKeyword = getCurrentKeyword();
-                if (visibleKeyword && visibleKeyword.id !== centeredKeywordIdRef.current) {
-                    updateCenteredKeyword(visibleKeyword.id);
+            }
+            const now = Date.now();
+            if (now - lastGlossaryScrollKeywordCheckMsRef.current < 100) {
+                lastScrollTop = currentScrollTop;
+                ticking = false;
+                return;
+            }
+            lastGlossaryScrollKeywordCheckMsRef.current = now;
+            const scrollPerfT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
+            const visibleKeyword = getCurrentKeyword();
+            if (visibleKeyword && visibleKeyword.id !== centeredKeywordIdRef.current) {
+                updateCenteredKeyword(visibleKeyword.id);
+            }
+            if (glossaryPerfDebugEnabled() && scrollPerfT0) {
+                const ms = performance.now() - scrollPerfT0;
+                if (ms > 8) {
+                    console.warn('[glossary-perf] handleScroll (rAF, after 100ms throttle)', {
+                        ms: Number(ms.toFixed(1))
+                    });
                 }
             }
             lastScrollTop = currentScrollTop;
@@ -982,11 +1111,24 @@ function GlossaryList() {
             }
         };
         const handleScrollEnd = ()=>{
-            if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpen) return;
-            // Always update on scroll end to ensure correct item is highlighted
+            if (typeof document !== 'undefined' && document.body.hasAttribute('data-restoring-scroll')) return;
+            if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) return;
+            const isMobile = listRef.current && window.innerWidth <= 812;
+            const endT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
             const visibleKeyword = getCurrentKeyword();
             if (visibleKeyword) {
                 updateCenteredKeyword(visibleKeyword.id);
+            }
+            if (!isMobile) {
+                nudgeDesktopScrollToCenteredRow();
+            }
+            if (glossaryPerfDebugEnabled() && endT0) {
+                const ms = performance.now() - endT0;
+                if (ms > 8) {
+                    console.warn('[glossary-perf] handleScrollEnd (220ms debounce)', {
+                        ms: Number(ms.toFixed(1))
+                    });
+                }
             }
         };
         const handleMouseMove = (e)=>{
@@ -1017,7 +1159,7 @@ function GlossaryList() {
             }
             scrollEndTimeout = setTimeout(()=>{
                 handleScrollEnd();
-            }, 150);
+            }, 220);
         };
         if (isMobile && listRef.current) {
             listRef.current.addEventListener('scroll', onScrollWithEndDetection, {
@@ -1055,17 +1197,32 @@ function GlossaryList() {
             }
         };
         setTimeout(()=>{
-            // Don't trigger scroll handling on initial load if there's no hash
+            const initT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
             const hasHash = ("TURBOPACK compile-time value", "undefined") !== 'undefined' && window.location.hash;
             if (!hasHash && !centeredKeywordIdRef.current) {
-                // Just ensure first keyword is selected without scrolling
                 ensureKeywordSelected();
+                if (glossaryPerfDebugEnabled() && initT0) {
+                    const ms = performance.now() - initT0;
+                    if (ms > 8) {
+                        console.warn('[glossary-perf] init setTimeout(100) ensureKeywordSelected', {
+                            ms: Number(ms.toFixed(1))
+                        });
+                    }
+                }
                 return;
             }
             if (!isProgrammaticScroll.current) {
                 handleScroll();
             }
             ensureKeywordSelected();
+            if (glossaryPerfDebugEnabled() && initT0) {
+                const ms = performance.now() - initT0;
+                if (ms > 8) {
+                    console.warn('[glossary-perf] init setTimeout(100) full', {
+                        ms: Number(ms.toFixed(1))
+                    });
+                }
+            }
         }, 100);
         return ()=>{
             if (isMobile && listRef.current) {
@@ -1076,8 +1233,6 @@ function GlossaryList() {
             window.removeEventListener('touchmove', handleTouchMove);
             window.removeEventListener('resize', onScroll);
             window.removeEventListener('mousemove', handleMouseMove);
-            if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
-            ;
             if (scrollEndTimeout) {
                 clearTimeout(scrollEndTimeout);
             }
@@ -1089,10 +1244,12 @@ function GlossaryList() {
         allKeywordsInOrder,
         groupedKeywords
     ]);
-    const scrollToSection = (letter)=>{
+    const scrollToSection = (letter, options = {})=>{
+        const { animated = true } = options;
         const firstKeywordForLetter = allKeywordsInOrder.find((k)=>getFirstLetter(k) === letter);
         if (firstKeywordForLetter) {
             const firstKeywordId = firstKeywordForLetter.id;
+            const useSmooth = animated && ("TURBOPACK compile-time value", "undefined") !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const attemptScroll = (attempt = 0)=>{
                 if (attempt > 20) return;
                 const itemElement = itemRefs.current[firstKeywordId] || document.getElementById(firstKeywordId);
@@ -1109,14 +1266,20 @@ function GlossaryList() {
                         const targetScrollTop = itemTopRelative - containerHeight / 2 + itemHeight / 2;
                         listRef.current.scrollTo({
                             top: Math.max(0, targetScrollTop),
-                            behavior: 'smooth'
+                            behavior: ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 'auto'
                         });
                         updateCenteredKeyword(firstKeywordId);
                         setTimeout(()=>{
                             isProgrammaticScroll.current = false;
-                        }, 500);
+                        }, ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 500);
                     } else {
-                        scrollToElement(itemElement, firstKeywordId);
+                        if (animated) {
+                            scrollToElement(itemElement, firstKeywordId, {
+                                smooth: true
+                            });
+                        } else {
+                            scrollToElement(itemElement, firstKeywordId);
+                        }
                     }
                 } else {
                     setTimeout(()=>attemptScroll(attempt + 1), 50);
@@ -1149,7 +1312,9 @@ function GlossaryList() {
         const letter = getLetterFromTouch(touch.clientY);
         if (letter && groupedKeywords[letter] && groupedKeywords[letter].length > 0) {
             setAlphabetPreview(letter);
-            scrollToSection(letter);
+            scrollToSection(letter, {
+                animated: false
+            });
         }
     };
     const handleAlphabetTouchMove = (e)=>{
@@ -1159,7 +1324,9 @@ function GlossaryList() {
         const letter = getLetterFromTouch(touch.clientY);
         if (letter && groupedKeywords[letter] && groupedKeywords[letter].length > 0) {
             setAlphabetPreview(letter);
-            scrollToSection(letter);
+            scrollToSection(letter, {
+                animated: false
+            });
         }
     };
     const handleAlphabetTouchEnd = ()=>{
@@ -1265,10 +1432,6 @@ function GlossaryList() {
         setSelectedArticle(article);
         setArticleModalOpen(true);
         requestAnimationFrame(()=>{
-            if (keywordHashBeforeModalRef.current && article.id) {
-                window.history.replaceState(null, '', `#${keywordHashBeforeModalRef.current}:${article.id}`);
-            }
-            // Never set hash to article-only (#A2) – keeps feed stable and avoids jumping
             setTimeout(()=>{
                 if (isMobile && listRef.current) {
                     listRef.current.removeEventListener('scroll', preventScroll, {
@@ -1287,13 +1450,6 @@ function GlossaryList() {
     };
     const handleArticleSwap = (article)=>{
         setSelectedArticle(article);
-        requestAnimationFrame(()=>{
-            const currentHash = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : '';
-            const { keywordSlug: parsedSlug } = parseGlossaryHash(currentHash);
-            const keywordSlug = keywordHashBeforeModalRef.current || parsedSlug;
-            if (("TURBOPACK compile-time value", "undefined") !== 'undefined' && keywordSlug && article?.id) //TURBOPACK unreachable
-            ;
-        });
     };
     const handleArticleImageClick = (article)=>{
         if (articleModalOpen) {
@@ -1302,53 +1458,42 @@ function GlossaryList() {
         }
         handleArticleClick(article);
     };
-    // Close article modal – remove :AXX from param, restore keyword hash, then instant jump to that keyword position
-    const handleCloseArticleModal = ()=>{
+    const handleGlossaryArticleModalAfterOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+        if ("TURBOPACK compile-time truthy", 1) return;
+        //TURBOPACK unreachable
+        ;
+        const y = undefined;
+        const isMobile = undefined;
+    }, []);
+    const handleGlossaryArticleModalAfterClose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+        if ("TURBOPACK compile-time truthy", 1) return;
+        //TURBOPACK unreachable
+        ;
+        const y = undefined;
+        const isMobile = undefined;
+        const apply = undefined;
+    }, []);
+    const handleCloseArticleModal = (options = {})=>{
+        const { fromGlossaryKeywordLink = false } = options;
         isClosingModalRef.current = true;
-        isProgrammaticScroll.current = true;
-        isScrollingRef.current = true;
-        const keywordSlug = keywordHashBeforeModalRef.current;
+        if (fromGlossaryKeywordLink) {
+            isProgrammaticScroll.current = false;
+            isScrollingRef.current = false;
+            skipHashNavigationUntilRef.current = 0;
+            if (typeof document !== 'undefined') {
+                document.body.removeAttribute('data-restoring-scroll');
+            }
+        } else {
+            isProgrammaticScroll.current = true;
+            isScrollingRef.current = true;
+            if (typeof document !== 'undefined') {
+                document.body.setAttribute('data-restoring-scroll', 'true');
+            }
+            skipHashNavigationUntilRef.current = Date.now() + 2500;
+        }
         setArticleModalOpen(false);
         setSelectedArticle(null);
-        scrollPositionBeforeModalRef.current = null;
-        if (keywordSlug) {
-            skipHashNavigationUntilRef.current = Date.now() + 1200;
-            window.history.replaceState(null, '', `#${keywordSlug}`);
-            keywordHashBeforeModalRef.current = null;
-        }
-        const doInstantScrollToKeyword = ()=>{
-            if (!keywordSlug) return;
-            const keyword = getKeywordBySlug(keywordSlug);
-            if (!keyword) return;
-            const itemElement = itemRefs.current[keyword.id] || (typeof document !== 'undefined' ? document.getElementById(keyword.id) : null);
-            if (!itemElement) return;
-            const isMobile = ("TURBOPACK compile-time value", "undefined") !== 'undefined' && window.innerWidth <= 812;
-            if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
-            ;
-            else {
-                const itemRect = itemElement.getBoundingClientRect();
-                const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const itemTop = itemRect.top + currentScrollTop;
-                const targetScrollTop = Math.max(0, itemTop - window.innerHeight / 2 + itemRect.height / 2);
-                window.scrollTo({
-                    top: targetScrollTop,
-                    left: 0,
-                    behavior: 'auto'
-                });
-            }
-            updateCenteredKeyword(keyword.id);
-        };
-        requestAnimationFrame(()=>{
-            doInstantScrollToKeyword();
-            requestAnimationFrame(()=>{
-                doInstantScrollToKeyword();
-                setTimeout(()=>{
-                    isClosingModalRef.current = false;
-                    isProgrammaticScroll.current = false;
-                    isScrollingRef.current = false;
-                }, 200);
-            });
-        });
+        keywordHashBeforeModalRef.current = null;
     };
     const articleImagesStackContent = relatedArticles.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$glossary$2f$glossary$2e$module$2e$scss__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].articleImagesStack,
@@ -1380,7 +1525,7 @@ function GlossaryList() {
                             loading: "eager"
                         }, void 0, false, {
                             fileName: "[project]/components/glossary/GlossaryList.jsx",
-                            lineNumber: 1375,
+                            lineNumber: 1564,
                             columnNumber: 17
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -1416,24 +1561,24 @@ function GlossaryList() {
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/glossary/GlossaryList.jsx",
-                            lineNumber: 1382,
+                            lineNumber: 1571,
                             columnNumber: 17
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/glossary/GlossaryList.jsx",
-                    lineNumber: 1374,
+                    lineNumber: 1563,
                     columnNumber: 15
                 }, this) : null
             }, article.id, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1366,
+                lineNumber: 1555,
                 columnNumber: 11
             }, this);
         })
     }, void 0, false, {
         fileName: "[project]/components/glossary/GlossaryList.jsx",
-        lineNumber: 1350,
+        lineNumber: 1539,
         columnNumber: 5
     }, this) : null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1444,6 +1589,8 @@ function GlossaryList() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$modal$2f$lib$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                 isOpen: articleModalOpen,
                 onRequestClose: handleCloseArticleModal,
+                onAfterOpen: handleGlossaryArticleModalAfterOpen,
+                onAfterClose: handleGlossaryArticleModalAfterClose,
                 contentLabel: "Article Modal",
                 className: "archive-modal-content",
                 overlayClassName: "archive-modal-overlay",
@@ -1461,12 +1608,12 @@ function GlossaryList() {
                     closeModal: handleCloseArticleModal
                 }, void 0, false, {
                     fileName: "[project]/components/glossary/GlossaryList.jsx",
-                    lineNumber: 1442,
+                    lineNumber: 1633,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1430,
+                lineNumber: 1619,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1498,7 +1645,7 @@ function GlossaryList() {
                                 children: keyword.index
                             }, void 0, false, {
                                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                                lineNumber: 1482,
+                                lineNumber: 1673,
                                 columnNumber: 15
                             }, this),
                             LANGUAGE_ORDER.map((langKey, langIndex)=>{
@@ -1510,20 +1657,20 @@ function GlossaryList() {
                                     children: translation
                                 }, langKey, false, {
                                     fileName: "[project]/components/glossary/GlossaryList.jsx",
-                                    lineNumber: 1489,
+                                    lineNumber: 1680,
                                     columnNumber: 19
                                 }, this);
                             })
                         ]
                     }, keyword.id, true, {
                         fileName: "[project]/components/glossary/GlossaryList.jsx",
-                        lineNumber: 1473,
+                        lineNumber: 1664,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1455,
+                lineNumber: 1646,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1544,13 +1691,13 @@ function GlossaryList() {
                         children: letter
                     }, letter, false, {
                         fileName: "[project]/components/glossary/GlossaryList.jsx",
-                        lineNumber: 1513,
+                        lineNumber: 1704,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1500,
+                lineNumber: 1691,
                 columnNumber: 7
             }, this),
             alphabetPreview && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1558,7 +1705,7 @@ function GlossaryList() {
                 children: alphabetPreview
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1527,
+                lineNumber: 1718,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2f$NavigationControls$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__NavigationControls$3e$__["NavigationControls"], {
@@ -1566,7 +1713,7 @@ function GlossaryList() {
                 currentKeywordTitle: currentKeywordTitle
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1533,
+                lineNumber: 1724,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$glossary$2f$contributions$2f$Contributions$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1576,13 +1723,13 @@ function GlossaryList() {
                 onSubmitClick: handleSubmitClick
             }, void 0, false, {
                 fileName: "[project]/components/glossary/GlossaryList.jsx",
-                lineNumber: 1539,
+                lineNumber: 1730,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/glossary/GlossaryList.jsx",
-        lineNumber: 1423,
+        lineNumber: 1612,
         columnNumber: 5
     }, this);
 }

@@ -74,7 +74,7 @@
 }
 
 body.glossary-page {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   overscroll-behavior-y: auto;
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
@@ -93,7 +93,7 @@ body.glossary-page {
 }
 
 html.glossary-page {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   overscroll-behavior-y: auto;
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
@@ -136,6 +136,7 @@ html.glossary-page {
   touch-action: pan-y;
   pointer-events: auto;
   overscroll-behavior: none;
+  scroll-behavior: auto;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -152,7 +153,6 @@ html.glossary-page {
 @media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
   .glossary-module-scss-module__TSyjpq__glossaryList {
     box-sizing: border-box;
-    scroll-snap-type: y mandatory;
     -webkit-overflow-scrolling: touch;
     gap: calc(35vh - clamp(3rem, 7.5vw, 6rem) - clamp(4.5rem, 12vw, 10rem) - clamp(1.5rem, 3vw, 3rem));
     width: 100vw;
@@ -218,8 +218,6 @@ html.glossary-page {
 
 @media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait), only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait), only screen and (max-aspect-ratio: 4 / 5) {
   .glossary-module-scss-module__TSyjpq__glossaryItem {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     flex-shrink: 0;
     gap: 2.5px;
     height: calc(50dvh - clamp(1.7rem, 2vw, 3.5rem));

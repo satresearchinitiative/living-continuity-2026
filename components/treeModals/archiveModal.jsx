@@ -1,5 +1,8 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "./archive.scss";
 import { useStore } from "usestore-react";
 import CrossButton from "../menu/CrossButton";
@@ -28,6 +31,7 @@ export default function ArchiveModal({
   photoCredit,
   closeModal,
 }) {
+  const pathname = usePathname();
   const [adapt, setAdapt] = useStore("adapt", false);
   const [imageOrientation, setImageOrientation] = React.useState(null);
   const [imageLoaded, setImageLoaded] = React.useState(false);
@@ -158,10 +162,30 @@ export default function ArchiveModal({
                       return (
                         <span key={index}>
                           {keywordLink ? (
-                            <Link 
+                            <Link
                               href={keywordLink}
                               className="item_link"
-                              onClick={closeModal}
+                              onClick={(e) => {
+                                if (
+                                  keywordLink &&
+                                  keywordLink.startsWith("/glossary#") &&
+                                  pathname === "/glossary"
+                                ) {
+                                  e.preventDefault();
+                                  const hashPart = keywordLink.split("#").slice(1).join("#");
+                                  if (typeof closeModal === "function") {
+                                    closeModal({ fromGlossaryKeywordLink: true });
+                                  }
+                                  if (typeof window === "undefined") return;
+                                  if (window.location.hash.substring(1) === hashPart) {
+                                    window.dispatchEvent(new HashChangeEvent("hashchange"));
+                                  } else {
+                                    window.location.hash = hashPart;
+                                  }
+                                } else if (typeof closeModal === "function") {
+                                  closeModal();
+                                }
+                              }}
                             >
                               {keywordText}
                             </Link>

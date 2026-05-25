@@ -31,7 +31,8 @@ export default function SubmitEntryPanel({
   isOpen, 
   onClose, 
   currentKeywordTitle = 'self-determination',
-  onSubmitRef
+  onSubmitRef,
+  onSubmitSuccess
 }) {
   const [interpretation, setInterpretation] = useState('');
   const [name, setName] = useState('');
@@ -191,6 +192,7 @@ export default function SubmitEntryPanel({
         setInterpretation('');
         setName('');
         setWebsite('');
+        onSubmitSuccess?.();
         onClose();
       } else {
         const errorBody = await parseFormErrorResponse(response, 'submit-entry');
@@ -202,7 +204,7 @@ export default function SubmitEntryPanel({
     } finally {
       setIsSubmitting(false);
     }
-  }, [interpretation, name, website, effectiveKeywordTitle, onClose]);
+  }, [interpretation, name, website, effectiveKeywordTitle, onClose, onSubmitSuccess]);
 
   useEffect(() => {
     if (onSubmitRef) {

@@ -35,6 +35,13 @@
     pointer-events: auto;
   }
 
+  &.capture-modal-wrapper--confirmation {
+    background-color: $color-mint;
+    transition:
+      transform $transi ease,
+      background-color $transi ease;
+  }
+
   @include mobile {
     right: $margin-corner-phone;
     bottom: 0;

@@ -24,9 +24,52 @@ export default function NavigationControls({
   const [infoPanelOpen, setInfoPanelOpen] = useState(false);
   const [indexPanelOpen, setIndexPanelOpen] = useState(false);
   const [submitEntryPanelOpen, setSubmitEntryPanelOpen] = useState(false);
+  const [glossaryEntrySentNotice, setGlossaryEntrySentNotice] = useState(false);
+  const glossaryEntrySentNoticeTimeoutRef = useRef(null);
+  const [captureSubmitNotice, setCaptureSubmitNotice] = useState(false);
+  const captureSubmitNoticeTimeoutRef = useRef(null);
   const submitFormRef = useRef(null);
   const currentKeywordTitleRef = useRef(currentKeywordTitle);
   const isGlossaryPage = pathname === '/glossary';
+
+  useEffect(() => () => {
+    if (glossaryEntrySentNoticeTimeoutRef.current) {
+      clearTimeout(glossaryEntrySentNoticeTimeoutRef.current);
+    }
+    if (captureSubmitNoticeTimeoutRef.current) {
+      clearTimeout(captureSubmitNoticeTimeoutRef.current);
+    }
+  }, []);
+
+  const dismissGlossaryEntrySentNoticeSoon = useCallback(() => {
+    if (glossaryEntrySentNoticeTimeoutRef.current) {
+      clearTimeout(glossaryEntrySentNoticeTimeoutRef.current);
+    }
+    glossaryEntrySentNoticeTimeoutRef.current = setTimeout(() => {
+      setGlossaryEntrySentNotice(false);
+      glossaryEntrySentNoticeTimeoutRef.current = null;
+    }, 5000);
+  }, []);
+
+  const handleGlossarySubmitSuccess = useCallback(() => {
+    setGlossaryEntrySentNotice(true);
+    dismissGlossaryEntrySentNoticeSoon();
+  }, [dismissGlossaryEntrySentNoticeSoon]);
+
+  const dismissCaptureSubmitNoticeSoon = useCallback(() => {
+    if (captureSubmitNoticeTimeoutRef.current) {
+      clearTimeout(captureSubmitNoticeTimeoutRef.current);
+    }
+    captureSubmitNoticeTimeoutRef.current = setTimeout(() => {
+      setCaptureSubmitNotice(false);
+      captureSubmitNoticeTimeoutRef.current = null;
+    }, 5000);
+  }, []);
+
+  const handleCaptureSubmitSuccess = useCallback(() => {
+    setCaptureSubmitNotice(true);
+    dismissCaptureSubmitNoticeSoon();
+  }, [dismissCaptureSubmitNoticeSoon]);
 
   useEffect(() => {
     currentKeywordTitleRef.current = currentKeywordTitle;
@@ -122,6 +165,7 @@ export default function NavigationControls({
 
   const handleSaveImage = useCallback(() => {
     if (isKitOfPartsPage) {
+      setCaptureSubmitNotice(false);
       setCaptureMode(true);
     } else {
       const mainContent = document.querySelector('main.kit-parts-main');
@@ -142,6 +186,12 @@ export default function NavigationControls({
     }
   }, [isKitOfPartsPage, setCaptureMode]);
 
+  useEffect(() => {
+    if (!isKitOfPartsPage) {
+      setCaptureSubmitNotice(false);
+    }
+  }, [isKitOfPartsPage]);
+
   const slugifyTitleForUrl = (title) => {
     return title
       .toLowerCase()
@@ -152,6 +202,9 @@ export default function NavigationControls({
   };
 
   useEffect(() => {
+    if (!isGlossaryPage) {
+      setGlossaryEntrySentNotice(false);
+    }
     if (!isGlossaryPage && submitEntryPanelOpen) {
       setSubmitEntryPanelOpen(false);
     }
@@ -251,6 +304,7 @@ export default function NavigationControls({
         const keywordSlug = slugifyTitle(keywordTitle);
         window.history.replaceState(null, '', `#${keywordSlug}-submit`);
       }
+      setGlossaryEntrySentNotice(false);
       setSubmitEntryPanelOpen(true);
       if (onSubmitEntry) {
         onSubmitEntry();
@@ -478,11 +532,23 @@ export default function NavigationControls({
       <div className="navigation-controls">
         {isGlossaryPage ? (
           <button
-            className={`navigation-button navigation-button-submit ${submitEntryPanelOpen ? 'navigation-button-open' : ''}`}
+            type="button"
+            className={`navigation-button navigation-button-submit ${submitEntryPanelOpen ? 'navigation-button-open' : ''}${glossaryEntrySentNotice ? ' navigation-button-confirm-sent' : ''}`}
             onClick={handleSubmitEntryClick}
-            aria-label="Submit Entry"
+            aria-label={
+              glossaryEntrySentNotice
+                ? 'Entry submitted'
+                : submitEntryPanelOpen
+                  ? 'Send entry'
+                  : 'Submit Entry'
+            }
+            aria-live="polite"
           >
-            TAP TO SUBMIT YOUR ENTRY
+            {glossaryEntrySentNotice
+              ? 'ENTRY SENT'
+              : submitEntryPanelOpen
+                ? 'SEND YOUR ENTRY'
+                : 'TAP TO SUBMIT YOUR ENTRY'}
           </button>
         ) : isKitOfPartsPage ? (
           <>
@@ -508,11 +574,15 @@ export default function NavigationControls({
               </span>
             </button>
             <button
-              className={`navigation-button navigation-button-capture ${submitEntryPanelOpen ? 'navigation-button-open' : ''}`}
+              type="button"
+              className={`navigation-button navigation-button-capture ${submitEntryPanelOpen ? 'navigation-button-open' : ''}${captureSubmitNotice ? ' navigation-button-confirm-sent' : ''}`}
               onClick={handleSaveImage}
-              aria-label="Capture"
+              aria-label={
+                captureSubmitNotice ? 'Floor plan submission sent' : 'Capture'
+              }
+              aria-live="polite"
             >
-              capture
+              {captureSubmitNotice ? 'SUBMITTED' : 'capture'}
             </button>
             <button
               className="navigation-button navigation-button-restart navigation-button-restart-desktop"
@@ -572,10 +642,11 @@ export default function NavigationControls({
           <span className="navigation-button-info-icon">?</span>
         </button>
         {isKitOfPartsPage && (
-          <CaptureModal 
+          <CaptureModal
             isOpen={isCaptureModalOpen}
             onClose={handleCloseCaptureModal}
             cachedImageDataUrl={cachedImageDataUrl}
+            onSubmitSuccess={handleCaptureSubmitSuccess}
           />
         )}
       </div>
@@ -592,6 +663,7 @@ export default function NavigationControls({
         onClose={handleCloseSubmitPanel}
         currentKeywordTitle={currentKeywordTitle || 'self-determination'}
         onSubmitRef={submitFormRef}
+        onSubmitSuccess={handleGlossarySubmitSuccess}
       />
       {isKitOfPartsPage && (
         <InventoryPanel

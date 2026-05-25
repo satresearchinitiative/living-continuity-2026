@@ -6,6 +6,7 @@ import {
   isFormSubmissionDebug,
   jsonError
 } from '../utils/formSubmissionErrors';
+import { resolveInterpretationRecipients, resolveResendFrom } from '../utils/resendRecipients';
 
 export const dynamic = 'force-dynamic';
 
@@ -70,14 +71,13 @@ export async function POST(request) {
     const safeName = escapeHtmlForEmail(String(emailData.name));
     const safeInterpretation = escapeHtmlForEmail(String(interpretation)).replace(/\n/g, '<br>');
 
-    const toEmails = process.env.RESEND_INTERPRETATION_EMAIL || process.env.RESEND_TO_EMAIL
-      ? (process.env.RESEND_INTERPRETATION_EMAIL || process.env.RESEND_TO_EMAIL).split(',').map(email => email.trim())
-      : ['digitalresearch@sharjaharchitecture.org'];
+    const toEmails = resolveInterpretationRecipients();
+    const primaryTo = toEmails[0];
 
     const result = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
+      from: resolveResendFrom(),
       to: toEmails,
-      reply_to: process.env.RESEND_REPLY_TO_EMAIL || toEmails[0],
+      reply_to: primaryTo,
       subject: `New Interpretation Submission: ${keyword}`,
       html: `
         <h2>New Interpretation Submission</h2>

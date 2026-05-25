@@ -5,6 +5,7 @@ import {
   isFormSubmissionDebug,
   jsonError
 } from '../utils/formSubmissionErrors';
+import { resolveFloorPlanRecipient, resolveResendFrom } from '../utils/resendRecipients';
 
 export const dynamic = 'force-dynamic';
 
@@ -60,15 +61,22 @@ export async function POST(request) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    const toEmail = process.env.RESEND_FLOOR_PLAN_EMAIL || process.env.RESEND_TO_EMAIL || 'digitalresearch@sharjaharchitecture.org';
+    const toEmail = resolveFloorPlanRecipient();
 
     const screenshotBuffer = await screenshot.arrayBuffer();
+    if (!screenshotBuffer || screenshotBuffer.byteLength === 0) {
+      return jsonError(
+        { error: 'Screenshot file is empty', code: 'EMPTY_SCREENSHOT' },
+        400
+      );
+    }
+
     const screenshotBase64 = Buffer.from(screenshotBuffer).toString('base64');
 
     const result = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
+      from: resolveResendFrom(),
       to: toEmail,
-      reply_to: process.env.RESEND_REPLY_TO_EMAIL || toEmail,
+      replyTo: toEmail,
       subject: 'New Floor Plan Arrangement Submission',
       html: `
         <h2>New Floor Plan Arrangement Submission</h2>
@@ -79,7 +87,7 @@ export async function POST(request) {
       attachments: [
         {
           filename: `floor-plan-${Date.now()}.png`,
-          content: screenshotBuffer
+          content: screenshotBase64
         }
       ]
     });

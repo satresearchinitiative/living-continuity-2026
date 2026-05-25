@@ -141,6 +141,11 @@
     min-width: $width-navigation-phone-2;
     max-width: $width-navigation-phone-2;
   }
+
+  &.navigation-button-confirm-sent {
+    background-color: $color-mint;
+    color: $color-black;
+  }
 }
 
 .navigation-button-pink {
@@ -408,6 +413,11 @@
     opacity: 0.8;
     line-height: 1.2;
     @include font-size-sm;
+  }
+
+  &.navigation-button-confirm-sent {
+    background-color: $color-mint;
+    color: $color-black;
   }
 }
 

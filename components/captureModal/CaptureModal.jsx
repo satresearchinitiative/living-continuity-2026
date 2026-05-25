@@ -2,13 +2,15 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import CrossButton from '../menu/CrossButton';
-import { COLOR_WHITE } from '../_setup/colors';
+import { COLOR_BLACK, COLOR_WHITE } from '../_setup/colors';
 import { getRecaptchaToken } from '../utils/recaptcha';
 import {
   parseFormErrorResponse,
   userFacingFormError
 } from '../utils/formSubmissionClient';
 import './capture-modal.scss';
+
+const SUBMIT_CONFIRM_MS = 5000;
 
 function dataUrlToBlob(dataUrl) {
   if (!dataUrl || typeof dataUrl !== 'string' || !dataUrl.startsWith('data:')) return null;
@@ -142,7 +144,7 @@ export default function CaptureModal({
         afterSubmitCloseRef.current = null;
         setSubmitSentAck(false);
         onClose();
-      }, 1200);
+      }, SUBMIT_CONFIRM_MS);
     } catch (error) {
       console.error('Error processing submission:', error);
       setSubmitError('Network error. Please try again.');
@@ -153,7 +155,7 @@ export default function CaptureModal({
   return (
     <div className={`capture-modal-wrapper ${isOpen ? 'open' : ''}${submitSentAck ? ' capture-modal-wrapper--confirmation' : ''}`}>
       <div className="capture-modal-close">
-        <CrossButton color={COLOR_WHITE} onClick={handleUserClose} />
+        <CrossButton color={submitSentAck ? COLOR_BLACK : COLOR_WHITE} onClick={handleUserClose} />
       </div>
 
       <div className="capture-modal-content">

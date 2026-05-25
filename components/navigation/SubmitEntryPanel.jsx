@@ -192,8 +192,10 @@ export default function SubmitEntryPanel({
         setInterpretation('');
         setName('');
         setWebsite('');
-        onSubmitSuccess?.();
         onClose();
+        queueMicrotask(() => {
+          onSubmitSuccess?.();
+        });
       } else {
         const errorBody = await parseFormErrorResponse(response, 'submit-entry');
         setSubmitError(userFacingFormError(errorBody, 'Submission failed.'));

@@ -123,6 +123,15 @@
     opacity: 0.6;
   }
 
+  &.navigation-button-confirm-sent {
+    color: $color-black;
+
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
+  }
+
   &.navigation-button-open {
     border-radius: $border-radius-lg;
   }
@@ -145,6 +154,11 @@
   &.navigation-button-confirm-sent {
     background-color: $color-mint;
     color: $color-black;
+
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
   }
 }
 
@@ -418,6 +432,11 @@
   &.navigation-button-confirm-sent {
     background-color: $color-mint;
     color: $color-black;
+
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
   }
 }
 
@@ -1033,9 +1052,20 @@ body.menu-open .corner-square.top-right {
   }
 }
 
-.navigation-button.navigation-button-open {
+.navigation-button.navigation-button-open:not(.navigation-button-confirm-sent) {
   background-color: $color-purple;
   border-radius: 0;
+}
+
+.navigation-button.navigation-button-submit.navigation-button-confirm-sent,
+.navigation-button.navigation-button-capture.navigation-button-confirm-sent {
+  background-color: $color-mint;
+  color: $color-black;
+
+  &:hover,
+  &:active {
+    opacity: 1;
+  }
 }
 
 .navigation-button-go-back {

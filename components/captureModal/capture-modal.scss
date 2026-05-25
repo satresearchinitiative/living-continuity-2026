@@ -40,6 +40,20 @@
     transition:
       transform $transi ease,
       background-color $transi ease;
+
+    .capture-modal-content {
+      color: $color-black;
+
+      .capture-modal-text p {
+        color: $color-black;
+
+        &:hover,
+        &:active,
+        &:focus {
+          opacity: 1;
+        }
+      }
+    }
   }
 
   @include mobile {

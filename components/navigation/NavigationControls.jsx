@@ -11,6 +11,8 @@ import InventoryPanel from './InventoryPanel';
 import CaptureModal from '../captureModal/CaptureModal';
 import './navigation.scss';
 
+const SUBMIT_CONFIRM_MS = 5000;
+
 export default function NavigationControls({
   camera,
   setCamera,
@@ -48,7 +50,7 @@ export default function NavigationControls({
     glossaryEntrySentNoticeTimeoutRef.current = setTimeout(() => {
       setGlossaryEntrySentNotice(false);
       glossaryEntrySentNoticeTimeoutRef.current = null;
-    }, 5000);
+    }, SUBMIT_CONFIRM_MS);
   }, []);
 
   const handleGlossarySubmitSuccess = useCallback(() => {
@@ -63,7 +65,7 @@ export default function NavigationControls({
     captureSubmitNoticeTimeoutRef.current = setTimeout(() => {
       setCaptureSubmitNotice(false);
       captureSubmitNoticeTimeoutRef.current = null;
-    }, 5000);
+    }, SUBMIT_CONFIRM_MS);
   }, []);
 
   const handleCaptureSubmitSuccess = useCallback(() => {

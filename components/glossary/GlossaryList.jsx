@@ -10,26 +10,14 @@ import { COLOR_WHITE } from '../_setup/colors';
 import Contributions from './contributions/Contributions';
 import styles from './glossary.module.scss';
 
-function glossaryPerfDebugEnabled() {
-  if (typeof window === 'undefined') return false;
-  try {
-    return window.localStorage.getItem('DEBUG_GLOSSARY_PERF') === '1';
-  } catch {
-    return false;
-  }
-}
-
-// Generate alphabet array A-Z and #
 const alphabet = [...Array(26)].map((_, i) => String.fromCharCode(65 + i));
 alphabet.push('#');
 
-// Get first letter of keyword (English translation)
 const getFirstLetter = (keyword) => {
   const firstChar = keyword.title.charAt(0).toUpperCase();
   return /[A-Z]/.test(firstChar) ? firstChar : '#';
 };
 
-// Language display order for translations
 const LANGUAGE_ORDER = [
   'eng',
   'arabic',
@@ -42,7 +30,6 @@ const LANGUAGE_ORDER = [
   'malayalam'
 ];
 
-// Language labels for display (optional, if needed)
 const LANGUAGE_LABELS = {
   eng: 'English',
   arabic: 'Arabic',
@@ -94,7 +81,6 @@ export default function GlossaryList() {
     return glossaryData.find(k => slugifyTitle(k.title) === slug);
   };
 
-  // Parse hash: "keywordSlug" or "keywordSlug:articleId" (colon = no ambiguity with hyphenated keywords)
   const parseGlossaryHash = useCallback((hash) => {
     if (!hash) return { keywordSlug: null, articleId: null };
     if (hash.includes(':')) {
@@ -224,13 +210,11 @@ export default function GlossaryList() {
         if (distance > 5 && retryCount < 10) {
           scrollToElement(element, keywordId, retryCount + 1);
         } else {
-          // Final scroll to exact position
           window.scrollTo({
             top: newTargetScrollTop,
             behavior: 'auto'
           });
           updateCenteredKeyword(keywordId);
-          // Keep flags set a bit longer to prevent snap-to-nearest interference
           setTimeout(() => {
             isProgrammaticScroll.current = false;
             isScrollingRef.current = false;
@@ -242,8 +226,6 @@ export default function GlossaryList() {
 
   const contributionsRef = useRef(null);
   const isProgrammaticScroll = useRef(false);
-  const scrollVelocityRef = useRef(0);
-  const lastScrollTimeRef = useRef(0);
   const isScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef(null);
   const [keywordsWithArticles, setKeywordsWithArticles] = useState(['G6', 'G8', 'G9', 'G10', 'G11', 'G22', 'G30', 'G17']);
@@ -285,14 +267,6 @@ export default function GlossaryList() {
       html.classList.remove('glossary-page');
     };
   }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined' || !glossaryPerfDebugEnabled()) return;
-    console.info(
-      '[glossary-perf] Debug on. O(keywords) getBoundingClientRect per getCurrentKeyword(). Disable: localStorage.removeItem("DEBUG_GLOSSARY_PERF")'
-    );
-  }, []);
-
 
   const handleHashNavigation = useCallback((hash) => {
     if (!hash || !glossaryData.length) return;
@@ -341,7 +315,6 @@ export default function GlossaryList() {
           if (element) {
             const rect = element.getBoundingClientRect();
             if (rect.height > 0 && rect.width > 0) {
-              // Ensure we're not already scrolling
               if (!isScrollingRef.current && !isProgrammaticScroll.current) {
                 scrollToElement(element, keyword.id);
               }
@@ -353,7 +326,6 @@ export default function GlossaryList() {
           }
         };
 
-        // Longer delay when coming from modal to ensure DOM is ready
         setTimeout(() => {
           if (typeof window !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) {
             return;
@@ -382,7 +354,6 @@ export default function GlossaryList() {
         if (element) {
           const rect = element.getBoundingClientRect();
           if (rect.height > 0 && rect.width > 0) {
-            // Ensure we're not already scrolling
             if (!isScrollingRef.current && !isProgrammaticScroll.current) {
               scrollToElement(element, keyword.id);
             }
@@ -394,7 +365,6 @@ export default function GlossaryList() {
         }
       };
 
-      // Longer delay when coming from modal to ensure DOM is ready
       setTimeout(() => {
         if (typeof window !== 'undefined' && Date.now() < skipHashNavigationUntilRef.current) {
           return;
@@ -530,7 +500,6 @@ export default function GlossaryList() {
     }
   }, [glossaryData, allArticles, parseGlossaryHash, handleHashNavigation]);
 
-  // Load glossary data and articles from files
   useEffect(() => {
     Promise.all([
       fetch('/data/glossary.json').then(res => res.json()),
@@ -538,12 +507,10 @@ export default function GlossaryList() {
       fetch('/data/glossary-connections.json').then(res => res.json()).catch(() => ({ glossary: {} }))
     ])
       .then(([glossaryData, nodesData, connectionsData]) => {
-        // Set articles
         if (nodesData && nodesData.articles) {
           setAllArticles(nodesData.articles);
         }
 
-        // Merge glossary data with connections from glossary-connections.json
         if (glossaryData && glossaryData.glossary) {
           const connectionsMap = connectionsData.glossary || {};
           
@@ -557,7 +524,6 @@ export default function GlossaryList() {
           setGlossaryData(formattedData);
         }
 
-        // Get landing page keywords
         if (nodesData && nodesData.articles) {
           const landingPageArticle = nodesData.articles.find(article => article.id === LANDING_PAGE_NODE_ID);
           if (landingPageArticle && landingPageArticle.connections) {
@@ -579,12 +545,7 @@ export default function GlossaryList() {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && glossaryData && glossaryData.length > 0) {
-      // This effect is handled by the hashchange listener above
-      // Only handle initial load if no hash is present
-      // Skip if we're closing a modal to prevent unwanted scrolling
       if (!window.location.hash && !isClosingModalRef.current && !isOpeningModalRef.current && !articleModalOpen) {
-        // When entering glossary page without a hash, stay at top and set first keyword as centered
-        // Do NOT scroll - just set the centered keyword without any scrolling behavior
         setTimeout(() => {
           const groups = {};
           glossaryData.forEach((keyword) => {
@@ -609,14 +570,10 @@ export default function GlossaryList() {
           const firstKeyword = groups[firstLetter] && groups[firstLetter][0];
 
           if (firstKeyword) {
-            // Just set the centered keyword without scrolling
-            // Ensure page stays at top
             window.scrollTo({
               top: 0,
               behavior: 'instant'
             });
-            
-            // Set the first keyword as centered without triggering scroll
             updateCenteredKeyword(firstKeyword.id);
           }
         }, 200);
@@ -624,24 +581,20 @@ export default function GlossaryList() {
     }
   }, [glossaryData.length, updateCenteredKeyword]);
 
-  // Get related articles for the centered keyword - show for all keywords with connections
   const relatedArticles = useMemo(() => {
     if (!centeredKeywordId) {
       return [];
     }
 
-    // Find the current keyword in glossary data
     const currentKeyword = glossaryData.find(k => k.id === centeredKeywordId);
     if (!currentKeyword) {
       return [];
     }
 
-    // Show articles for any keyword that has connections
     if (!currentKeyword.connections || currentKeyword.connections.length === 0) {
       return [];
     }
 
-    // Get articles that match the connections
     const articleIds = currentKeyword.connections;
     const articles = allArticles
       .filter(article => articleIds.includes(article.id))
@@ -792,7 +745,6 @@ export default function GlossaryList() {
     };
   }, [calculateWrapperHeights]);
 
-  // Group keywords by first letter
   const groupedKeywords = useMemo(() => {
     const groups = {};
     glossaryData.forEach((keyword) => {
@@ -805,7 +757,6 @@ export default function GlossaryList() {
     return groups;
   }, [glossaryData]);
 
-  // Flatten all keywords in display order (as they appear on screen)
   const allKeywordsInOrder = useMemo(() => {
     const ordered = [];
     const sortedLetters = Object.keys(groupedKeywords).sort((a, b) => {
@@ -833,18 +784,14 @@ export default function GlossaryList() {
     }
   }, [centeredKeywordId, allKeywordsInOrder]);
 
-  // Ensure a keyword is always selected when keywords are available
   useEffect(() => {
     if (allKeywordsInOrder.length === 0) return;
 
     const checkAndSetKeyword = () => {
       if (isProgrammaticScroll.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) return;
 
-      // If there's no hash on initial load, don't override the first keyword selection
-      // This prevents unwanted scrolling when entering the glossary page
       const hasHash = typeof window !== 'undefined' && window.location.hash;
       if (!hasHash && !centeredKeywordIdRef.current) {
-        // On initial load without hash, just set the first keyword without scrolling
         if (allKeywordsInOrder.length > 0) {
           updateCenteredKeyword(allKeywordsInOrder[0].id);
         }
@@ -903,7 +850,6 @@ export default function GlossaryList() {
     let lastScrollTop = 0;
 
     const getCurrentKeyword = () => {
-      const perfT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
       const isMobile = listRef.current && window.innerWidth <= 812;
       const n = allKeywordsInOrder.length;
       if (n === 0) return null;
@@ -921,12 +867,10 @@ export default function GlossaryList() {
         let minDistance = Infinity;
         let mostVisibleKeyword = null;
         let maxVisibleArea = 0;
-        let rectReadCount = isMobile && listRef.current ? 1 : 0;
         for (let i = lo; i <= hi; i++) {
           const keyword = allKeywordsInOrder[i];
           const itemElement = itemRefs.current[keyword.id];
           if (itemElement) {
-            rectReadCount += 1;
             const itemRect = itemElement.getBoundingClientRect();
             const itemCenter = itemRect.top + itemRect.height / 2;
             const distanceFromCenter = Math.abs(itemCenter - viewportCenter);
@@ -955,7 +899,7 @@ export default function GlossaryList() {
             }
           }
         }
-        return { nearestKeyword, mostVisibleKeyword, minDistance, rectReadCount };
+        return { nearestKeyword, mostVisibleKeyword, minDistance };
       };
 
       const vh = window.innerHeight;
@@ -973,18 +917,7 @@ export default function GlossaryList() {
         out = scanRange(0, n - 1);
       }
 
-      const result = out.mostVisibleKeyword || out.nearestKeyword || allKeywordsInOrder[0];
-      if (glossaryPerfDebugEnabled() && perfT0) {
-        const ms = performance.now() - perfT0;
-        if (ms > 4) {
-          console.warn('[glossary-perf] getCurrentKeyword', {
-            ms: Number(ms.toFixed(1)),
-            keywordCount: n,
-            getBoundingClientRectCount: out.rectReadCount,
-          });
-        }
-      }
-      return result;
+      return out.mostVisibleKeyword || out.nearestKeyword || allKeywordsInOrder[0];
     };
 
     const NUDGE_MIN_PX = 8;
@@ -1029,7 +962,6 @@ export default function GlossaryList() {
         return;
       }
 
-      // Don't interfere with programmatic scrolling from hash navigation or when modal is opening/closing
       if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) {
         ticking = false;
         return;
@@ -1066,16 +998,9 @@ export default function GlossaryList() {
       }
       lastGlossaryScrollKeywordCheckMsRef.current = now;
 
-      const scrollPerfT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
       const visibleKeyword = getCurrentKeyword();
       if (visibleKeyword && visibleKeyword.id !== centeredKeywordIdRef.current) {
         updateCenteredKeyword(visibleKeyword.id);
-      }
-      if (glossaryPerfDebugEnabled() && scrollPerfT0) {
-        const ms = performance.now() - scrollPerfT0;
-        if (ms > 8) {
-          console.warn('[glossary-perf] handleScroll (rAF, after 100ms throttle)', { ms: Number(ms.toFixed(1)) });
-        }
       }
 
       lastScrollTop = currentScrollTop;
@@ -1094,19 +1019,12 @@ export default function GlossaryList() {
       if (isProgrammaticScroll.current || isScrollingRef.current || isOpeningModalRef.current || isClosingModalRef.current || articleModalOpenRef.current) return;
 
       const isMobile = listRef.current && window.innerWidth <= 812;
-      const endT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
       const visibleKeyword = getCurrentKeyword();
       if (visibleKeyword) {
         updateCenteredKeyword(visibleKeyword.id);
       }
       if (!isMobile) {
         nudgeDesktopScrollToCenteredRow();
-      }
-      if (glossaryPerfDebugEnabled() && endT0) {
-        const ms = performance.now() - endT0;
-        if (ms > 8) {
-          console.warn('[glossary-perf] handleScrollEnd (220ms debounce)', { ms: Number(ms.toFixed(1)) });
-        }
       }
     };
 
@@ -1160,11 +1078,8 @@ export default function GlossaryList() {
     const ensureKeywordSelected = () => {
       if (allKeywordsInOrder.length === 0) return;
 
-      // If there's no hash on initial load, don't override the first keyword selection
-      // This prevents unwanted scrolling when entering the glossary page
       const hasHash = typeof window !== 'undefined' && window.location.hash;
       if (!hasHash && !centeredKeywordIdRef.current && allKeywordsInOrder.length > 0) {
-        // On initial load without hash, just set the first keyword without scrolling
         updateCenteredKeyword(allKeywordsInOrder[0].id);
         return;
       }
@@ -1178,16 +1093,9 @@ export default function GlossaryList() {
     };
 
     setTimeout(() => {
-      const initT0 = glossaryPerfDebugEnabled() ? performance.now() : 0;
       const hasHash = typeof window !== 'undefined' && window.location.hash;
       if (!hasHash && !centeredKeywordIdRef.current) {
         ensureKeywordSelected();
-        if (glossaryPerfDebugEnabled() && initT0) {
-          const ms = performance.now() - initT0;
-          if (ms > 8) {
-            console.warn('[glossary-perf] init setTimeout(100) ensureKeywordSelected', { ms: Number(ms.toFixed(1)) });
-          }
-        }
         return;
       }
 
@@ -1195,12 +1103,6 @@ export default function GlossaryList() {
         handleScroll();
       }
       ensureKeywordSelected();
-      if (glossaryPerfDebugEnabled() && initT0) {
-        const ms = performance.now() - initT0;
-        if (ms > 8) {
-          console.warn('[glossary-perf] init setTimeout(100) full', { ms: Number(ms.toFixed(1)) });
-        }
-      }
     }, 100);
 
     return () => {
@@ -1377,14 +1279,12 @@ export default function GlossaryList() {
     isOverGlossaryRef.current = checkIfOverGlossary(x, y);
   }, []);
 
-  // Handle submit click - open submit form in Contributions component
   const handleSubmitClick = () => {
     if (contributionsRef.current) {
       contributionsRef.current.openSubmitForm();
     }
   };
 
-  // Handle article image click - open modal
   const handleArticleClick = (article) => {
     isOpeningModalRef.current = true;
     isProgrammaticScroll.current = true;
@@ -1610,12 +1510,10 @@ export default function GlossaryList() {
 
   return (
     <div className={styles.glossaryContainer} ref={containerRef}>
-      {/* Article Images Stack - Rendered via Portal to ensure proper z-index stacking */}
       {typeof window !== 'undefined' && articleImagesStackContent
         ? createPortal(articleImagesStackContent, document.body)
         : articleImagesStackContent}
 
-      {/* Article Modal */}
       <Modal
         isOpen={articleModalOpen}
         onRequestClose={handleCloseArticleModal}
@@ -1642,7 +1540,6 @@ export default function GlossaryList() {
         )}
       </Modal>
 
-      {/* Keywords List - Scrollable */}
       <ul
         className={styles.glossaryList}
         ref={listRef}
@@ -1687,7 +1584,6 @@ export default function GlossaryList() {
         })}
       </ul>
 
-      {/* Alphabet Navigation Bar */}
       <div 
         className={styles.alphabetBar}
         ref={alphabetBarRef}
@@ -1713,20 +1609,17 @@ export default function GlossaryList() {
         })}
       </div>
 
-      {/* Alphabet Preview Popup */}
       {alphabetPreview && (
         <div className={styles.alphabetPreview}>
           {alphabetPreview}
         </div>
       )}
 
-      {/* Navigation Controls - Info Button */}
       <NavigationControls
         onSubmitEntry={handleSubmitClick}
         currentKeywordTitle={currentKeywordTitle}
       />
 
-      {/* Contributions Section */}
       <Contributions
         ref={contributionsRef}
         currentKeywordId={centeredKeywordId}

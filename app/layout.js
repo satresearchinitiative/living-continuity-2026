@@ -1,13 +1,7 @@
 'use client';
 
 import '../components/utils/appStores';
-import { registerPerfDebugConsole, initPerfDebugHooks } from '../components/utils/perfDebugHooks';
 import { useEffect, useState, useRef, Suspense } from 'react';
-
-if (typeof window !== 'undefined') {
-  registerPerfDebugConsole();
-  initPerfDebugHooks();
-}
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Modal from 'react-modal';

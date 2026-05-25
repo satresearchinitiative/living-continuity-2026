@@ -1,5 +1,0 @@
-{
-  "/api/submit-entry/route": "app/api/submit-entry/route.js",
-  "/glossary/page": "app/glossary/page.js",
-  "/page": "app/page.js"
-}
